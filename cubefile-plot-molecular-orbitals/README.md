@@ -24,7 +24,7 @@ by double clicking the cell bracket on the right. Before the line
 
     molplot = MoleculePlot3D[mol, PlotTheme -> plottheme];
    
-you can then do something similar as above, 
+you can then do something like this, 
    
     mol1 = MoleculeModify[mol, {"AddBond", {1, 15}}]
     (* 1 and 15 are atom numbers in the XYZ file, adjust as needed *)   
