@@ -12,5 +12,9 @@ Rulin Feng, Xiaojuan Yu, Jochen Autschbach, Spin-orbit Natural Transition Orbita
 
 Works (should work) with Mathematica 12.1 or higher. 
 
+The notebook is also available at the Wolfram Foundation's Notebook
+Archive: https://notebookarchive.org/2022-02-471gnt6/
+
+
 ![Color coding for the complex phase used in the notebook](colorwheel-modified.png)
 
