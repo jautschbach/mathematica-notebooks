@@ -5,7 +5,7 @@
 A Mathematica notebook for plotting +/- isosurfaces of 
 of a set of molecular orbitals. The image above shows +/-0.04 atomic units isosurfaces of a localized molecular orbital representing one of the C-H bonds in the ethene molecule, generated with the notebook.  
 
-*Note: In Mathematica 13.1, the combined rendering of molecules and isosurfaces based on cube file imports is broken. It looks like the issue has been fixed in version 13.2, and version 13.0 or one of the version 12 releases will also work.*
+*Note: In Mathematica 13.1, the combined rendering of molecules and isosurfaces based on cube file imports is broken. Version 12.x and 13.0 are confirmed to work.*
 
 The notebook was used to generate the molecular orbital visualizations in my textbook *Quantum Theory for Chemical Applications* (https://global.oup.com/academic/product/quantum-theory-for-chemical-applications-9780190920807). The ethene orbital example is one of the isosurface plots shown in Figure 10.12 in the book. See also this article: https://doi.org/10.1021/ed200673w 
 
