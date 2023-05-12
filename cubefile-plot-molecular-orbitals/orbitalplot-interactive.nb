@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     24830,        585]
-NotebookOptionsPosition[     22901,        545]
-NotebookOutlinePosition[     23433,        563]
-CellTagsIndexPosition[     23390,        560]
+NotebookDataLength[     24967,        577]
+NotebookOptionsPosition[     23219,        541]
+NotebookOutlinePosition[     23697,        558]
+CellTagsIndexPosition[     23654,        555]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -26,8 +26,8 @@ Cell["Interactive Molecular Orbital Isosurface Plots", "Subsection",
 a293d442614f"],
 
 Cell["\<\
-Jochen Autschbach, University at Buffalo, SUNY. (c) 2020, 2022 Jochen \
-Autschbach
+Jochen Autschbach, University at Buffalo, SUNY. 
+(c) 2020-2023 Jochen Autschbach
 
 If you use this notebook for research or educational articles, I would \
 appreciate a citation of my textbook, for which I developed this \
@@ -39,8 +39,8 @@ Press, New York (NY), 2021.
 A related publication is this: https://doi.org/10.1021/ed200673w\
 \>", "Text",
  CellChangeTimes->{{3.852202320988123*^9, 3.8522024817629747`*^9}, {
-  3.85220251189102*^9, 
-  3.852202519134107*^9}},ExpressionUUID->"c2092725-48ef-4287-963a-\
+  3.85220251189102*^9, 3.852202519134107*^9}, {3.89290458195798*^9, 
+  3.892904589106019*^9}},ExpressionUUID->"c2092725-48ef-4287-963a-\
 67fb01c514e5"],
 
 Cell[CellGroupData[{
@@ -85,7 +85,7 @@ Cell[BoxData[{
    RowBox[{"{", 
     RowBox[{
     "\"\<Tubes\>\"", ",", "\"\<HeavyAtom\>\"", ",", "\"\<BallAndStick\>\"", 
-     ",", "\"\<SpaceFilling\>\"", ",", "\"\<WireFrame\>\""}], "}"}]}], 
+     ",", "\"\<Spacefilling\>\"", ",", "\"\<Wireframe\>\""}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"export", " ", "=", " ", "False"}], ";"}], "\[IndentingNewLine]", 
@@ -130,16 +130,19 @@ Cell[BoxData[{
           RowBox[{"Import", "[", 
            RowBox[{"cube", ",", "\"\<Cube\>\""}], "]"}]}], ";", 
          "\[IndentingNewLine]", 
-         RowBox[{"file", " ", "=", " ", "\"\<tmp.xyz\>\""}], ";", 
+         RowBox[{"file", " ", "=", " ", "\"\<molecule.xyz\>\""}], ";", 
          "\[IndentingNewLine]", 
          RowBox[{"Export", "[", 
           RowBox[{"file", ",", "tmp"}], "]"}], ";", "\[IndentingNewLine]", 
          RowBox[{"mol", " ", "=", " ", 
           RowBox[{"Import", "[", 
-           RowBox[{"\"\<tmp.xyz\>\"", ",", 
+           RowBox[{"file", ",", 
             RowBox[{"\"\<InferBondTypes\>\"", "\[Rule]", "False"}]}], "]"}]}],
           ";", "\[IndentingNewLine]", 
-         RowBox[{"DeleteFile", "[", "file", "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"(*", " ", 
+          RowBox[{
+           RowBox[{"DeleteFile", "[", "file", "]"}], ";"}], " ", "*)"}], 
+         "\[IndentingNewLine]", 
          RowBox[{"vol", " ", "=", " ", 
           RowBox[{"Import", "[", 
            RowBox[{"cube", ",", "\"\<VolumetricData\>\""}], "]"}]}], ";", 
@@ -236,8 +239,10 @@ Cell[BoxData[{
    3.7938915850352287`*^9, 3.79389160113636*^9}, {3.793891633163087*^9, 
    3.7938916940978813`*^9}, {3.7938927501957417`*^9, 3.793892811852044*^9}, {
    3.793906305425322*^9, 3.793906435889758*^9}, {3.793976330455872*^9, 
-   3.793976331365882*^9}, 3.7942429515874662`*^9},
- CellLabel->"In[1]:=",ExpressionUUID->"724f81ef-ce85-4e6f-a7c6-06c24428f6a6"]
+   3.793976331365882*^9}, 3.7942429515874662`*^9, {3.892904130155116*^9, 
+   3.892904134011157*^9}, {3.89290421073228*^9, 3.892904217552795*^9}, {
+   3.8929042740705023`*^9, 3.892904276184087*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"724f81ef-ce85-4e6f-a7c6-06c24428f6a6"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -252,14 +257,28 @@ Cell[TextData[{
 makes a list of cube files from the directory containing the notebook. The \
 file name extension (.cub or .cube, usually) needs to be defined first. ",
  StyleBox["The cube files must all be for the same molecule and the same \
-volume data grid; otherwise you should expect unintended affects and errors.",
-  
+volume data grid; otherwise you should expect unintended affects and errors.\n\
+",
   FontSlant->"Italic"],
+ "\n",
+ StyleBox["Warning: ",
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["the code underlying the interactive panel below will create \na \
+file named \[OpenCurlyQuote]molecule.xyz\[CloseCurlyQuote], an xyz-format \
+molecular coordinate file\nthat gets extracted from the cube file selected \
+for visualization. Do not run\nthe visualization code if you have a file \
+\[OpenCurlyQuote]molecule.xyz\[CloseCurlyQuote] in the notebook\
+\[CloseCurlyQuote]s\ndirectory and don\[CloseCurlyQuote]t want it to get \
+over-written.",
+  FontSize->14],
  "\n\n",
- StyleBox["[The cube files may come from a software that generates files with \
-names containing special characters and blanks. Better to remove them first, \
+ StyleBox["Comment:",
+  FontColor->RGBColor[0.5, 0, 0.5]],
+ " ",
+ StyleBox["The cube files may come from a software that generates files with \
+names containing special characters or blanks. Better to remove them first, \
 e.g. with (the command replaces blanks, $, @, % with _):\nrename  \
-\[OpenCurlyQuote]s/ |\\$|@|%/_/g\[CloseCurlyQuote] *.cub ]",
+\[OpenCurlyQuote]s/ |\\$|@|%/_/g\[CloseCurlyQuote] *.cub ",
   FontSize->14]
 }], "Text",
  CellChangeTimes->{{3.793799563306443*^9, 3.793799591542831*^9}, {
@@ -270,11 +289,11 @@ e.g. with (the command replaces blanks, $, @, % with _):\nrename  \
   3.793899963329277*^9, 3.793899964123254*^9}, {3.793905191015929*^9, 
   3.793905246133747*^9}, {3.793906027563292*^9, 3.7939060580030327`*^9}, {
   3.852197921866893*^9, 3.8521979799009*^9}, {3.85220216131085*^9, 
-  3.852202257066807*^9}, {3.852202539743265*^9, 
-  3.852202580916294*^9}},ExpressionUUID->"bcf1db58-0c2a-43cd-a28e-\
+  3.852202257066807*^9}, {3.852202539743265*^9, 3.852202580916294*^9}, {
+  3.892904298821944*^9, 3.8929044263496532`*^9}, {3.892904480780119*^9, 
+  3.892904545429339*^9}, {3.89290517838025*^9, 
+  3.892905184678684*^9}},ExpressionUUID->"bcf1db58-0c2a-43cd-a28e-\
 7e8276321f48"],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
@@ -295,30 +314,7 @@ Cell[BoxData[{
    3.793899916506937*^9}, 3.794241133020411*^9, 3.79424168587214*^9, 
    3.852197362819961*^9, {3.852197427472699*^9, 3.852197429030765*^9}, {
    3.8521975165186*^9, 3.8521975376840267`*^9}},
- CellLabel->"In[14]:=",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
-
-Cell[BoxData[
- TagBox[
-  TagBox[GridBox[{
-     {"\<\"None\"\>"},
-     {"\<\"example.cube\"\>"}
-    },
-    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
-    GridBoxSpacings->{"Columns" -> {
-        Offset[0.27999999999999997`], {
-         Offset[0.5599999999999999]}, 
-        Offset[0.27999999999999997`]}, "Rows" -> {
-        Offset[0.2], {
-         Offset[0.4]}, 
-        Offset[0.2]}}],
-   Column],
-  Function[BoxForm`e$, 
-   TableForm[BoxForm`e$]]]], "Output",
- CellChangeTimes->{3.8521978754702597`*^9},
- CellLabel->
-  "Out[16]//TableForm=",ExpressionUUID->"08615a8d-0b00-4f67-9c84-\
-c466eab00f91"]
-}, Open  ]],
+ CellLabel->"In[19]:=",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
 
 Cell["Plot, rotate, and export to PNG", "Text",
  CellChangeTimes->{{3.793890669414953*^9, 
@@ -389,7 +385,7 @@ y26hFhDdxd/RAaKzn0yYBqLX/BOfC6LXvWA+BqJfy8ieBNFTk2MOuQDpkPhf
 4mkgesHfbTkgWoTTtgBEe3RZdIDoEKZdnSD60szrE0H0nSazqSDaJd/7BYh+
 ZrTmJYhO+3bzHYh2qv72BURv8frJ4wayb1mrBIgGAHcgmSc=
   "],
- CellLabel->"In[17]:=",ExpressionUUID->"27d66299-0a14-41eb-95a5-8d0f01135a5a"],
+ CellLabel->"In[22]:=",ExpressionUUID->"27d66299-0a14-41eb-95a5-8d0f01135a5a"],
 
 Cell[BoxData[
  TagBox[
@@ -403,14 +399,14 @@ Cell[BoxData[
        Hold[$CellContext`cubefile$$], "None", "Cube File"}, {
       "None", "example.cube"}}, {{
        Hold[$CellContext`plottheme$$], "Tubes", "Molecule Style"}, {
-      "Tubes", "HeavyAtom", "BallAndStick", "SpaceFilling", "WireFrame"}}, {{
+      "Tubes", "HeavyAtom", "BallAndStick", "Spacefilling", "Wireframe"}}, {{
        Hold[$CellContext`contours$$], 0.03, "Iso Value"}, 0.03}, {{
        Hold[$CellContext`mesh$$], True, "Show Mesh"}, {True, False}}, {{
        Hold[$CellContext`invert$$], False, "Invert Phase"}, {True, False}}, {
       Hold[
        Button["Export to PNG (be patient)", $CellContext`export = True]], 
       Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
-    297.3727678571429, {3., 10.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    295.0625, {3., 9.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
     Typeset`skipInitDone$$ = True}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
@@ -430,7 +426,7 @@ $CellContext`invert$$]),
       "Specifications" :> {{{$CellContext`cubefile$$, "None", "Cube File"}, {
          "None", "example.cube"}, ControlType -> 
          PopupMenu}, {{$CellContext`plottheme$$, "Tubes", "Molecule Style"}, {
-         "Tubes", "HeavyAtom", "BallAndStick", "SpaceFilling", "WireFrame"}, 
+         "Tubes", "HeavyAtom", "BallAndStick", "Spacefilling", "Wireframe"}, 
          ControlType -> 
          PopupMenu}, {{$CellContext`contours$$, 0.03, "Iso Value"}, 
          0.03}, {{$CellContext`mesh$$, True, "Show Mesh"}, {
@@ -438,7 +434,7 @@ $CellContext`invert$$]),
          True, False}}, 
         Button["Export to PNG (be patient)", $CellContext`export = True]}, 
       "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{344., {102.66238839285714`, 108.33761160714286`}},
+     ImageSizeCache->{342., {103.1875, 108.8125}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -449,8 +445,8 @@ $CellContext`invert$$]),
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{3.852197879785549*^9},
- CellLabel->"Out[17]=",ExpressionUUID->"bd906c2a-9453-499c-b277-e39791053289"]
+ CellChangeTimes->{3.8929050268591557`*^9},
+ CellLabel->"Out[22]=",ExpressionUUID->"2ca4b636-5869-4856-8065-8f324153f1a3"]
 }, {2}]],
 
 Cell["\<\
@@ -543,11 +539,10 @@ Cell[BoxData[
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{588.8571428571429, 641.5714285714286},
-WindowMargins->{{808.7142857142857, Automatic}, {
-  5.785714285714334, Automatic}},
+WindowSize->{589.5, 639.},
+WindowMargins->{{852, Automatic}, {Automatic, 95.25}},
 PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
-FrontEndVersion->"13.0 for Linux x86 (64-bit) (December 2, 2021)",
+FrontEndVersion->"13.2 for Linux x86 (64-bit) (December 7, 2022)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"e746e53e-1649-4e78-8e31-8315212b6e4a"
 ]
@@ -564,27 +559,24 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 223, 3, 54, "Subsection",ExpressionUUID->"b76058a8-2021-4ad0-8133-a293d442614f"],
-Cell[806, 27, 615, 16, 242, "Text",ExpressionUUID->"c2092725-48ef-4287-963a-67fb01c514e5"],
+Cell[806, 27, 658, 16, 265, "Text",ExpressionUUID->"c2092725-48ef-4287-963a-67fb01c514e5"],
 Cell[CellGroupData[{
-Cell[1446, 47, 269, 6, 71, "Subsubsection",ExpressionUUID->"887e90fc-05f8-4ab0-80f2-4496be7a7a90"],
-Cell[1718, 55, 8080, 184, 945, "Input",ExpressionUUID->"724f81ef-ce85-4e6f-a7c6-06c24428f6a6",
+Cell[1489, 47, 269, 6, 71, "Subsubsection",ExpressionUUID->"887e90fc-05f8-4ab0-80f2-4496be7a7a90"],
+Cell[1761, 55, 8297, 189, 1192, "Input",ExpressionUUID->"724f81ef-ce85-4e6f-a7c6-06c24428f6a6",
  InitializationCell->True]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[9835, 244, 200, 3, 37, "Subsubsection",ExpressionUUID->"36456696-7c0f-4d6f-b97d-025213ba313e"],
-Cell[10038, 249, 1456, 25, 280, "Text",ExpressionUUID->"bcf1db58-0c2a-43cd-a28e-7e8276321f48"],
+Cell[10095, 249, 200, 3, 37, "Subsubsection",ExpressionUUID->"36456696-7c0f-4d6f-b97d-025213ba313e"],
+Cell[10298, 254, 2205, 41, 412, "Text",ExpressionUUID->"bcf1db58-0c2a-43cd-a28e-7e8276321f48"],
+Cell[12506, 297, 954, 19, 73, "Input",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
+Cell[13463, 318, 175, 3, 35, "Text",ExpressionUUID->"f777762c-fa40-4a94-805b-65d60eaa92db"],
 Cell[CellGroupData[{
-Cell[11519, 278, 954, 19, 72, "Input",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
-Cell[12476, 299, 624, 20, 62, "Output",ExpressionUUID->"08615a8d-0b00-4f67-9c84-c466eab00f91"]
-}, Open  ]],
-Cell[13115, 322, 175, 3, 35, "Text",ExpressionUUID->"f777762c-fa40-4a94-805b-65d60eaa92db"],
-Cell[CellGroupData[{
-Cell[13315, 329, 2403, 62, 260, "Input",ExpressionUUID->"27d66299-0a14-41eb-95a5-8d0f01135a5a"],
-Cell[15721, 393, 3257, 59, 230, "Output",ExpressionUUID->"bd906c2a-9453-499c-b277-e39791053289"]
+Cell[13663, 325, 2403, 62, 278, "Input",ExpressionUUID->"27d66299-0a14-41eb-95a5-8d0f01135a5a"],
+Cell[16069, 389, 3227, 59, 231, "Output",ExpressionUUID->"2ca4b636-5869-4856-8065-8f324153f1a3"]
 }, {2}]],
-Cell[18990, 455, 763, 13, 127, "Text",ExpressionUUID->"c1b76068-cef1-4f95-b6e5-2be7d652dc17"],
-Cell[19756, 470, 1687, 38, 197, "Input",ExpressionUUID->"b2b39270-b79b-4f2a-803c-9a35b06d731e"],
-Cell[21446, 510, 1427, 31, 114, "Input",ExpressionUUID->"a722bb31-346c-403a-a4f4-24561304b156"]
+Cell[19308, 451, 763, 13, 127, "Text",ExpressionUUID->"c1b76068-cef1-4f95-b6e5-2be7d652dc17"],
+Cell[20074, 466, 1687, 38, 198, "Input",ExpressionUUID->"b2b39270-b79b-4f2a-803c-9a35b06d731e"],
+Cell[21764, 506, 1427, 31, 118, "Input",ExpressionUUID->"a722bb31-346c-403a-a4f4-24561304b156"]
 }, Open  ]]
 }, Open  ]]
 }
