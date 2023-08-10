@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     88832,       1762]
-NotebookOptionsPosition[     81599,       1668]
-NotebookOutlinePosition[     82080,       1685]
-CellTagsIndexPosition[     82037,       1682]
+NotebookDataLength[     29126,        675]
+NotebookOptionsPosition[     27507,        642]
+NotebookOutlinePosition[     27983,        659]
+CellTagsIndexPosition[     27940,        656]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -91,17 +91,33 @@ Cell[BoxData[{
      ",", "\"\<Spacefilling\>\"", ",", "\"\<Wireframe\>\""}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{
-   RowBox[{"export", " ", "=", " ", "False"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"export", " ", "=", " ", "False"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"mmaver", " ", "==", " ", "13.3"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"(*", " ", 
+     RowBox[{
+      RowBox[{"for", " ", "version", " ", "13.3"}], ",", " ", 
+      RowBox[{
+      "we", " ", "need", " ", "this", " ", "version", " ", "to", " ", 
+       "import", " ", "the", " ", "molecular", " ", "structure", " ", "an", 
+       " ", 
+       RowBox[{"image", ":"}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
+    RowBox[{
+    "Print", "[", "\"\<init: using v. 13.3 hack for molecule plot\>\"", 
+     "]"}]}], "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
   "\[IndentingNewLine]", 
   RowBox[{"(*", " ", 
    RowBox[{
     RowBox[{
      RowBox[{
-     "customImporter", " ", "function", " ", "is", " ", "from", " ", "Oliver",
-       " ", "Jandette", " ", "at", " ", "Wolfram", " ", "Tech", " ", 
-      "support", " ", "when", " ", "I", " ", "reported", " ", "that", " ", 
-      "the", " ", "\"\<InferBondTypes\>\""}], "\[Rule]", 
+      RowBox[{"July", " ", "2023"}], ":", " ", 
+      RowBox[{
+      "customImporter", " ", "function", " ", "is", " ", "from", " ", 
+       "Oliver", " ", "Jandette", " ", "at", " ", "Wolfram", " ", "Tech", " ",
+        "support", " ", "when", " ", "I", " ", "reported", " ", "that", " ", 
+       "the", " ", "\"\<InferBondTypes\>\""}]}], "\[Rule]", 
      RowBox[{
       RowBox[{
       "False", " ", "import", " ", "option", " ", "for", " ", "XYZ", " ", 
@@ -119,8 +135,37 @@ Cell[BoxData[{
      "hydrogens", " ", "to", " ", "the", " ", "molecule", " ", "to", " ", 
      "cap", " ", "dangling", " ", "valencies"}], ",", " ", 
     RowBox[{
-    "which", " ", "is", " ", "something", " ", "we", " ", "do", " ", "not", 
-     " ", "want"}]}], " ", "*)"}], " "}], "\[IndentingNewLine]", 
+     RowBox[{
+     "which", " ", "is", " ", "something", " ", "we", " ", "do", " ", "not", 
+      " ", 
+      RowBox[{"want", ".", "\[IndentingNewLine]", "August"}], " ", "2023"}], 
+     ":", " ", 
+     RowBox[{"For", " ", "some", " ", "molecules"}]}], ",", " ", 
+    RowBox[{
+     RowBox[{
+     "there", " ", "is", " ", "an", " ", "additional", " ", "setting", " ", 
+      "in", " ", "the", " ", "molecule", " ", "specification", " ", "when", 
+      " ", "importing", " ", "XYZ", " ", "while", " ", "looks", " ", "like", 
+      " ", 
+      RowBox[{
+      "this", ":", "\[IndentingNewLine]", "StereochemistryElements"}]}], " ", 
+     "->", " ", 
+     RowBox[{"{", 
+      RowBox[{"<|", 
+       RowBox[{
+        RowBox[{"\"\<StereoType\>\"", " ", "->", " ", 
+         RowBox[{
+         "\"\<DoubleBond\>\"", "\[IndentingNewLine]", "so", " ", "replacing", 
+          " ", "\"\<Double\>\"", " ", "with", " ", "\"\<Single\>\"", " ", 
+          "will", " ", "interfere", " ", "amnd", " ", "cause", " ", "an", " ", 
+          RowBox[{"error", ".", " ", "The"}], " ", "workaround", " ", "for", 
+          " ", "that", " ", "is", " ", "to", " ", "replace", " ", 
+          "\"\<Double\>\""}]}], ",", " ", "\"\<Triple\>\"", ",", " ", 
+        RowBox[{
+         RowBox[{"etc", ".", " ", "with"}], " ", "\"\<Single\>\"", " ", 
+         "including", " ", "the", " ", 
+         RowBox[{"quotes", "."}]}]}], " "}]}]}]}], "*)"}], 
+  " "}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"customImporter", "[", 
@@ -145,9 +190,12 @@ Cell[BoxData[{
          RowBox[{"textmol", ",", 
           RowBox[{"{", 
            RowBox[{
-            RowBox[{"\"\<Double\>\"", "->", "\"\<Single\>\""}], ",", 
-            RowBox[{"\"\<Triple\>\"", "->", "\"\<Single\>\""}], ",", 
-            RowBox[{"\"\<Aromatic\>\"", "->", "\"\<Single\>\""}], ",", 
+            RowBox[{
+            "\"\<\\\"Double\\\"\>\"", "->", "\"\<\\\"Single\\\"\>\""}], ",", 
+            RowBox[{
+            "\"\<\\\"Triple\\\"\>\"", "->", "\"\<\\\"Single\\\"\>\""}], ",", 
+            RowBox[{
+            "\"\<\\\"Aromatic\\\"\>\"", "->", "\"\<\\\"Single\\\"\>\""}], ",", 
             RowBox[{
             "\"\<}]]}]\>\"", "->", " ", 
              "\"\<}]]}, ValenceFilling->None]\>\""}]}], "}"}]}], "]"}]}]}], 
@@ -348,9 +396,11 @@ Cell[BoxData[{
    3.89800713068395*^9, 3.898007161218463*^9}, {3.898007226357491*^9, 
    3.898007257902441*^9}, 3.898007293473557*^9, {3.898007359093483*^9, 
    3.898007391807288*^9}, {3.898007427174919*^9, 3.8980074719254923`*^9}, {
-   3.8980076058075438`*^9, 
-   3.898007653683255*^9}},ExpressionUUID->"724f81ef-ce85-4e6f-a7c6-\
-06c24428f6a6"]
+   3.8980076058075438`*^9, 3.898007653683255*^9}, {3.900404840603532*^9, 
+   3.900404871723235*^9}, {3.900404984038065*^9, 3.900405022062933*^9}, {
+   3.900666509880637*^9, 3.9006665397506104`*^9}, {3.900666591041041*^9, 
+   3.900666704859974*^9}, 3.900666845734426*^9},
+ CellLabel->"In[30]:=",ExpressionUUID->"724f81ef-ce85-4e6f-a7c6-06c24428f6a6"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -377,7 +427,7 @@ molecular coordinate file\nthat gets extracted from the cube file selected \
 for visualization. Do not run\nthe visualization code if you have a file \
 \[OpenCurlyQuote]molecule.xyz\[CloseCurlyQuote] in the notebook\
 \[CloseCurlyQuote]s\ndirectory and don\[CloseCurlyQuote]t want it to get \
-over-written.",
+replaced.",
   FontSize->14],
  "\n\n",
  StyleBox["Comment:",
@@ -399,11 +449,10 @@ e.g. with (the command replaces blanks, $, @, % with _):\nrename  \
   3.852197921866893*^9, 3.8521979799009*^9}, {3.85220216131085*^9, 
   3.852202257066807*^9}, {3.852202539743265*^9, 3.852202580916294*^9}, {
   3.892904298821944*^9, 3.8929044263496532`*^9}, {3.892904480780119*^9, 
-  3.892904545429339*^9}, {3.89290517838025*^9, 
-  3.892905184678684*^9}},ExpressionUUID->"bcf1db58-0c2a-43cd-a28e-\
+  3.892904545429339*^9}, {3.89290517838025*^9, 3.892905184678684*^9}, {
+  3.900667540185666*^9, 
+  3.90066754330694*^9}},ExpressionUUID->"bcf1db58-0c2a-43cd-a28e-\
 7e8276321f48"],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
@@ -424,39 +473,18 @@ Cell[BoxData[{
    3.793899916506937*^9}, 3.794241133020411*^9, 3.79424168587214*^9, 
    3.852197362819961*^9, {3.852197427472699*^9, 3.852197429030765*^9}, {
    3.8521975165186*^9, 3.8521975376840267`*^9}},
- CellLabel->"In[12]:=",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
+ CellLabel->"In[42]:=",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
 
-Cell[BoxData[
- TagBox[
-  TagBox[GridBox[{
-     {"\<\"None\"\>"},
-     {"\<\"example.cube\"\>"}
-    },
-    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
-    GridBoxSpacings->{"Columns" -> {
-        Offset[0.27999999999999997`], {
-         Offset[0.5599999999999999]}, 
-        Offset[0.27999999999999997`]}, "Rows" -> {
-        Offset[0.2], {
-         Offset[0.4]}, 
-        Offset[0.2]}}],
-   Column],
-  Function[BoxForm`e$, 
-   TableForm[BoxForm`e$]]]], "Output",
- CellChangeTimes->{
-  3.8979982305360107`*^9, {3.89800703109593*^9, 3.898007053568738*^9}, 
-   3.898007517183033*^9},
- CellLabel->
-  "Out[14]//TableForm=",ExpressionUUID->"a9ce0ef6-7ac1-4960-a5d6-\
-b0c4f0b483e7"]
-}, Open  ]],
-
-Cell["Plot, rotate, and export to PNG", "Text",
- CellChangeTimes->{{3.793890669414953*^9, 
-  3.7938906751484528`*^9}},ExpressionUUID->"f777762c-fa40-4a94-805b-\
+Cell["\<\
+Plot, rotate, and export to PNG. Tip: You can hide the code below after \
+executing the Manipulate command by double clicking on the output cell \
+bracket on the right \
+\>", "Text",
+ CellChangeTimes->{{3.793890669414953*^9, 3.7938906751484528`*^9}, {
+  3.900667167725882*^9, 3.900667218381531*^9}, {3.900667409527567*^9, 
+  3.9006674253109627`*^9}, {3.900667476057292*^9, 
+  3.900667508585528*^9}},ExpressionUUID->"f777762c-fa40-4a94-805b-\
 65d60eaa92db"],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
@@ -513,1068 +541,14 @@ Cell[BoxData[
      RowBox[{"export", " ", "=", " ", "True"}]}], "]"}]}], 
   "\[IndentingNewLine]", "]"}]], "Input",
  CellChangeTimes->CompressedData["
-1:eJxTTMoPSmViYGAQAWIQ3RMSftrR5Y3j8aKZV0H06syUOyA6Rfj2fRDdtST7
+1:eJxTTMoPSmViYGAQBWIQ3RMSftrR5Y3j8aKZV0H06syUOyA6Rfj2fRDdtST7
 CYi+sEzmKYh+v4rpPYi+8kv/M4hmXPw7zQlI8wjdyAfRH+f8qgPRWVvM6kF0
 y26hFhDdxd/RAaKzn0yYBqLX/BOfC6LXvWA+BqJfy8ieBNFTk2MOuQDpkPhf
 10F0C7+9hiuQfl43G0y3cxXogGgJ51oDED1hy2czEJ3jf8ocRAuVr0gE0d6t
 4mkgesHfbTkgWoTTtgBEe3RZdIDoEKZdnSD60szrE0H0nSazqSDaJd/7BYh+
-ZrTmJYhO+3bzHYh2qv72BURv8frJ4wayb1mrBIgGAHcgmSc=
-  "],
- CellLabel->"In[22]:=",ExpressionUUID->"27d66299-0a14-41eb-95a5-8d0f01135a5a"],
-
-Cell[BoxData[
- TagBox[
-  StyleBox[
-   DynamicModuleBox[{$CellContext`contours$$ = 0.03, $CellContext`cubefile$$ =
-     "None", $CellContext`invert$$ = False, $CellContext`mesh$$ = 
-    True, $CellContext`plottheme$$ = "Tubes", Typeset`show$$ = True, 
-    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
-    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-    "\"untitled\"", Typeset`specs$$ = {{{
-       Hold[$CellContext`cubefile$$], "None", "Cube File"}, {
-      "None", "example.cube"}}, {{
-       Hold[$CellContext`plottheme$$], "Tubes", "Molecule Style"}, {
-      "Tubes", "HeavyAtom", "BallAndStick", "Spacefilling", "Wireframe"}}, {{
-       Hold[$CellContext`contours$$], 0.03, "Iso Value"}, 0.03}, {{
-       Hold[$CellContext`mesh$$], True, "Show Mesh"}, {True, False}}, {{
-       Hold[$CellContext`invert$$], False, "Invert Phase"}, {True, False}}, {
-      Hold[
-       Button["Export to PNG (be patient)", $CellContext`export = True]], 
-      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
-    290.34375, {3., 10.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True}, 
-    DynamicBox[Manipulate`ManipulateBoxes[
-     1, StandardForm, 
-      "Variables" :> {$CellContext`contours$$ = 0.03, $CellContext`cubefile$$ = 
-        "None", $CellContext`invert$$ = False, $CellContext`mesh$$ = 
-        True, $CellContext`plottheme$$ = "Tubes"}, 
-      "ControllerVariables" :> {}, 
-      "OtherVariables" :> {
-       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
-        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
-        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
-         Typeset`skipInitDone$$}, "Body" :> (If[$CellContext`export, 
-         $CellContext`expfile[$CellContext`cubefile$$]]; $CellContext`export = 
-        False; $CellContext`cubeplot[$CellContext`cubefile$$, \
-$CellContext`contours$$, $CellContext`plottheme$$, $CellContext`mesh$$, \
-$CellContext`invert$$]), 
-      "Specifications" :> {{{$CellContext`cubefile$$, "None", "Cube File"}, {
-         "None", "example.cube"}, ControlType -> 
-         PopupMenu}, {{$CellContext`plottheme$$, "Tubes", "Molecule Style"}, {
-         "Tubes", "HeavyAtom", "BallAndStick", "Spacefilling", "Wireframe"}, 
-         ControlType -> 
-         PopupMenu}, {{$CellContext`contours$$, 0.03, "Iso Value"}, 
-         0.03}, {{$CellContext`mesh$$, True, "Show Mesh"}, {
-         True, False}}, {{$CellContext`invert$$, False, "Invert Phase"}, {
-         True, False}}, 
-        Button["Export to PNG (be patient)", $CellContext`export = True]}, 
-      "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{337., {103.1875, 108.8125}},
-     SingleEvaluation->True],
-    Deinitialization:>None,
-    DynamicModuleValues:>{},
-    SynchronousInitialization->True,
-    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
-    UnsavedVariables:>{Typeset`initDone$$},
-    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
-   Deployed->True,
-   StripOnInput->False],
-  Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{3.8929050268591557`*^9},
- CellLabel->"Out[22]=",ExpressionUUID->"2ca4b636-5869-4856-8065-8f324153f1a3"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Show", "gcomb", 
-   "\"Could not combine the graphics objects in \
-\\!\\(\\*RowBox[{\\\"Show\\\", \\\"[\\\", \
-RowBox[{Graphics3DBox[GraphicsComplex3DBox[List[List[-0.7937658734999995`, \
--0.028807984901213186`, 0.`], List[-0.7956325211805496`, \
--0.02645886244999973`, 0.`], List[-0.7937658734999995`, \
--0.02645886244999973`, -0.005144152816794743`], List[-0.7937658734999995`, \
--0.02645886244999973`, 0.005144152816795242`], List[-0.8018951117073612`, \
-0.026458862450000176`, 0.`], List[-0.7937658734999995`, \
-0.026458862450000176`, -0.024392333307067287`], List[-0.7937658734999995`, \
-0.026458862450000176`, 0.024392333307069643`], List[-0.7937658734999995`, \
-0.042630091252961064`, 0.`], List[-0.7408481485999996`, \
--0.059460475374361554`, -0.05291772489999991`], List[-0.7788869125825642`, \
--0.02645886244999973`, -0.05291772489999991`], Skeleton[24972]], \
-List[List[List[EdgeForm[], Directive[Rule[Skeleton[2]], \
-RGBColor[Skeleton[3]], Opacity[Skeleton[1]], Specularity[Skeleton[2]]], \
-GraphicsGroup3DBox[List[Skeleton[4]]]], List[EdgeForm[], \
-Directive[Rule[Skeleton[2]], RGBColor[Skeleton[3]], Opacity[Skeleton[1]], \
-Specularity[Skeleton[2]]], GraphicsGroup3DBox[List[Skeleton[4]]]], List[], \
-List[], List[], List[], List[]], List[List[], List[], List[], List[], List[], \
-List[GrayLevel[0.2`], Line3DBox[List[Skeleton[7]]], \
-Line3DBox[List[Skeleton[83]]], Line3DBox[List[Skeleton[159]]], \
-Line3DBox[List[Skeleton[201]]], Line3DBox[List[Skeleton[231]]], \
-Line3DBox[List[Skeleton[251]]], Line3DBox[List[Skeleton[259]]], \
-Line3DBox[List[Skeleton[255]]], Line3DBox[List[Skeleton[261]]], \
-Skeleton[14]], List[GrayLevel[0.2`], Line3DBox[List[Skeleton[15]]], \
-Line3DBox[List[Skeleton[267]]], Line3DBox[List[Skeleton[265]]], \
-Line3DBox[List[Skeleton[261]]], Line3DBox[List[Skeleton[261]]], \
-Line3DBox[List[Skeleton[249]]], Line3DBox[List[Skeleton[227]]], \
-Line3DBox[List[Skeleton[247]]], Line3DBox[List[Skeleton[191]]], \
-Skeleton[10]], List[GrayLevel[0.2`], Line3DBox[List[Skeleton[21]]], \
-Line3DBox[List[Skeleton[257]]], Line3DBox[List[Skeleton[251]]], \
-Line3DBox[List[Skeleton[251]]], Line3DBox[List[Skeleton[251]]], \
-Line3DBox[List[Skeleton[251]]], Line3DBox[List[Skeleton[241]]], \
-Line3DBox[List[Skeleton[241]]], Line3DBox[List[Skeleton[227]]], \
-Skeleton[12]]]], Rule[VertexNormals, List[List[-0.7314478146907631`, \
--0.681897422186143`, -1.0627390528485694`*^-14], List[-0.9218886955869807`, \
--0.3874548140737642`, -1.1644353223452153`*^-14], List[-0.8665113363891956`, \
--0.40437839524396246`, -0.2926366644303613`], List[-0.8665113363892089`, \
--0.4043783952439536`, 0.29263666443033437`], List[-0.9848150376536192`, \
-0.17360685934403802`, -1.4675323639258745`*^-14], List[-0.9347609818607499`, \
-0.17304177365860215`, -0.3102876912799023`], List[-0.9347609818607595`, \
-0.1730417736586037`, 0.3102876912798726`], List[-0.8849618241029965`, \
-0.4656635801523423`, -1.4210929295116124`*^-14], List[-0.3948803845760803`, \
--0.762696683173313`, -0.5122140678988365`], List[-0.7441856624684544`, \
--0.4100566450182947`, -0.5272961669239858`], Skeleton[24972]]]], \
-List[Rule[DisplayFunction, Identity], Rule[DisplayFunction, Identity], \
-Rule[Boxed, False], Rule[BoxStyle, Directive[Thickness[0.01`], \
-GrayLevel[0.5`]]], RuleDelayed[DisplayFunction, Identity], \
-Rule[FaceGridsStyle, Automatic], Rule[Lighting, \\\"Neutral\\\"], \
-Rule[Method, List[Rule[\\\"DefaultBoundaryStyle\\\", \
-Directive[GrayLevel[Skeleton[1]]]], Rule[\\\"DefaultGraphicsInteraction\\\", \
-List[Rule[Skeleton[2]], Rule[Skeleton[2]], Rule[Skeleton[2]]]]]], \
-Rule[PlotRange, List[List[-3.3338166686999995`, 3.3338166687000004`], \
-List[-3.0427691817499998`, 3.0427691817499998`], List[-2.116708996`, \
-2.116708996`]]], Rule[PlotRangePadding, Scaled[0.02`]], Skeleton[1]]], \
-\\\",\\\", RowBox[{\\\"\[LeftAssociation]\\\", \
-RowBox[{RowBox[{\\\"\\\\\\\"Graphics3D\\\\\\\"\\\", \\\"\[Rule]\\\", \
-Graphics3DBox[List[Specularity[GrayLevel[1], 100], CapForm[\\\"Round\\\"], \
-EdgeForm[None], GraphicsComplex3DBox[List[List[-0.6662`, 0.`, 0.`], \
-List[0.6662`, 0.`, 0.`], List[-1.238231`, -0.929367`, 0.`], List[-1.238231`, \
-0.929367`, 0.`], List[1.238231`, -0.929367`, 0.`], List[1.238231`, 0.929367`, \
-0.`], List[-0.6662`, 0.`, -1.1`], List[0.6662`, 0.`, 1.1`], \
-List[0.9522155000000001`, -0.4646835`, 0.`], List[0.9522155000000001`, \
-0.4646835`, 0.`], List[-0.9522155000000001`, -0.4646835`, 0.`], \
-List[-0.9522155000000001`, 0.4646835`, 0.`], List[-0.6662`, 0.`, -0.55`], \
-List[0.6662`, 0.`, 0.55`]], List[List[List[RGBColor[0.4`, 0.4`, 0.4`], \
-SphereBox[List[1, 2], 0.15`]], List[RGBColor[0.65`, 0.7`, 0.7`], \
-SphereBox[List[3, 4, 5, 6, 7, 8], 0.15`]]], \
-List[List[List[List[RGBColor[0.4`, 0.4`, 0.4`], CylinderBox[List[1, 2], \
-0.15`]]]], List[List[List[RGBColor[0.4`, 0.4`, 0.4`], CylinderBox[List[2, 9], \
-0.15`]], List[RGBColor[0.65`, 0.7`, 0.7`], CylinderBox[List[9, 5], 0.15`]]]], \
-List[List[List[RGBColor[0.4`, 0.4`, 0.4`], CylinderBox[List[2, 10], 0.15`]], \
-List[RGBColor[0.65`, 0.7`, 0.7`], CylinderBox[List[10, 6], 0.15`]]]], \
-List[List[List[RGBColor[0.4`, 0.4`, 0.4`], CylinderBox[List[1, 11], 0.15`]], \
-List[RGBColor[0.65`, 0.7`, 0.7`], CylinderBox[List[11, 3], 0.15`]]]], \
-List[List[List[RGBColor[0.4`, 0.4`, 0.4`], CylinderBox[List[1, 12], 0.15`]], \
-List[RGBColor[0.65`, 0.7`, 0.7`], CylinderBox[List[12, 4], 0.15`]]]], \
-List[List[List[RGBColor[0.4`, 0.4`, 0.4`], CylinderBox[List[1, 13], 0.15`]], \
-List[RGBColor[0.65`, 0.7`, 0.7`], CylinderBox[List[13, 7], 0.15`]]]], \
-List[List[List[RGBColor[0.4`, 0.4`, 0.4`], CylinderBox[List[2, 14], 0.15`]], \
-List[RGBColor[0.65`, 0.7`, 0.7`], CylinderBox[List[14, 8], 0.15`]]]]], \
-List[Opacity[0.7`], List[]]]]], Rule[Boxed, False], Rule[Lighting, \
-\\\"Neutral\\\"], Rule[Method, List[Rule[\\\"ShrinkWrap\\\", True], \
-Rule[\\\"DefaultBoundaryStyle\\\", Automatic], \
-Rule[\\\"DefaultGraphicsInteraction\\\", List[Rule[\\\"Version\\\", 1.2`], \
-Rule[\\\"TrackMousePosition\\\", List[True, False]], Rule[\\\"Effects\\\", \
-List[Rule[\\\"Highlight\\\", List[Rule[\\\"ratio\\\", 2]]], \
-Rule[\\\"HighlightPoint\\\", List[Rule[\\\"ratio\\\", 2]]], \
-Rule[\\\"Droplines\\\", List[Rule[\\\"freeformCursorMode\\\", True], \
-Rule[\\\"placement\\\", List[Rule[\\\"x\\\", \\\"All\\\"], Rule[\\\"y\\\", \\\
-\"None\\\"]]]]]]]]], Rule[\\\"DefaultPlotStyle\\\", Automatic]]], \
-Rule[ViewPoint, List[-0.8207619442492408`, 0, 3.278833608293078`]]]}], \
-\\\",\\\", RowBox[{\\\"\\\\\\\"Molecule\\\\\\\"\\\", \\\"\[Rule]\\\", \
-InterpretationBox[RowBox[{TagBox[\\\"Molecule\\\", \\\"SummaryHead\\\"], \
-\\\"[\\\", DynamicModuleBox[{Typeset`open$$ = False, \
-Set[Typeset`embedState$$, \\\"Ready\\\"]}, \
-TemplateBox[List[PaneSelectorBox[List[Rule[False, \
-GridBox[List[List[PaneBox[ButtonBox[DynamicBox[FEPrivate`FrontEndResource[\\\"\
-FEBitmaps\\\", \\\"SummaryBoxOpener\\\"]], RuleDelayed[ButtonFunction, \
-Set[Typeset`open$$, True]], Rule[Appearance, None], Rule[BaseStyle, List[]], \
-Rule[Evaluator, Automatic], Rule[Method, \\\"Preemptive\\\"]], \
-Rule[Alignment, List[Center, Center]], Rule[ImageSize, \
-Dynamic[List[Automatic, Times[3.5`, \
-Times[CurrentValue[\\\"FontCapHeight\\\"], \
-Power[AbsoluteCurrentValue[Magnification], -1]]]]]]], \
-GraphicsBox[List[List[AbsoluteThickness[1.3`], \
-List[StyleBox[List[LineBox[List[List[-0.43301270189221935`, \
--0.24999999999999992`], List[0.43301270189221935`, 0.24999999999999992`]]]], \
-List[RGBColor[0.4`, 0.4`, 0.4`]], Rule[StripOnInput, False]]]], \
-List[TagBox[TooltipBox[List[Opacity[0], EdgeForm[None], \
-DiskBox[List[-0.43301270189221935`, -0.24999999999999992`], 0.2`]], \
-\\\"1\\\"], Function[Annotation[Slot[1], 1, \\\"Tooltip\\\"]]], \
-TagBox[TooltipBox[List[Opacity[0], EdgeForm[None], \
-DiskBox[List[0.43301270189221935`, 0.24999999999999992`], 0.2`]], \\\"2\\\"], \
-Function[Annotation[Slot[1], 2, \\\"Tooltip\\\"]]]]], \
-List[Rule[DisplayFunction, Identity], Rule[Frame, True], Rule[FrameStyle, \
-Directive[Opacity[0.5`], Thickness[Tiny], GrayLevel[0.7`]]], Rule[FrameTicks, \
-None], Rule[ImageSize, Dynamic[List[UpTo[Times[8.1`, \
-Times[CurrentValue[\\\"FontCapHeight\\\"], \
-Power[AbsoluteCurrentValue[Magnification], -1]]]], UpTo[Times[4.1`, \
-Times[CurrentValue[\\\"FontCapHeight\\\"], \
-Power[AbsoluteCurrentValue[Magnification], -1]]]]]]]]], \
-GridBox[List[List[RowBox[List[TagBox[\\\"\\\\\\\"Formula: \\\\\\\"\\\", \
-\\\"SummaryItemAnnotation\\\"], \\\"\\\\[InvisibleSpace]\\\", \
-TagBox[TemplateBox[List[SubscriptBox[\\\"\\\\\\\"C\\\\\\\"\\\", \\\"2\\\"], \
-SubscriptBox[\\\"\\\\\\\"H\\\\\\\"\\\", \\\"6\\\"]], \\\"RowDefault\\\"], \
-\\\"SummaryItem\\\"]]]], List[TagBox[TemplateBox[List[RowBox[List[TagBox[\\\"\
-\\\\\\\"Atoms: \\\\\\\"\\\", \\\"SummaryItemAnnotation\\\"], \
-\\\"\\\\[InvisibleSpace]\\\", TagBox[TagBox[TooltipBox[\\\"8\\\", \
-TagBox[GridBox[List[List[StyleBox[\\\"\\\\\\\"Explicit: \\\\\\\"\\\", \
-\\\"SummaryItemAnnotation\\\", Rule[StripOnInput, False]], \\\"6\\\"], \
-List[StyleBox[\\\"\\\\\\\"Implicit: \\\\\\\"\\\", \\\"SummaryItemAnnotation\\\
-\", Rule[StripOnInput, False]], \\\"2\\\"]], Rule[AutoDelete, False], \
-Rule[GridBoxItemSize, List[Rule[\\\"Columns\\\", List[List[Automatic]]], \
-Rule[\\\"Rows\\\", List[List[Automatic]]]]]], \\\"Grid\\\"]], \
-Function[Annotation[Slot[1], Grid[List[List[Style[\\\"Explicit: \\\", \
-\\\"SummaryItemAnnotation\\\"], 6], List[Style[\\\"Implicit: \\\", \
-\\\"SummaryItemAnnotation\\\"], 2]]], \\\"Tooltip\\\"]]], \
-\\\"SummaryItem\\\"]]], \\\"\\\\\\\"  \\\\\\\"\\\", RowBox[List[TagBox[\\\"\\\
-\\\\\"Bonds: \\\\\\\"\\\", \\\"SummaryItemAnnotation\\\"], \
-\\\"\\\\[InvisibleSpace]\\\", TagBox[TagBox[TooltipBox[\\\"7\\\", \
-TagBox[GridBox[List[List[StyleBox[\\\"\\\\\\\"Explicit: \\\\\\\"\\\", \
-\\\"SummaryItemAnnotation\\\", Rule[StripOnInput, False]], \\\"5\\\"], \
-List[StyleBox[\\\"\\\\\\\"Implicit: \\\\\\\"\\\", \\\"SummaryItemAnnotation\\\
-\", Rule[StripOnInput, False]], \\\"2\\\"]], Rule[AutoDelete, False], \
-Rule[GridBoxItemSize, List[Rule[\\\"Columns\\\", List[List[Automatic]]], \
-Rule[\\\"Rows\\\", List[List[Automatic]]]]]], \\\"Grid\\\"]], \
-Function[Annotation[Slot[1], Grid[List[List[Style[\\\"Explicit: \\\", \
-\\\"SummaryItemAnnotation\\\"], 5], List[Style[\\\"Implicit: \\\", \
-\\\"SummaryItemAnnotation\\\"], 2]]], \\\"Tooltip\\\"]]], \
-\\\"SummaryItem\\\"]]]], \\\"RowDefault\\\"], \\\"SummaryItem\\\"]]], \
-Rule[GridBoxAlignment, List[Rule[\\\"Columns\\\", List[List[Left]]], \
-Rule[\\\"Rows\\\", List[List[Automatic]]]]], Rule[AutoDelete, False], \
-Rule[GridBoxItemSize, List[Rule[\\\"Columns\\\", List[List[Automatic]]], \
-Rule[\\\"Rows\\\", List[List[Automatic]]]]], Rule[GridBoxSpacings, List[Rule[\
-\\\"Columns\\\", List[List[2]]], Rule[\\\"Rows\\\", List[List[Automatic]]]]], \
-Rule[BaseStyle, List[Rule[ShowStringCharacters, False], Rule[NumberMarks, \
-False], Rule[PrintPrecision, 3], Rule[ShowSyntaxStyles, False]]]]]], \
-Rule[GridBoxAlignment, List[Rule[\\\"Columns\\\", List[List[Left]]], \
-Rule[\\\"Rows\\\", List[List[Top]]]]], Rule[AutoDelete, False], \
-Rule[GridBoxItemSize, List[Rule[\\\"Columns\\\", List[List[Automatic]]], \
-Rule[\\\"Rows\\\", List[List[Automatic]]]]], Rule[BaselinePosition, List[1, \
-1]]]], Rule[True, \
-GridBox[List[List[PaneBox[ButtonBox[DynamicBox[FEPrivate`FrontEndResource[\\\"\
-FEBitmaps\\\", \\\"SummaryBoxCloser\\\"]], RuleDelayed[ButtonFunction, \
-Set[Typeset`open$$, False]], Rule[Appearance, None], Rule[BaseStyle, List[]], \
-Rule[Evaluator, Automatic], Rule[Method, \\\"Preemptive\\\"]], \
-Rule[Alignment, List[Center, Center]], Rule[ImageSize, \
-Dynamic[List[Automatic, Times[3.5`, \
-Times[CurrentValue[\\\"FontCapHeight\\\"], \
-Power[AbsoluteCurrentValue[Magnification], -1]]]]]]], \
-GraphicsBox[List[List[AbsoluteThickness[1.3`], \
-List[StyleBox[List[LineBox[List[List[-0.43301270189221935`, \
--0.24999999999999992`], List[0.43301270189221935`, 0.24999999999999992`]]]], \
-List[RGBColor[0.4`, 0.4`, 0.4`]], Rule[StripOnInput, False]]]], \
-List[TagBox[TooltipBox[List[Opacity[0], EdgeForm[None], \
-DiskBox[List[-0.43301270189221935`, -0.24999999999999992`], 0.2`]], \
-\\\"1\\\"], Function[Annotation[Slot[1], 1, \\\"Tooltip\\\"]]], \
-TagBox[TooltipBox[List[Opacity[0], EdgeForm[None], \
-DiskBox[List[0.43301270189221935`, 0.24999999999999992`], 0.2`]], \\\"2\\\"], \
-Function[Annotation[Slot[1], 2, \\\"Tooltip\\\"]]]]], \
-List[Rule[DisplayFunction, Identity], Rule[Frame, True], Rule[FrameStyle, \
-Directive[Opacity[0.5`], Thickness[Tiny], GrayLevel[0.7`]]], Rule[FrameTicks, \
-None], Rule[ImageSize, Dynamic[List[UpTo[Times[8.1`, \
-Times[CurrentValue[\\\"FontCapHeight\\\"], \
-Power[AbsoluteCurrentValue[Magnification], -1]]]], UpTo[Times[4.1`, \
-Times[CurrentValue[\\\"FontCapHeight\\\"], \
-Power[AbsoluteCurrentValue[Magnification], -1]]]]]]]]], \
-GridBox[List[List[RowBox[List[TagBox[\\\"\\\\\\\"Formula: \\\\\\\"\\\", \
-\\\"SummaryItemAnnotation\\\"], \\\"\\\\[InvisibleSpace]\\\", \
-TagBox[TemplateBox[List[SubscriptBox[\\\"\\\\\\\"C\\\\\\\"\\\", \\\"2\\\"], \
-SubscriptBox[\\\"\\\\\\\"H\\\\\\\"\\\", \\\"6\\\"]], \\\"RowDefault\\\"], \
-\\\"SummaryItem\\\"]]]], List[TagBox[TemplateBox[List[RowBox[List[TagBox[\\\"\
-\\\\\\\"Atoms: \\\\\\\"\\\", \\\"SummaryItemAnnotation\\\"], \
-\\\"\\\\[InvisibleSpace]\\\", TagBox[TagBox[TooltipBox[\\\"8\\\", \
-TagBox[GridBox[List[List[StyleBox[\\\"\\\\\\\"Explicit: \\\\\\\"\\\", \
-\\\"SummaryItemAnnotation\\\", Rule[StripOnInput, False]], \\\"6\\\"], \
-List[StyleBox[\\\"\\\\\\\"Implicit: \\\\\\\"\\\", \\\"SummaryItemAnnotation\\\
-\", Rule[StripOnInput, False]], \\\"2\\\"]], Rule[AutoDelete, False], \
-Rule[GridBoxItemSize, List[Rule[\\\"Columns\\\", List[List[Automatic]]], \
-Rule[\\\"Rows\\\", List[List[Automatic]]]]]], \\\"Grid\\\"]], \
-Function[Annotation[Slot[1], Grid[List[List[Style[\\\"Explicit: \\\", \
-\\\"SummaryItemAnnotation\\\"], 6], List[Style[\\\"Implicit: \\\", \
-\\\"SummaryItemAnnotation\\\"], 2]]], \\\"Tooltip\\\"]]], \
-\\\"SummaryItem\\\"]]], \\\"\\\\\\\"  \\\\\\\"\\\", RowBox[List[TagBox[\\\"\\\
-\\\\\"Bonds: \\\\\\\"\\\", \\\"SummaryItemAnnotation\\\"], \
-\\\"\\\\[InvisibleSpace]\\\", TagBox[TagBox[TooltipBox[\\\"7\\\", \
-TagBox[GridBox[List[List[StyleBox[\\\"\\\\\\\"Explicit: \\\\\\\"\\\", \
-\\\"SummaryItemAnnotation\\\", Rule[StripOnInput, False]], \\\"5\\\"], \
-List[StyleBox[\\\"\\\\\\\"Implicit: \\\\\\\"\\\", \\\"SummaryItemAnnotation\\\
-\", Rule[StripOnInput, False]], \\\"2\\\"]], Rule[AutoDelete, False], \
-Rule[GridBoxItemSize, List[Rule[\\\"Columns\\\", List[List[Automatic]]], \
-Rule[\\\"Rows\\\", List[List[Automatic]]]]]], \\\"Grid\\\"]], \
-Function[Annotation[Slot[1], Grid[List[List[Style[\\\"Explicit: \\\", \
-\\\"SummaryItemAnnotation\\\"], 5], List[Style[\\\"Implicit: \\\", \
-\\\"SummaryItemAnnotation\\\"], 2]]], \\\"Tooltip\\\"]]], \
-\\\"SummaryItem\\\"]]]], \\\"RowDefault\\\"], \\\"SummaryItem\\\"]], \
-List[RowBox[List[TagBox[\\\"\\\\\\\"SMILES: \\\\\\\"\\\", \
-\\\"SummaryItemAnnotation\\\"], \\\"\\\\[InvisibleSpace]\\\", TagBox[PaneBox[\
-\\\"\\\\\\\"C(C([H])[H])([H])[H]\\\\\\\"\\\", Rule[ImageSize, List[List[1, \
-300], Automatic]], Rule[BaselinePosition, Baseline], Rule[ContentPadding, \
-False], Rule[FrameMargins, 0], Rule[StripOnInput, True]], \
-\\\"SummaryItem\\\"]]]], List[RowBox[List[TagBox[\\\"\\\\\\\"InChIKey: \\\\\\\
-\"\\\", \\\"SummaryItemAnnotation\\\"], \\\"\\\\[InvisibleSpace]\\\", TagBox[\
-\\\"\\\\\\\"OTMSDBZUPAUEDD-UHFFFAOYSA-N\\\\\\\"\\\", \
-\\\"SummaryItem\\\"]]]]], Rule[GridBoxAlignment, List[Rule[\\\"Columns\\\", \
-List[List[Left]]], Rule[\\\"Rows\\\", List[List[Automatic]]]]], \
-Rule[AutoDelete, False], Rule[GridBoxItemSize, List[Rule[\\\"Columns\\\", \
-List[List[Automatic]]], Rule[\\\"Rows\\\", List[List[Automatic]]]]], \
-Rule[GridBoxSpacings, List[Rule[\\\"Columns\\\", List[List[2]]], \
-Rule[\\\"Rows\\\", List[List[Automatic]]]]], Rule[BaseStyle, \
-List[Rule[ShowStringCharacters, False], Rule[NumberMarks, False], \
-Rule[PrintPrecision, 3], Rule[ShowSyntaxStyles, False]]]]]], \
-Rule[GridBoxAlignment, List[Rule[\\\"Columns\\\", List[List[Left]]], \
-Rule[\\\"Rows\\\", List[List[Top]]]]], Rule[AutoDelete, False], \
-Rule[GridBoxItemSize, List[Rule[\\\"Columns\\\", List[List[Automatic]]], \
-Rule[\\\"Rows\\\", List[List[Automatic]]]]], Rule[BaselinePosition, List[1, \
-1]]]]], Dynamic[Typeset`open$$], Rule[ImageSize, Automatic]]], \
-\\\"SummaryPanel\\\"], RuleDelayed[DynamicModuleValues, List[]]], \
-\\\"]\\\"}], Molecule[List[\\\"C\\\", \\\"C\\\", \\\"H\\\", \\\"H\\\", \
-\\\"H\\\", \\\"H\\\"], List[Bond[List[1, 2], \\\"Single\\\"], Bond[List[2, \
-5], \\\"Single\\\"], Bond[List[2, 6], \\\"Single\\\"], Bond[List[1, 3], \
-\\\"Single\\\"], Bond[List[1, 4], \\\"Single\\\"]], \
-List[Rule[AtomCoordinates, \
-QuantityArray[StructuredArray`StructuredData[List[6, 3], \
-List[List[List[-0.6662`, 0.`, 0.`], List[0.6662`, 0.`, 0.`], List[-1.238231`, \
--0.929367`, 0.`], List[-1.238231`, 0.929367`, 0.`], List[1.238231`, \
--0.929367`, 0.`], List[1.238231`, 0.929367`, 0.`]], \\\"Angstroms\\\", \
-List[List[1], List[2]]]]]]]], Rule[Selectable, False], Rule[Editable, False], \
-Rule[SelectWithContents, True]]}]}], \\\"\[RightAssociation]\\\"}], \
-\\\",\\\", RowBox[{\\\"PlotRange\\\", \\\"\[Rule]\\\", \\\"All\\\"}], \\\",\\\
-\", RowBox[{\\\"ViewPoint\\\", \\\"\[Rule]\\\", DynamicBox[ToBoxes[vp, \
-StandardForm]]}], \\\",\\\", RowBox[{\\\"ViewVertical\\\", \\\"\[Rule]\\\", \
-DynamicBox[ToBoxes[vv, StandardForm]]}]}], \\\"]\\\"}]\\).\"", 2, 14, 1, 
-   23255731087401780021, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8979982379664497`*^9},
- CellLabel->"",ExpressionUUID->"39ab1e45-7534-483e-a27d-012d2e914fd6"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Set", "write", 
-   "\"Tag \\!\\(\\*RowBox[{\\\"Times\\\"}]\\) in \
-\\!\\(\\*RowBox[{\\\"Null\\\", \\\" \\\", \\\"vol$3590\\\"}]\\) is Protected.\
-\"", 2, 14, 1, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8980070650073147`*^9},
- CellLabel->"",ExpressionUUID->"1cde26d9-b8b7-4c1c-ac74-139c21562f98"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part", "pspec1", 
-   "\"Part specification \\!\\(\\*RowBox[{\\\"\\\\\\\"Data\\\\\\\"\\\"}]\\) \
-is not applicable.\"", 2, 14, 2, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007065086051*^9},
- CellLabel->"",ExpressionUUID->"0a38a80f-d98d-44cf-8854-8a0b479cc12a"],
-
-Cell[BoxData[
- TemplateBox[{
-  "ListContourPlot3D", "invdrange", 
-   "\"\\!\\(\\*RowBox[{\\\"vol$3590\\\", \\\"[\\\", \\\"\\\\\\\"DataRange\\\\\
-\\\"\\\", \\\"]\\\"}]\\) must be of the form {{xmin, xmax}, {ymin, ymax}, \
-{zmin, zmax}}.\"", 2, 14, 3, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007065176318*^9},
- CellLabel->"",ExpressionUUID->"35a815a0-b8c5-4118-a7ee-8f858fdb4036"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part", "pkspec1", 
-   "\"The expression \\!\\(\\*RowBox[{\\\"False\\\"}]\\) cannot be used as a \
-part specification.\"", 2, 14, 4, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007065217104*^9},
- CellLabel->"",ExpressionUUID->"b760fd0a-74c9-47ac-8a6b-8ca53be52574"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Join", "heads", 
-   "\"Heads \\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\"}]\\) and \
-\\!\\(\\*RowBox[{\\\"List\\\"}]\\) at positions \
-\\!\\(\\*RowBox[{\\\"1\\\"}]\\) and \\!\\(\\*RowBox[{\\\"2\\\"}]\\) are \
-expected to be the same.\"", 2, 14, 5, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007065299254*^9},
- CellLabel->"",ExpressionUUID->"134e0df7-6b12-47b6-a184-645ed9a5fd43"],
-
-Cell[BoxData[
- TemplateBox[{
-  "MapThread", "mptd", 
-   "\"Object \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Full\\\", \\\",\\\", \
-\\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\\\", \\\"Automatic\\\"}], \
-\\\"}\\\"}]\\) at position {2, \\!\\(\\*RowBox[{\\\"1\\\"}]\\)} in \
-\\!\\(\\*RowBox[{\\\"MapThread\\\", \\\"[\\\", \
-RowBox[{RowBox[{RowBox[{\\\"Switch\\\", \\\"[\\\", RowBox[{\\\"#1\\\", \
-\\\",\\\", RowBox[{\\\"All\\\", \\\"|\\\", \\\"Full\\\"}], \\\",\\\", \
-\\\"#2\\\", \\\",\\\", \\\"_\\\", \\\",\\\", \\\"#1\\\"}], \\\"]\\\"}], \\\"&\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{\\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\
-\\\", \\\"Automatic\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"Join\\\", \
-\\\"[\\\", RowBox[{RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"ScaledDataRange\\\\\\\"\\\", \\\"]\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", \\\"Automatic\\\", \\\"}\\\"}]}], \\\"]\\\"}]}], \
-\\\"}\\\"}], \\\",\\\", \\\"2\\\"}], \\\"]\\\"}]\\) has only \
-\\!\\(\\*RowBox[{\\\"1\\\"}]\\) of required \\!\\(\\*RowBox[{\\\"2\\\"}]\\) \
-dimensions.\"", 2, 14, 6, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8980070653068447`*^9},
- CellLabel->"",ExpressionUUID->"b647190d-a6bb-4a35-bea0-39640f17c408"],
-
-Cell[BoxData[
- TemplateBox[{
-  "DataRange", "invdrange", 
-   "\"\\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"ScaledDataRange\\\\\\\"\\\", \\\"]\\\"}]\\) must be of the form \
-{xmin, xmax}.\"", 2, 14, 7, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007065336445*^9},
- CellLabel->"",ExpressionUUID->"9484ab96-72b1-4508-9775-9951eeff9c0b"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Visualization`Core`ListContourPlot3D", "mppts", 
-   "\"Value of option MaxPlotPoints -> \
-\\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"MaxPlotPoints\\\\\\\"\\\", \\\"]\\\"}]\\) is not Infinity, an \
-integer >= 2, or a list.\"", 2, 14, 8, 23255791356417071141, "Local", 
-   "Visualization`Core`ListContourPlot3D"},
-  "MessageTemplate2"]], "Message", "MSG",
- CellChangeTimes->{3.8980070653651743`*^9},
- CellLabel->"",ExpressionUUID->"c13c871a-5886-4f46-8829-f03097a09969"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Show", "gcomb", 
-   "\"Could not combine the graphics objects in \
-\\!\\(\\*RowBox[{\\\"Show\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\
-\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]\\).\"", 2, 14, 9, 
-   23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.89800706539102*^9},
- CellLabel->"",ExpressionUUID->"c8173c2f-ab32-431b-8673-1a560089a9fe"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Set", "write", 
-   "\"Tag \\!\\(\\*RowBox[{\\\"Times\\\"}]\\) in \
-\\!\\(\\*RowBox[{\\\"vol$8824\\\", \\\" \\\", \
-Graphics3DBox[List[Specularity[GrayLevel[1], 100], CapForm[\\\"Round\\\"], \
-EdgeForm[None], GraphicsComplex3DBox[List[List[-0.6662`, 0.`, 0.`], \
-List[0.6662`, 0.`, 0.`], List[-1.238231`, -0.929367`, 0.`], List[-1.238231`, \
-0.929367`, 0.`], List[1.238231`, -0.929367`, 0.`], List[1.238231`, 0.929367`, \
-0.`], List[0.9522155000000001`, -0.4646835`, 0.`], List[0.9522155000000001`, \
-0.4646835`, 0.`], List[-0.9522155000000001`, -0.4646835`, 0.`], \
-List[-0.9522155000000001`, 0.4646835`, 0.`]], \
-List[List[List[RGBColor[Skeleton[3]], SphereBox[Skeleton[2]]], \
-List[RGBColor[Skeleton[3]], SphereBox[Skeleton[2]]]], \
-List[List[List[Skeleton[1]]], List[List[Skeleton[2]]], \
-List[List[Skeleton[2]]], List[List[Skeleton[2]]], List[List[Skeleton[2]]]], \
-List[Opacity[0.7`], List[]]]]], Rule[Boxed, False], Rule[Lighting, \
-\\\"Neutral\\\"], Rule[Method, List[Rule[\\\"ShrinkWrap\\\", True], \
-Rule[\\\"DefaultBoundaryStyle\\\", Automatic], \
-Rule[\\\"DefaultGraphicsInteraction\\\", List[Rule[\\\"Version\\\", 1.2`], \
-Rule[\\\"TrackMousePosition\\\", List[Skeleton[2]]], Rule[\\\"Effects\\\", \
-List[Skeleton[3]]]]], Rule[\\\"DefaultPlotStyle\\\", Automatic]]], \
-Rule[ViewPoint, List[0, 0, 3.38`]]]}]\\) is Protected.\"", 2, 24, 10, 
-   23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8980070998158493`*^9},
- CellLabel->"",ExpressionUUID->"cc7d86c5-3ab6-4954-a6da-8922d45b0d21"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part", "pspec1", 
-   "\"Part specification \\!\\(\\*RowBox[{\\\"\\\\\\\"Data\\\\\\\"\\\"}]\\) \
-is not applicable.\"", 2, 24, 11, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007099876789*^9},
- CellLabel->"",ExpressionUUID->"513cf0fa-7837-4cb6-9249-0a6451ac8fd1"],
-
-Cell[BoxData[
- TemplateBox[{
-  "ListContourPlot3D", "invdrange", 
-   "\"\\!\\(\\*RowBox[{\\\"vol$8824\\\", \\\"[\\\", \\\"\\\\\\\"DataRange\\\\\
-\\\"\\\", \\\"]\\\"}]\\) must be of the form {{xmin, xmax}, {ymin, ymax}, \
-{zmin, zmax}}.\"", 2, 24, 12, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8980070999070663`*^9},
- CellLabel->"",ExpressionUUID->"3cbe8071-9c28-4476-95ea-ec947355564a"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part", "pkspec1", 
-   "\"The expression \\!\\(\\*RowBox[{\\\"False\\\"}]\\) cannot be used as a \
-part specification.\"", 2, 24, 13, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8980070999628696`*^9},
- CellLabel->"",ExpressionUUID->"c5dc0707-9c41-4bed-b8af-db32d20b2eff"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Join", "heads", 
-   "\"Heads \\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\"}]\\) and \
-\\!\\(\\*RowBox[{\\\"List\\\"}]\\) at positions \
-\\!\\(\\*RowBox[{\\\"1\\\"}]\\) and \\!\\(\\*RowBox[{\\\"2\\\"}]\\) are \
-expected to be the same.\"", 2, 24, 14, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007100013002*^9},
- CellLabel->"",ExpressionUUID->"9a6c4398-5c98-4e83-bd3d-e74031e3cda5"],
-
-Cell[BoxData[
- TemplateBox[{
-  "MapThread", "mptd", 
-   "\"Object \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Full\\\", \\\",\\\", \
-\\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\\\", \\\"Automatic\\\"}], \
-\\\"}\\\"}]\\) at position {2, \\!\\(\\*RowBox[{\\\"1\\\"}]\\)} in \
-\\!\\(\\*RowBox[{\\\"MapThread\\\", \\\"[\\\", \
-RowBox[{RowBox[{RowBox[{\\\"Switch\\\", \\\"[\\\", RowBox[{\\\"#1\\\", \
-\\\",\\\", RowBox[{\\\"All\\\", \\\"|\\\", \\\"Full\\\"}], \\\",\\\", \
-\\\"#2\\\", \\\",\\\", \\\"_\\\", \\\",\\\", \\\"#1\\\"}], \\\"]\\\"}], \\\"&\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{\\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\
-\\\", \\\"Automatic\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"Join\\\", \
-\\\"[\\\", RowBox[{RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"ScaledDataRange\\\\\\\"\\\", \\\"]\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", \\\"Automatic\\\", \\\"}\\\"}]}], \\\"]\\\"}]}], \
-\\\"}\\\"}], \\\",\\\", \\\"2\\\"}], \\\"]\\\"}]\\) has only \
-\\!\\(\\*RowBox[{\\\"1\\\"}]\\) of required \\!\\(\\*RowBox[{\\\"2\\\"}]\\) \
-dimensions.\"", 2, 24, 15, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007100063096*^9},
- CellLabel->"",ExpressionUUID->"0e88beb6-824d-4c46-85a6-9d92a2426c6a"],
-
-Cell[BoxData[
- TemplateBox[{
-  "DataRange", "invdrange", 
-   "\"\\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"ScaledDataRange\\\\\\\"\\\", \\\"]\\\"}]\\) must be of the form \
-{xmin, xmax}.\"", 2, 24, 16, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007100069243*^9},
- CellLabel->"",ExpressionUUID->"00eb7095-8546-4a9f-a05a-6ca43f33a0da"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Visualization`Core`ListContourPlot3D", "mppts", 
-   "\"Value of option MaxPlotPoints -> \
-\\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"MaxPlotPoints\\\\\\\"\\\", \\\"]\\\"}]\\) is not Infinity, an \
-integer >= 2, or a list.\"", 2, 24, 17, 23255791356417071141, "Local", 
-   "Visualization`Core`ListContourPlot3D"},
-  "MessageTemplate2"]], "Message", "MSG",
- CellChangeTimes->{3.898007100076264*^9},
- CellLabel->"",ExpressionUUID->"54deacd2-bcdd-48b8-ad90-d07ca5596946"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Show", "gcomb", 
-   "\"Could not combine the graphics objects in \
-\\!\\(\\*RowBox[{\\\"Show\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\
-\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]\\).\"", 2, 24, 18, 
-   23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007100102722*^9},
- CellLabel->"",ExpressionUUID->"ce3a94fb-b85f-487c-af42-862d0414a671"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Set", "write", 
-   "\"Tag \\!\\(\\*RowBox[{\\\"Times\\\"}]\\) in \
-\\!\\(\\*RowBox[{\\\"Null\\\", \\\" \\\", \\\"vol$9560\\\"}]\\) is Protected.\
-\"", 2, 44, 21, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.89800726765195*^9},
- CellLabel->"",ExpressionUUID->"673bbfa8-90f7-4715-8d81-e5f533cf2bb1"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part", "pspec1", 
-   "\"Part specification \\!\\(\\*RowBox[{\\\"\\\\\\\"Data\\\\\\\"\\\"}]\\) \
-is not applicable.\"", 2, 44, 22, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007267708104*^9},
- CellLabel->"",ExpressionUUID->"d5c384bf-dfb7-4323-a850-4e3e5576a303"],
-
-Cell[BoxData[
- TemplateBox[{
-  "ListContourPlot3D", "invdrange", 
-   "\"\\!\\(\\*RowBox[{\\\"vol$9560\\\", \\\"[\\\", \\\"\\\\\\\"DataRange\\\\\
-\\\"\\\", \\\"]\\\"}]\\) must be of the form {{xmin, xmax}, {ymin, ymax}, \
-{zmin, zmax}}.\"", 2, 44, 23, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007267716197*^9},
- CellLabel->"",ExpressionUUID->"80668e17-e4dc-4dfa-a67c-c98768d921ca"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part", "pkspec1", 
-   "\"The expression \\!\\(\\*RowBox[{\\\"False\\\"}]\\) cannot be used as a \
-part specification.\"", 2, 44, 24, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8980072677212973`*^9},
- CellLabel->"",ExpressionUUID->"3f0ca9d5-af06-4b53-9259-9bfaa91a81f6"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Join", "heads", 
-   "\"Heads \\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\"}]\\) and \
-\\!\\(\\*RowBox[{\\\"List\\\"}]\\) at positions \
-\\!\\(\\*RowBox[{\\\"1\\\"}]\\) and \\!\\(\\*RowBox[{\\\"2\\\"}]\\) are \
-expected to be the same.\"", 2, 44, 25, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.89800726772514*^9},
- CellLabel->"",ExpressionUUID->"24b6ccd2-15c6-4db4-866a-b4720785fc84"],
-
-Cell[BoxData[
- TemplateBox[{
-  "MapThread", "mptd", 
-   "\"Object \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Full\\\", \\\",\\\", \
-\\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\\\", \\\"Automatic\\\"}], \
-\\\"}\\\"}]\\) at position {2, \\!\\(\\*RowBox[{\\\"1\\\"}]\\)} in \
-\\!\\(\\*RowBox[{\\\"MapThread\\\", \\\"[\\\", \
-RowBox[{RowBox[{RowBox[{\\\"Switch\\\", \\\"[\\\", RowBox[{\\\"#1\\\", \
-\\\",\\\", RowBox[{\\\"All\\\", \\\"|\\\", \\\"Full\\\"}], \\\",\\\", \
-\\\"#2\\\", \\\",\\\", \\\"_\\\", \\\",\\\", \\\"#1\\\"}], \\\"]\\\"}], \\\"&\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{\\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\
-\\\", \\\"Automatic\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"Join\\\", \
-\\\"[\\\", RowBox[{RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"ScaledDataRange\\\\\\\"\\\", \\\"]\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", \\\"Automatic\\\", \\\"}\\\"}]}], \\\"]\\\"}]}], \
-\\\"}\\\"}], \\\",\\\", \\\"2\\\"}], \\\"]\\\"}]\\) has only \
-\\!\\(\\*RowBox[{\\\"1\\\"}]\\) of required \\!\\(\\*RowBox[{\\\"2\\\"}]\\) \
-dimensions.\"", 2, 44, 26, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007267778822*^9},
- CellLabel->"",ExpressionUUID->"48a12b63-518c-48d2-bc0e-34ab60ec30bc"],
-
-Cell[BoxData[
- TemplateBox[{
-  "DataRange", "invdrange", 
-   "\"\\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"ScaledDataRange\\\\\\\"\\\", \\\"]\\\"}]\\) must be of the form \
-{xmin, xmax}.\"", 2, 44, 27, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007267784183*^9},
- CellLabel->"",ExpressionUUID->"3a1e7aaa-a724-404e-a799-49a55a2bd926"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Visualization`Core`ListContourPlot3D", "mppts", 
-   "\"Value of option MaxPlotPoints -> \
-\\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"MaxPlotPoints\\\\\\\"\\\", \\\"]\\\"}]\\) is not Infinity, an \
-integer >= 2, or a list.\"", 2, 44, 28, 23255791356417071141, "Local", 
-   "Visualization`Core`ListContourPlot3D"},
-  "MessageTemplate2"]], "Message", "MSG",
- CellChangeTimes->{3.898007267788981*^9},
- CellLabel->"",ExpressionUUID->"b2fcf8a5-0a5f-41bd-825f-1b83176f0a42"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Show", "gcomb", 
-   "\"Could not combine the graphics objects in \
-\\!\\(\\*RowBox[{\\\"Show\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\
-\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]\\).\"", 2, 44, 29, 
-   23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007267800902*^9},
- CellLabel->"",ExpressionUUID->"fea149c9-2260-4836-b7ed-a4b61ebfa4d6"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Set", "write", 
-   "\"Tag \\!\\(\\*RowBox[{\\\"Times\\\"}]\\) in \
-\\!\\(\\*RowBox[{\\\"Null\\\", \\\" \\\", \\\"vol$9939\\\"}]\\) is Protected.\
-\"", 2, 54, 30, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8980073061141376`*^9},
- CellLabel->"",ExpressionUUID->"edeb86a7-c171-4619-b09a-1b3fc2a2678a"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part", "pspec1", 
-   "\"Part specification \\!\\(\\*RowBox[{\\\"\\\\\\\"Data\\\\\\\"\\\"}]\\) \
-is not applicable.\"", 2, 54, 31, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007306168103*^9},
- CellLabel->"",ExpressionUUID->"3e16f8b1-3183-462b-ac9c-55119dd94a2b"],
-
-Cell[BoxData[
- TemplateBox[{
-  "ListContourPlot3D", "invdrange", 
-   "\"\\!\\(\\*RowBox[{\\\"vol$9939\\\", \\\"[\\\", \\\"\\\\\\\"DataRange\\\\\
-\\\"\\\", \\\"]\\\"}]\\) must be of the form {{xmin, xmax}, {ymin, ymax}, \
-{zmin, zmax}}.\"", 2, 54, 32, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007306181458*^9},
- CellLabel->"",ExpressionUUID->"778e9548-5f9a-43c6-9b9a-943e02b4c36d"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part", "pkspec1", 
-   "\"The expression \\!\\(\\*RowBox[{\\\"False\\\"}]\\) cannot be used as a \
-part specification.\"", 2, 54, 33, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8980073061851053`*^9},
- CellLabel->"",ExpressionUUID->"228033e7-94d7-4438-b795-b4548fbc050d"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Join", "heads", 
-   "\"Heads \\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\"}]\\) and \
-\\!\\(\\*RowBox[{\\\"List\\\"}]\\) at positions \
-\\!\\(\\*RowBox[{\\\"1\\\"}]\\) and \\!\\(\\*RowBox[{\\\"2\\\"}]\\) are \
-expected to be the same.\"", 2, 54, 34, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8980073062377*^9},
- CellLabel->"",ExpressionUUID->"9f861e80-ad37-4d4e-8af7-cf920fcce8da"],
-
-Cell[BoxData[
- TemplateBox[{
-  "MapThread", "mptd", 
-   "\"Object \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Full\\\", \\\",\\\", \
-\\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\\\", \\\"Automatic\\\"}], \
-\\\"}\\\"}]\\) at position {2, \\!\\(\\*RowBox[{\\\"1\\\"}]\\)} in \
-\\!\\(\\*RowBox[{\\\"MapThread\\\", \\\"[\\\", \
-RowBox[{RowBox[{RowBox[{\\\"Switch\\\", \\\"[\\\", RowBox[{\\\"#1\\\", \
-\\\",\\\", RowBox[{\\\"All\\\", \\\"|\\\", \\\"Full\\\"}], \\\",\\\", \
-\\\"#2\\\", \\\",\\\", \\\"_\\\", \\\",\\\", \\\"#1\\\"}], \\\"]\\\"}], \\\"&\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{\\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\
-\\\", \\\"Automatic\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"Join\\\", \
-\\\"[\\\", RowBox[{RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"ScaledDataRange\\\\\\\"\\\", \\\"]\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", \\\"Automatic\\\", \\\"}\\\"}]}], \\\"]\\\"}]}], \
-\\\"}\\\"}], \\\",\\\", \\\"2\\\"}], \\\"]\\\"}]\\) has only \
-\\!\\(\\*RowBox[{\\\"1\\\"}]\\) of required \\!\\(\\*RowBox[{\\\"2\\\"}]\\) \
-dimensions.\"", 2, 54, 35, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007306288145*^9},
- CellLabel->"",ExpressionUUID->"9f865ca2-9a22-42be-a9a6-08e186cffd00"],
-
-Cell[BoxData[
- TemplateBox[{
-  "DataRange", "invdrange", 
-   "\"\\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"ScaledDataRange\\\\\\\"\\\", \\\"]\\\"}]\\) must be of the form \
-{xmin, xmax}.\"", 2, 54, 36, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007306292323*^9},
- CellLabel->"",ExpressionUUID->"0951ab30-b4db-4ff3-9509-d40005462a58"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Visualization`Core`ListContourPlot3D", "mppts", 
-   "\"Value of option MaxPlotPoints -> \
-\\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"MaxPlotPoints\\\\\\\"\\\", \\\"]\\\"}]\\) is not Infinity, an \
-integer >= 2, or a list.\"", 2, 54, 37, 23255791356417071141, "Local", 
-   "Visualization`Core`ListContourPlot3D"},
-  "MessageTemplate2"]], "Message", "MSG",
- CellChangeTimes->{3.898007306295897*^9},
- CellLabel->"",ExpressionUUID->"237318d7-7e68-40ea-97cc-5b467772daac"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Show", "gcomb", 
-   "\"Could not combine the graphics objects in \
-\\!\\(\\*RowBox[{\\\"Show\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\
-\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]\\).\"", 2, 54, 38, 
-   23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.89800730631133*^9},
- CellLabel->"",ExpressionUUID->"7ac1e16a-38d8-43aa-af40-c541c6ab3cd0"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Set", "write", 
-   "\"Tag \\!\\(\\*RowBox[{\\\"Times\\\"}]\\) in \
-\\!\\(\\*RowBox[{\\\"Null\\\", \\\" \\\", \\\"vol$10318\\\"}]\\) is \
-Protected.\"", 2, 65, 39, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007401767597*^9},
- CellLabel->"",ExpressionUUID->"fdfccd1b-05cb-44ea-8c65-594159c50839"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part", "pspec1", 
-   "\"Part specification \\!\\(\\*RowBox[{\\\"\\\\\\\"Data\\\\\\\"\\\"}]\\) \
-is not applicable.\"", 2, 65, 40, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8980074018216*^9},
- CellLabel->"",ExpressionUUID->"33a7493f-806c-4558-86d9-a179d91715a1"],
-
-Cell[BoxData[
- TemplateBox[{
-  "ListContourPlot3D", "invdrange", 
-   "\"\\!\\(\\*RowBox[{\\\"vol$10318\\\", \\\"[\\\", \
-\\\"\\\\\\\"DataRange\\\\\\\"\\\", \\\"]\\\"}]\\) must be of the form {{xmin, \
-xmax}, {ymin, ymax}, {zmin, zmax}}.\"", 2, 65, 41, 23255791356417071141, 
-   "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007401836759*^9},
- CellLabel->"",ExpressionUUID->"f451c8c9-d23b-4184-905c-6f2274bd9665"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part", "pkspec1", 
-   "\"The expression \\!\\(\\*RowBox[{\\\"False\\\"}]\\) cannot be used as a \
-part specification.\"", 2, 65, 42, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8980074018403893`*^9},
- CellLabel->"",ExpressionUUID->"6886d086-c65c-4f65-8534-8edbb4005ef1"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Join", "heads", 
-   "\"Heads \\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\"}]\\) and \
-\\!\\(\\*RowBox[{\\\"List\\\"}]\\) at positions \
-\\!\\(\\*RowBox[{\\\"1\\\"}]\\) and \\!\\(\\*RowBox[{\\\"2\\\"}]\\) are \
-expected to be the same.\"", 2, 65, 43, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007401891624*^9},
- CellLabel->"",ExpressionUUID->"28cf5a15-1f58-4395-9d05-08f50eff383c"],
-
-Cell[BoxData[
- TemplateBox[{
-  "MapThread", "mptd", 
-   "\"Object \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Full\\\", \\\",\\\", \
-\\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\\\", \\\"Automatic\\\"}], \
-\\\"}\\\"}]\\) at position {2, \\!\\(\\*RowBox[{\\\"1\\\"}]\\)} in \
-\\!\\(\\*RowBox[{\\\"MapThread\\\", \\\"[\\\", \
-RowBox[{RowBox[{RowBox[{\\\"Switch\\\", \\\"[\\\", RowBox[{\\\"#1\\\", \
-\\\",\\\", RowBox[{\\\"All\\\", \\\"|\\\", \\\"Full\\\"}], \\\",\\\", \
-\\\"#2\\\", \\\",\\\", \\\"_\\\", \\\",\\\", \\\"#1\\\"}], \\\"]\\\"}], \\\"&\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{\\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\
-\\\", \\\"Automatic\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"Join\\\", \
-\\\"[\\\", RowBox[{RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"ScaledDataRange\\\\\\\"\\\", \\\"]\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", \\\"Automatic\\\", \\\"}\\\"}]}], \\\"]\\\"}]}], \
-\\\"}\\\"}], \\\",\\\", \\\"2\\\"}], \\\"]\\\"}]\\) has only \
-\\!\\(\\*RowBox[{\\\"1\\\"}]\\) of required \\!\\(\\*RowBox[{\\\"2\\\"}]\\) \
-dimensions.\"", 2, 65, 44, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8980074019423523`*^9},
- CellLabel->"",ExpressionUUID->"146ab042-446b-4c22-8b74-1c92645f2f8c"],
-
-Cell[BoxData[
- TemplateBox[{
-  "DataRange", "invdrange", 
-   "\"\\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"ScaledDataRange\\\\\\\"\\\", \\\"]\\\"}]\\) must be of the form \
-{xmin, xmax}.\"", 2, 65, 45, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007401945188*^9},
- CellLabel->"",ExpressionUUID->"eccb2b12-8150-41c5-8830-1c03354c5077"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Visualization`Core`ListContourPlot3D", "mppts", 
-   "\"Value of option MaxPlotPoints -> \
-\\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"MaxPlotPoints\\\\\\\"\\\", \\\"]\\\"}]\\) is not Infinity, an \
-integer >= 2, or a list.\"", 2, 65, 46, 23255791356417071141, "Local", 
-   "Visualization`Core`ListContourPlot3D"},
-  "MessageTemplate2"]], "Message", "MSG",
- CellChangeTimes->{3.898007401947651*^9},
- CellLabel->"",ExpressionUUID->"3846ecc1-a554-44d1-917e-a1c5f1a5fbe8"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Show", "gcomb", 
-   "\"Could not combine the graphics objects in \
-\\!\\(\\*RowBox[{\\\"Show\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"ListContourPlot3D\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"vol$10318\\\", \\\"\[LeftDoubleBracket]\\\", RowBox[{\\\"\
-\\\\\\\"Data\\\\\\\"\\\", \\\",\\\", \\\"1\\\"}], \\\"\[RightDoubleBracket]\\\
-\"}], \\\",\\\", RowBox[{\\\"DataRange\\\", \\\"\[Rule]\\\", \
-RowBox[{\\\"vol$10318\\\", \\\"[\\\", \\\"\\\\\\\"DataRange\\\\\\\"\\\", \
-\\\"]\\\"}]}], \\\",\\\", RowBox[{\\\"BoxRatios\\\", \\\"\[Rule]\\\", \
-\\\"Automatic\\\"}], \\\",\\\", RowBox[{\\\"Contours\\\", \\\"\[Rule]\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \\\"0.03`\\\"}], \\\",\\\", \
-\\\"0.03`\\\"}], \\\"}\\\"}]}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", RowBox[{\\\"BoxStyle\\\", \
-\\\"\[Rule]\\\", RowBox[{\\\"Directive\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"Thickness\\\", \\\"[\\\", \\\"0.01`\\\", \\\"]\\\"}], \
-\\\",\\\", TemplateBox[Association[Rule[\\\"color\\\", GrayLevel[0.5`]]], \
-\\\"GrayLevelColorSwatchTemplate\\\"]}], \\\"]\\\"}]}], \\\",\\\", RowBox[{\\\
-\"Axes\\\", \\\"\[Rule]\\\", \\\"False\\\"}], \\\",\\\", \
-RowBox[{\\\"Mesh\\\", \\\"\[Rule]\\\", \\\"True\\\"}], \\\",\\\", \
-RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}]}], \
-\\\"]\\\"}], \\\",\\\", Graphics3DBox[List[Specularity[GrayLevel[1], 100], \
-CapForm[\\\"Round\\\"], EdgeForm[None], \
-GraphicsComplex3DBox[List[List[-0.6662`, 0.`, 0.`], List[0.6662`, 0.`, 0.`], \
-List[-1.238231`, -0.929367`, 0.`], List[-1.238231`, 0.929367`, 0.`], \
-List[1.238231`, -0.929367`, 0.`], List[1.238231`, 0.929367`, 0.`], \
-List[0.9522155000000001`, -0.4646835`, 0.`], List[0.9522155000000001`, \
-0.4646835`, 0.`], List[-0.9522155000000001`, -0.4646835`, 0.`], \
-List[-0.9522155000000001`, 0.4646835`, 0.`]], \
-List[List[List[RGBColor[Skeleton[3]], SphereBox[Skeleton[2]]], \
-List[RGBColor[Skeleton[3]], SphereBox[Skeleton[2]]]], \
-List[List[List[Skeleton[1]]], List[List[Skeleton[2]]], \
-List[List[Skeleton[2]]], List[List[Skeleton[2]]], List[List[Skeleton[2]]]], \
-List[Opacity[0.7`], List[]]]]], Rule[Boxed, False], Rule[Lighting, \
-\\\"Neutral\\\"], Rule[Method, List[Rule[\\\"ShrinkWrap\\\", True], \
-Rule[\\\"DefaultBoundaryStyle\\\", Automatic], \
-Rule[\\\"DefaultGraphicsInteraction\\\", List[Rule[\\\"Version\\\", 1.2`], \
-Rule[\\\"TrackMousePosition\\\", List[Skeleton[2]]], Rule[\\\"Effects\\\", \
-List[Skeleton[3]]]]], Rule[\\\"DefaultPlotStyle\\\", Automatic]]], \
-Rule[ViewPoint, List[0, 0, 3.38`]]], \\\",\\\", RowBox[{\\\"PlotRange\\\", \\\
-\"\[Rule]\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
-\[RightSkeleton]\\\"}]}], \\\",\\\", RowBox[{\\\"ViewPoint\\\", \\\"\[Rule]\\\
-\", DynamicBox[ToBoxes[vp, StandardForm]]}], \\\",\\\", \
-RowBox[{\\\"ViewVertical\\\", \\\"\[Rule]\\\", DynamicBox[ToBoxes[vv, \
-StandardForm]]}]}], \\\"]\\\"}]\\).\"", 2, 65, 47, 23255791356417071141, 
-   "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007401957728*^9},
- CellLabel->"",ExpressionUUID->"808c21cd-4f02-4ed9-87c6-cb1fde7feee9"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Set", "write", 
-   "\"Tag \\!\\(\\*RowBox[{\\\"Times\\\"}]\\) in \
-\\!\\(\\*RowBox[{\\\"Null\\\", \\\" \\\", \\\"vol$10694\\\"}]\\) is \
-Protected.\"", 2, 76, 48, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007434661775*^9},
- CellLabel->"",ExpressionUUID->"c5fc59d9-f080-4c9e-be6e-aaefdd9cf7fb"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part", "pspec1", 
-   "\"Part specification \\!\\(\\*RowBox[{\\\"\\\\\\\"Data\\\\\\\"\\\"}]\\) \
-is not applicable.\"", 2, 76, 49, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007434715135*^9},
- CellLabel->"",ExpressionUUID->"1c022adf-f9c9-400f-b02a-d9c18fda77b4"],
-
-Cell[BoxData[
- TemplateBox[{
-  "ListContourPlot3D", "invdrange", 
-   "\"\\!\\(\\*RowBox[{\\\"vol$10694\\\", \\\"[\\\", \
-\\\"\\\\\\\"DataRange\\\\\\\"\\\", \\\"]\\\"}]\\) must be of the form {{xmin, \
-xmax}, {ymin, ymax}, {zmin, zmax}}.\"", 2, 76, 50, 23255791356417071141, 
-   "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007434724382*^9},
- CellLabel->"",ExpressionUUID->"57668f4f-cfc6-41f7-b7f4-931695cc77a8"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Part", "pkspec1", 
-   "\"The expression \\!\\(\\*RowBox[{\\\"False\\\"}]\\) cannot be used as a \
-part specification.\"", 2, 76, 51, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007434726915*^9},
- CellLabel->"",ExpressionUUID->"f735cf58-9147-4582-aa43-e9623c3d373e"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Join", "heads", 
-   "\"Heads \\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\"}]\\) and \
-\\!\\(\\*RowBox[{\\\"List\\\"}]\\) at positions \
-\\!\\(\\*RowBox[{\\\"1\\\"}]\\) and \\!\\(\\*RowBox[{\\\"2\\\"}]\\) are \
-expected to be the same.\"", 2, 76, 52, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8980074347291183`*^9},
- CellLabel->"",ExpressionUUID->"255e88ce-0243-440c-ac73-9552c75d7092"],
-
-Cell[BoxData[
- TemplateBox[{
-  "MapThread", "mptd", 
-   "\"Object \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"Full\\\", \\\",\\\", \
-\\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\\\", \\\"Automatic\\\"}], \
-\\\"}\\\"}]\\) at position {2, \\!\\(\\*RowBox[{\\\"1\\\"}]\\)} in \
-\\!\\(\\*RowBox[{\\\"MapThread\\\", \\\"[\\\", \
-RowBox[{RowBox[{RowBox[{\\\"Switch\\\", \\\"[\\\", RowBox[{\\\"#1\\\", \
-\\\",\\\", RowBox[{\\\"All\\\", \\\"|\\\", \\\"Full\\\"}], \\\",\\\", \
-\\\"#2\\\", \\\",\\\", \\\"_\\\", \\\",\\\", \\\"#1\\\"}], \\\"]\\\"}], \\\"&\
-\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{\\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\\\", \\\"Full\\\", \\\",\
-\\\", \\\"Automatic\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"Join\\\", \
-\\\"[\\\", RowBox[{RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"ScaledDataRange\\\\\\\"\\\", \\\"]\\\"}], \\\",\\\", \
-RowBox[{\\\"{\\\", \\\"Automatic\\\", \\\"}\\\"}]}], \\\"]\\\"}]}], \
-\\\"}\\\"}], \\\",\\\", \\\"2\\\"}], \\\"]\\\"}]\\) has only \
-\\!\\(\\*RowBox[{\\\"1\\\"}]\\) of required \\!\\(\\*RowBox[{\\\"2\\\"}]\\) \
-dimensions.\"", 2, 76, 53, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007434780778*^9},
- CellLabel->"",ExpressionUUID->"3deb6290-e6e3-4c00-8181-bd99a3507bfc"],
-
-Cell[BoxData[
- TemplateBox[{
-  "DataRange", "invdrange", 
-   "\"\\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"ScaledDataRange\\\\\\\"\\\", \\\"]\\\"}]\\) must be of the form \
-{xmin, xmax}.\"", 2, 76, 54, 23255791356417071141, "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.898007434783392*^9},
- CellLabel->"",ExpressionUUID->"fed910f7-238b-4beb-a7ea-c2f881585e27"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Visualization`Core`ListContourPlot3D", "mppts", 
-   "\"Value of option MaxPlotPoints -> \
-\\!\\(\\*RowBox[{\\\"System`ListPlotsDump`modelData\\\", \\\"[\\\", \
-\\\"\\\\\\\"MaxPlotPoints\\\\\\\"\\\", \\\"]\\\"}]\\) is not Infinity, an \
-integer >= 2, or a list.\"", 2, 76, 55, 23255791356417071141, "Local", 
-   "Visualization`Core`ListContourPlot3D"},
-  "MessageTemplate2"]], "Message", "MSG",
- CellChangeTimes->{3.898007434785655*^9},
- CellLabel->"",ExpressionUUID->"2e3cfb55-1dc0-4b06-8740-4e1671d6dd59"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Show", "gcomb", 
-   "\"Could not combine the graphics objects in \
-\\!\\(\\*RowBox[{\\\"Show\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"ListContourPlot3D\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"vol$10694\\\", \\\"\[LeftDoubleBracket]\\\", RowBox[{\\\"\
-\\\\\\\"Data\\\\\\\"\\\", \\\",\\\", \\\"1\\\"}], \\\"\[RightDoubleBracket]\\\
-\"}], \\\",\\\", RowBox[{\\\"DataRange\\\", \\\"\[Rule]\\\", \
-RowBox[{\\\"vol$10694\\\", \\\"[\\\", \\\"\\\\\\\"DataRange\\\\\\\"\\\", \
-\\\"]\\\"}]}], \\\",\\\", RowBox[{\\\"BoxRatios\\\", \\\"\[Rule]\\\", \
-\\\"Automatic\\\"}], \\\",\\\", RowBox[{\\\"Contours\\\", \\\"\[Rule]\\\", \
-RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"-\\\", \\\"0.03`\\\"}], \\\",\\\", \
-\\\"0.03`\\\"}], \\\"}\\\"}]}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
-\\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", RowBox[{\\\"BoxStyle\\\", \
-\\\"\[Rule]\\\", RowBox[{\\\"Directive\\\", \\\"[\\\", \
-RowBox[{RowBox[{\\\"Thickness\\\", \\\"[\\\", \\\"0.01`\\\", \\\"]\\\"}], \
-\\\",\\\", TemplateBox[Association[Rule[\\\"color\\\", GrayLevel[0.5`]]], \
-\\\"GrayLevelColorSwatchTemplate\\\"]}], \\\"]\\\"}]}], \\\",\\\", RowBox[{\\\
-\"Axes\\\", \\\"\[Rule]\\\", \\\"False\\\"}], \\\",\\\", \
-RowBox[{\\\"Mesh\\\", \\\"\[Rule]\\\", \\\"True\\\"}], \\\",\\\", \
-RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}]}], \
-\\\"]\\\"}], \\\",\\\", Graphics3DBox[List[Specularity[GrayLevel[1], 100], \
-CapForm[\\\"Round\\\"], EdgeForm[None], \
-GraphicsComplex3DBox[List[List[-0.6662`, 0.`, 0.`], List[0.6662`, 0.`, 0.`], \
-List[-1.238231`, -0.929367`, 0.`], List[-1.238231`, 0.929367`, 0.`], \
-List[1.238231`, -0.929367`, 0.`], List[1.238231`, 0.929367`, 0.`], \
-List[0.9522155000000001`, -0.4646835`, 0.`], List[0.9522155000000001`, \
-0.4646835`, 0.`], List[-0.9522155000000001`, -0.4646835`, 0.`], \
-List[-0.9522155000000001`, 0.4646835`, 0.`]], \
-List[List[List[RGBColor[Skeleton[3]], SphereBox[Skeleton[2]]], \
-List[RGBColor[Skeleton[3]], SphereBox[Skeleton[2]]]], \
-List[List[List[Skeleton[1]]], List[List[Skeleton[2]]], \
-List[List[Skeleton[2]]], List[List[Skeleton[2]]], List[List[Skeleton[2]]]], \
-List[Opacity[0.7`], List[]]]]], Rule[Boxed, False], Rule[Lighting, \
-\\\"Neutral\\\"], Rule[Method, List[Rule[\\\"ShrinkWrap\\\", True], \
-Rule[\\\"DefaultBoundaryStyle\\\", Automatic], \
-Rule[\\\"DefaultGraphicsInteraction\\\", List[Rule[\\\"Version\\\", 1.2`], \
-Rule[\\\"TrackMousePosition\\\", List[Skeleton[2]]], Rule[\\\"Effects\\\", \
-List[Skeleton[3]]]]], Rule[\\\"DefaultPlotStyle\\\", Automatic]]], \
-Rule[ViewPoint, List[0, 0, 3.38`]]], \\\",\\\", RowBox[{\\\"PlotRange\\\", \\\
-\"\[Rule]\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
-\[RightSkeleton]\\\"}]}], \\\",\\\", RowBox[{\\\"ViewPoint\\\", \\\"\[Rule]\\\
-\", DynamicBox[ToBoxes[vp, StandardForm]]}], \\\",\\\", \
-RowBox[{\\\"ViewVertical\\\", \\\"\[Rule]\\\", DynamicBox[ToBoxes[vv, \
-StandardForm]]}]}], \\\"]\\\"}]\\).\"", 2, 76, 56, 23255791356417071141, 
-   "Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.89800743479493*^9},
- CellLabel->"",ExpressionUUID->"8f9542e9-aa94-4fc5-980a-b62a3860515e"]
-}, {2}]],
+ZrTmJYhO+3bzHYh2qv72BURv8frJ4wayb1mrBIjWXhy65R3/W8ew9bHbQTQA
+UBehbg==
+  "],ExpressionUUID->"27d66299-0a14-41eb-95a5-8d0f01135a5a"],
 
 Cell["\<\
 Evaluate the next cell in case you want to re-use the viewpoint settings. The \
@@ -1667,9 +641,9 @@ Cell[BoxData[
 }, Open  ]]
 },
 WindowSize->{589.5, 639.},
-WindowMargins->{{Automatic, 676.5}, {Automatic, 104.25}},
+WindowMargins->{{712.5, Automatic}, {Automatic, 163.5}},
 PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
-FrontEndVersion->"13.0 for Linux x86 (64-bit) (February 4, 2022)",
+FrontEndVersion->"13.3 for Linux x86 (64-bit) (June 3, 2023)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"a2dec52c-66a9-4cfd-b696-94e91a0df321"
 ]
@@ -1689,79 +663,18 @@ Cell[580, 22, 223, 3, 54, "Subsection",ExpressionUUID->"b76058a8-2021-4ad0-8133-
 Cell[806, 27, 658, 16, 265, "Text",ExpressionUUID->"c2092725-48ef-4287-963a-67fb01c514e5"],
 Cell[CellGroupData[{
 Cell[1489, 47, 269, 6, 45, "Subsubsection",ExpressionUUID->"887e90fc-05f8-4ab0-80f2-4496be7a7a90"],
-Cell[1761, 55, 13203, 297, 1882, "Input",ExpressionUUID->"724f81ef-ce85-4e6f-a7c6-06c24428f6a6",
+Cell[1761, 55, 15514, 347, 2220, "Input",ExpressionUUID->"724f81ef-ce85-4e6f-a7c6-06c24428f6a6",
  InitializationCell->True]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[15001, 357, 200, 3, 37, "Subsubsection",ExpressionUUID->"36456696-7c0f-4d6f-b97d-025213ba313e"],
-Cell[15204, 362, 2205, 41, 412, "Text",ExpressionUUID->"bcf1db58-0c2a-43cd-a28e-7e8276321f48"],
-Cell[CellGroupData[{
-Cell[17434, 407, 954, 19, 71, "Input",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
-Cell[18391, 428, 698, 22, 62, "Output",ExpressionUUID->"a9ce0ef6-7ac1-4960-a5d6-b0c4f0b483e7"]
-}, Open  ]],
-Cell[19104, 453, 175, 3, 35, "Text",ExpressionUUID->"f777762c-fa40-4a94-805b-65d60eaa92db"],
-Cell[CellGroupData[{
-Cell[19304, 460, 2403, 62, 278, "Input",ExpressionUUID->"27d66299-0a14-41eb-95a5-8d0f01135a5a"],
-Cell[21710, 524, 3229, 59, 231, "Output",ExpressionUUID->"2ca4b636-5869-4856-8065-8f324153f1a3"],
-Cell[24942, 585, 17589, 260, 70, "Message",ExpressionUUID->"39ab1e45-7534-483e-a27d-012d2e914fd6"],
-Cell[42534, 847, 380, 8, 70, "Message",ExpressionUUID->"1cde26d9-b8b7-4c1c-ac74-139c21562f98"],
-Cell[42917, 857, 346, 7, 70, "Message",ExpressionUUID->"0a38a80f-d98d-44cf-8854-8a0b479cc12a"],
-Cell[43266, 866, 435, 8, 70, "Message",ExpressionUUID->"35a815a0-b8c5-4118-a7ee-8f858fdb4036"],
-Cell[43704, 876, 349, 7, 70, "Message",ExpressionUUID->"b760fd0a-74c9-47ac-8a6b-8ca53be52574"],
-Cell[44056, 885, 476, 9, 70, "Message",ExpressionUUID->"134e0df7-6b12-47b6-a184-645ed9a5fd43"],
-Cell[44535, 896, 1336, 21, 70, "Message",ExpressionUUID->"b647190d-a6bb-4a35-bea0-39640f17c408"],
-Cell[45874, 919, 425, 8, 70, "Message",ExpressionUUID->"9484ab96-72b1-4508-9775-9951eeff9c0b"],
-Cell[46302, 929, 539, 10, 70, "Message",ExpressionUUID->"c13c871a-5886-4f46-8829-f03097a09969"],
-Cell[46844, 941, 433, 9, 70, "Message",ExpressionUUID->"c8173c2f-ab32-431b-8673-1a560089a9fe"],
-Cell[47280, 952, 1574, 26, 70, "Message",ExpressionUUID->"cc7d86c5-3ab6-4954-a6da-8922d45b0d21"],
-Cell[48857, 980, 347, 7, 70, "Message",ExpressionUUID->"513cf0fa-7837-4cb6-9249-0a6451ac8fd1"],
-Cell[49207, 989, 438, 8, 70, "Message",ExpressionUUID->"3cbe8071-9c28-4476-95ea-ec947355564a"],
-Cell[49648, 999, 352, 7, 70, "Message",ExpressionUUID->"c5dc0707-9c41-4bed-b8af-db32d20b2eff"],
-Cell[50003, 1008, 477, 9, 70, "Message",ExpressionUUID->"9a6c4398-5c98-4e83-bd3d-e74031e3cda5"],
-Cell[50483, 1019, 1335, 21, 70, "Message",ExpressionUUID->"0e88beb6-824d-4c46-85a6-9d92a2426c6a"],
-Cell[51821, 1042, 426, 8, 70, "Message",ExpressionUUID->"00eb7095-8546-4a9f-a05a-6ca43f33a0da"],
-Cell[52250, 1052, 538, 10, 70, "Message",ExpressionUUID->"54deacd2-bcdd-48b8-ad90-d07ca5596946"],
-Cell[52791, 1064, 435, 9, 70, "Message",ExpressionUUID->"ce3a94fb-b85f-487c-af42-862d0414a671"],
-Cell[53229, 1075, 378, 8, 70, "Message",ExpressionUUID->"673bbfa8-90f7-4715-8d81-e5f533cf2bb1"],
-Cell[53610, 1085, 347, 7, 70, "Message",ExpressionUUID->"d5c384bf-dfb7-4323-a850-4e3e5576a303"],
-Cell[53960, 1094, 436, 8, 70, "Message",ExpressionUUID->"80668e17-e4dc-4dfa-a67c-c98768d921ca"],
-Cell[54399, 1104, 352, 7, 70, "Message",ExpressionUUID->"3f0ca9d5-af06-4b53-9259-9bfaa91a81f6"],
-Cell[54754, 1113, 476, 9, 70, "Message",ExpressionUUID->"24b6ccd2-15c6-4db4-866a-b4720785fc84"],
-Cell[55233, 1124, 1335, 21, 70, "Message",ExpressionUUID->"48a12b63-518c-48d2-bc0e-34ab60ec30bc"],
-Cell[56571, 1147, 426, 8, 70, "Message",ExpressionUUID->"3a1e7aaa-a724-404e-a799-49a55a2bd926"],
-Cell[57000, 1157, 538, 10, 70, "Message",ExpressionUUID->"b2fcf8a5-0a5f-41bd-825f-1b83176f0a42"],
-Cell[57541, 1169, 435, 9, 70, "Message",ExpressionUUID->"fea149c9-2260-4836-b7ed-a4b61ebfa4d6"],
-Cell[57979, 1180, 381, 8, 70, "Message",ExpressionUUID->"edeb86a7-c171-4619-b09a-1b3fc2a2678a"],
-Cell[58363, 1190, 347, 7, 70, "Message",ExpressionUUID->"3e16f8b1-3183-462b-ac9c-55119dd94a2b"],
-Cell[58713, 1199, 436, 8, 70, "Message",ExpressionUUID->"778e9548-5f9a-43c6-9b9a-943e02b4c36d"],
-Cell[59152, 1209, 352, 7, 70, "Message",ExpressionUUID->"228033e7-94d7-4438-b795-b4548fbc050d"],
-Cell[59507, 1218, 475, 9, 70, "Message",ExpressionUUID->"9f861e80-ad37-4d4e-8af7-cf920fcce8da"],
-Cell[59985, 1229, 1335, 21, 70, "Message",ExpressionUUID->"9f865ca2-9a22-42be-a9a6-08e186cffd00"],
-Cell[61323, 1252, 426, 8, 70, "Message",ExpressionUUID->"0951ab30-b4db-4ff3-9509-d40005462a58"],
-Cell[61752, 1262, 538, 10, 70, "Message",ExpressionUUID->"237318d7-7e68-40ea-97cc-5b467772daac"],
-Cell[62293, 1274, 434, 9, 70, "Message",ExpressionUUID->"7ac1e16a-38d8-43aa-af40-c541c6ab3cd0"],
-Cell[62730, 1285, 380, 8, 70, "Message",ExpressionUUID->"fdfccd1b-05cb-44ea-8c65-594159c50839"],
-Cell[63113, 1295, 345, 7, 70, "Message",ExpressionUUID->"33a7493f-806c-4558-86d9-a179d91715a1"],
-Cell[63461, 1304, 441, 9, 70, "Message",ExpressionUUID->"f451c8c9-d23b-4184-905c-6f2274bd9665"],
-Cell[63905, 1315, 352, 7, 70, "Message",ExpressionUUID->"6886d086-c65c-4f65-8534-8edbb4005ef1"],
-Cell[64260, 1324, 477, 9, 70, "Message",ExpressionUUID->"28cf5a15-1f58-4395-9d05-08f50eff383c"],
-Cell[64740, 1335, 1337, 21, 70, "Message",ExpressionUUID->"146ab042-446b-4c22-8b74-1c92645f2f8c"],
-Cell[66080, 1358, 426, 8, 70, "Message",ExpressionUUID->"eccb2b12-8150-41c5-8830-1c03354c5077"],
-Cell[66509, 1368, 538, 10, 70, "Message",ExpressionUUID->"3846ecc1-a554-44d1-917e-a1c5f1a5fbe8"],
-Cell[67050, 1380, 3152, 49, 70, "Message",ExpressionUUID->"808c21cd-4f02-4ed9-87c6-cb1fde7feee9"],
-Cell[70205, 1431, 380, 8, 70, "Message",ExpressionUUID->"c5fc59d9-f080-4c9e-be6e-aaefdd9cf7fb"],
-Cell[70588, 1441, 347, 7, 70, "Message",ExpressionUUID->"1c022adf-f9c9-400f-b02a-d9c18fda77b4"],
-Cell[70938, 1450, 441, 9, 70, "Message",ExpressionUUID->"57668f4f-cfc6-41f7-b7f4-931695cc77a8"],
-Cell[71382, 1461, 350, 7, 70, "Message",ExpressionUUID->"f735cf58-9147-4582-aa43-e9623c3d373e"],
-Cell[71735, 1470, 479, 9, 70, "Message",ExpressionUUID->"255e88ce-0243-440c-ac73-9552c75d7092"],
-Cell[72217, 1481, 1335, 21, 70, "Message",ExpressionUUID->"3deb6290-e6e3-4c00-8181-bd99a3507bfc"],
-Cell[73555, 1504, 426, 8, 70, "Message",ExpressionUUID->"fed910f7-238b-4beb-a7ea-c2f881585e27"],
-Cell[73984, 1514, 538, 10, 70, "Message",ExpressionUUID->"2e3cfb55-1dc0-4b06-8740-4e1671d6dd59"],
-Cell[74525, 1526, 3151, 49, 70, "Message",ExpressionUUID->"8f9542e9-aa94-4fc5-980a-b62a3860515e"]
-}, {2}]],
-Cell[77688, 1578, 763, 13, 127, "Text",ExpressionUUID->"c1b76068-cef1-4f95-b6e5-2be7d652dc17"],
-Cell[78454, 1593, 1687, 38, 195, "Input",ExpressionUUID->"b2b39270-b79b-4f2a-803c-9a35b06d731e"],
-Cell[80144, 1633, 1427, 31, 113, "Input",ExpressionUUID->"a722bb31-346c-403a-a4f4-24561304b156"]
+Cell[17312, 407, 200, 3, 37, "Subsubsection",ExpressionUUID->"36456696-7c0f-4d6f-b97d-025213ba313e"],
+Cell[17515, 412, 2249, 42, 419, "Text",ExpressionUUID->"bcf1db58-0c2a-43cd-a28e-7e8276321f48"],
+Cell[19767, 456, 954, 19, 70, "Input",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
+Cell[20724, 477, 466, 9, 81, "Text",ExpressionUUID->"f777762c-fa40-4a94-805b-65d60eaa92db"],
+Cell[21193, 488, 2400, 62, 272, "Input",ExpressionUUID->"27d66299-0a14-41eb-95a5-8d0f01135a5a"],
+Cell[23596, 552, 763, 13, 127, "Text",ExpressionUUID->"c1b76068-cef1-4f95-b6e5-2be7d652dc17"],
+Cell[24362, 567, 1687, 38, 190, "Input",ExpressionUUID->"b2b39270-b79b-4f2a-803c-9a35b06d731e"],
+Cell[26052, 607, 1427, 31, 112, "Input",ExpressionUUID->"a722bb31-346c-403a-a4f4-24561304b156"]
 }, Open  ]]
 }, Open  ]]
 }
