@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     29126,        675]
-NotebookOptionsPosition[     27507,        642]
-NotebookOutlinePosition[     27983,        659]
-CellTagsIndexPosition[     27940,        656]
+NotebookDataLength[     30263,        693]
+NotebookOptionsPosition[     28643,        660]
+NotebookOutlinePosition[     29119,        677]
+CellTagsIndexPosition[     29076,        674]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -108,64 +108,76 @@ Cell[BoxData[{
     "Print", "[", "\"\<init: using v. 13.3 hack for molecule plot\>\"", 
      "]"}]}], "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
   "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
+  RowBox[{"(*", 
    RowBox[{
-    RowBox[{
-     RowBox[{
-      RowBox[{"July", " ", "2023"}], ":", " ", 
-      RowBox[{
-      "customImporter", " ", "function", " ", "is", " ", "from", " ", 
-       "Oliver", " ", "Jandette", " ", "at", " ", "Wolfram", " ", "Tech", " ",
-        "support", " ", "when", " ", "I", " ", "reported", " ", "that", " ", 
-       "the", " ", "\"\<InferBondTypes\>\""}]}], "\[Rule]", 
+    RowBox[{" ", 
      RowBox[{
       RowBox[{
-      "False", " ", "import", " ", "option", " ", "for", " ", "XYZ", " ", 
-       "and", " ", "other", " ", "molecule", " ", "formats", " ", "stopped", 
-       " ", "working", " ", "in", " ", 
-       RowBox[{"13.3", ".", " ", 
-        RowBox[{"Thanks", "!"}]}], " ", "I", " ", "added", " ", "the", " ", 
-       "Triple", " ", "and", " ", "Aromatic", " ", "bond", " ", 
-       "substitutions", " ", "and", " ", "I", " ", "also", " ", "had", " ", 
-       "to", " ", "add", " ", "that", " ", "ugly", " ", "hack", " ", "with", 
-       " ", "the", " ", "ValenceFilling"}], "->", 
-      RowBox[{"None", " ", "option"}]}]}], ",", " ", 
-    RowBox[{
-    "otherwise", " ", "Mathematica", " ", "will", " ", "add", " ", 
-     "hydrogens", " ", "to", " ", "the", " ", "molecule", " ", "to", " ", 
-     "cap", " ", "dangling", " ", "valencies"}], ",", " ", 
-    RowBox[{
-     RowBox[{
-     "which", " ", "is", " ", "something", " ", "we", " ", "do", " ", "not", 
-      " ", 
-      RowBox[{"want", ".", "\[IndentingNewLine]", "August"}], " ", "2023"}], 
-     ":", " ", 
-     RowBox[{"For", " ", "some", " ", "molecules"}]}], ",", " ", 
-    RowBox[{
-     RowBox[{
-     "there", " ", "is", " ", "an", " ", "additional", " ", "setting", " ", 
-      "in", " ", "the", " ", "molecule", " ", "specification", " ", "when", 
-      " ", "importing", " ", "XYZ", " ", "while", " ", "looks", " ", "like", 
-      " ", 
-      RowBox[{
-      "this", ":", "\[IndentingNewLine]", "StereochemistryElements"}]}], " ", 
-     "->", " ", 
-     RowBox[{"{", 
-      RowBox[{"<|", 
        RowBox[{
-        RowBox[{"\"\<StereoType\>\"", " ", "->", " ", 
-         RowBox[{
-         "\"\<DoubleBond\>\"", "\[IndentingNewLine]", "so", " ", "replacing", 
-          " ", "\"\<Double\>\"", " ", "with", " ", "\"\<Single\>\"", " ", 
-          "will", " ", "interfere", " ", "amnd", " ", "cause", " ", "an", " ", 
-          RowBox[{"error", ".", " ", "The"}], " ", "workaround", " ", "for", 
-          " ", "that", " ", "is", " ", "to", " ", "replace", " ", 
-          "\"\<Double\>\""}]}], ",", " ", "\"\<Triple\>\"", ",", " ", 
+        RowBox[{"July", " ", "2023"}], ":", " ", 
         RowBox[{
-         RowBox[{"etc", ".", " ", "with"}], " ", "\"\<Single\>\"", " ", 
-         "including", " ", "the", " ", 
-         RowBox[{"quotes", "."}]}]}], " "}]}]}]}], "*)"}], 
-  " "}], "\[IndentingNewLine]", 
+        "customImporter", " ", "function", " ", "originally", " ", "came", 
+         " ", "from", " ", "Oliver", " ", "Jandette", " ", "at", " ", 
+         "Wolfram", " ", "Tech", " ", "support", " ", "when", " ", "I", " ", 
+         "reported", " ", "that", " ", "the", " ", 
+         "\"\<InferBondTypes\>\""}]}], "->", " ", 
+       RowBox[{
+        RowBox[{
+        "False", " ", "import", " ", "option", " ", "for", " ", "XYZ", " ", 
+         "and", " ", "other", " ", "molecule", " ", "formats", " ", "stopped",
+          " ", "working", " ", "in", " ", 
+         RowBox[{"13.3", ".", " ", 
+          RowBox[{"Thanks", "!"}]}], " ", "I", " ", "added", " ", "the", " ", 
+         "Triple", " ", "and", " ", "Aromatic", " ", "bond", " ", 
+         "substitutions", " ", "and", " ", "I", " ", "also", " ", "had", " ", 
+         "to", " ", "add", " ", "that", " ", "ugly", " ", "hack", " ", "with",
+          " ", "the", " ", "ValenceFilling"}], "->", 
+        RowBox[{"None", " ", "option"}]}]}], ",", " ", 
+      RowBox[{
+      "otherwise", " ", "Mathematica", " ", "will", " ", "add", " ", 
+       "hydrogens", " ", "to", " ", "the", " ", "molecule", " ", "to", " ", 
+       "cap", " ", "dangling", " ", "valencies"}], ",", " ", 
+      RowBox[{
+       RowBox[{
+       "which", " ", "is", " ", "something", " ", "we", " ", "do", " ", "not",
+         " ", 
+        RowBox[{"want", ".", "\[IndentingNewLine]", "August"}], " ", "2023"}],
+        ":", " ", 
+       RowBox[{"For", " ", "some", " ", "molecules"}]}], ",", " ", 
+      RowBox[{
+       RowBox[{
+       "there", " ", "is", " ", "an", " ", "additional", " ", "setting", " ", 
+        "in", " ", "the", " ", "molecule", " ", "specification", " ", "when", 
+        " ", "importing", " ", "XYZ", " ", "while", " ", "looks", " ", "like",
+         " ", 
+        RowBox[{
+        "this", ":", "\[IndentingNewLine]", "StereochemistryElements"}]}], 
+       " ", "->", " ", 
+       RowBox[{"{", 
+        RowBox[{"<|", 
+         RowBox[{
+          RowBox[{"\"\<StereoType\>\"", " ", "->", " ", 
+           RowBox[{
+           "\"\<DoubleBond\>\"", "\[IndentingNewLine]", "so", " ", 
+            "replacing", " ", "\"\<Double\>\"", " ", "with", " ", 
+            "\"\<Single\>\"", " ", "will", " ", "interfere", " ", "and", " ", 
+            "cause", " ", "an", " ", 
+            RowBox[{"error", ".", " ", "The"}], " ", "workaround", " ", "for",
+             " ", "that", " ", "is", " ", "to", " ", "replace", " ", 
+            "\"\<Double\>\""}]}], ",", " ", "\"\<Triple\>\"", ",", " ", 
+          RowBox[{
+           RowBox[{"etc", ".", " ", "with"}], " ", "\"\<Single\>\"", " ", 
+           "including", " ", "the", " ", 
+           RowBox[{"quotes", ".", " ", "I"}], " ", "also", " ", "had", " ", 
+           "to", " ", "make", " ", "sure", " ", "that", " ", "the", " ", 
+           "ValenceFilling", " ", "option", " ", "only", " ", "replaces", " ",
+            "the", " ", "last", " ", "closing", " ", "bracket"}]}], 
+         " "}]}]}]}], "]"}], " ", "in", " ", "the", " ", "string", " ", 
+    "because", " ", "otherwise", " ", "the", " ", "replacement", " ", 
+    "pattern", " ", "would", " ", "not", " ", "work", " ", "in", " ", "some", 
+    " ", 
+    RowBox[{"cases", "."}]}], " ", "*)"}], " ", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"customImporter", "[", 
@@ -187,7 +199,7 @@ Cell[BoxData[{
       RowBox[{"goodmol", "=", 
        RowBox[{"ToExpression", "@", 
         RowBox[{"StringReplace", "[", 
-         RowBox[{"textmol", ",", 
+         RowBox[{"textmol", ",", "\[IndentingNewLine]", 
           RowBox[{"{", 
            RowBox[{
             RowBox[{
@@ -197,8 +209,8 @@ Cell[BoxData[{
             RowBox[{
             "\"\<\\\"Aromatic\\\"\>\"", "->", "\"\<\\\"Single\\\"\>\""}], ",", 
             RowBox[{
-            "\"\<}]]}]\>\"", "->", " ", 
-             "\"\<}]]}, ValenceFilling->None]\>\""}]}], "}"}]}], "]"}]}]}], 
+             RowBox[{"\"\<]\>\"", " ", "~~", " ", "EndOfString"}], " ", "->", 
+             " ", "\"\<, ValenceFilling->None]\>\""}]}], "}"}]}], "]"}]}]}], 
       ";", "\[IndentingNewLine]", 
       RowBox[{"<|", 
        RowBox[{
@@ -265,7 +277,7 @@ Cell[BoxData[{
              RowBox[{
              "we", " ", "need", " ", "this", " ", "version", " ", "to", " ", 
               "import", " ", "the", " ", "molecular", " ", "structure", " ", 
-              "an", " ", 
+              "as", " ", "an", " ", 
               RowBox[{"image", ":"}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
            
            RowBox[{
@@ -355,7 +367,7 @@ Cell[BoxData[{
             RowBox[{"ViewVertical", "\[Rule]", " ", 
              RowBox[{"Dynamic", "[", "vv", "]"}]}]}], "]"}]}]}]}], 
        "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
-  "\n"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{"expfile", "[", "cubefile_", "]"}], " ", ":=", " ", 
   RowBox[{"Module", "[", 
@@ -399,8 +411,12 @@ Cell[BoxData[{
    3.8980076058075438`*^9, 3.898007653683255*^9}, {3.900404840603532*^9, 
    3.900404871723235*^9}, {3.900404984038065*^9, 3.900405022062933*^9}, {
    3.900666509880637*^9, 3.9006665397506104`*^9}, {3.900666591041041*^9, 
-   3.900666704859974*^9}, 3.900666845734426*^9},
- CellLabel->"In[30]:=",ExpressionUUID->"724f81ef-ce85-4e6f-a7c6-06c24428f6a6"]
+   3.900666704859974*^9}, 3.900666845734426*^9, {3.9007913367618923`*^9, 
+   3.900791338448319*^9}, {3.900791575829671*^9, 3.9007915866305313`*^9}, {
+   3.900791638755246*^9, 3.90079166853266*^9}, 3.9007917034280643`*^9, {
+   3.9010135617698793`*^9, 3.901013681722309*^9}, {3.901013733994616*^9, 
+   3.901013734902652*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"724f81ef-ce85-4e6f-a7c6-06c24428f6a6"]
 }, Closed]],
 
 Cell[CellGroupData[{
@@ -473,17 +489,18 @@ Cell[BoxData[{
    3.793899916506937*^9}, 3.794241133020411*^9, 3.79424168587214*^9, 
    3.852197362819961*^9, {3.852197427472699*^9, 3.852197429030765*^9}, {
    3.8521975165186*^9, 3.8521975376840267`*^9}},
- CellLabel->"In[42]:=",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
+ CellLabel->"In[13]:=",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
 
 Cell["\<\
 Plot, rotate, and export to PNG. Tip: You can hide the code below after \
-executing the Manipulate command by double clicking on the output cell \
-bracket on the right \
+executing the Manipulate command by double-clicking the output cell bracket \
+on the right \
 \>", "Text",
  CellChangeTimes->{{3.793890669414953*^9, 3.7938906751484528`*^9}, {
   3.900667167725882*^9, 3.900667218381531*^9}, {3.900667409527567*^9, 
-  3.9006674253109627`*^9}, {3.900667476057292*^9, 
-  3.900667508585528*^9}},ExpressionUUID->"f777762c-fa40-4a94-805b-\
+  3.9006674253109627`*^9}, {3.900667476057292*^9, 3.900667508585528*^9}, {
+  3.9010137987070417`*^9, 
+  3.901013805210429*^9}},ExpressionUUID->"f777762c-fa40-4a94-805b-\
 65d60eaa92db"],
 
 Cell[BoxData[
@@ -548,7 +565,8 @@ y26hFhDdxd/RAaKzn0yYBqLX/BOfC6LXvWA+BqJfy8ieBNFTk2MOuQDpkPhf
 4mkgesHfbTkgWoTTtgBEe3RZdIDoEKZdnSD60szrE0H0nSazqSDaJd/7BYh+
 ZrTmJYhO+3bzHYh2qv72BURv8frJ4wayb1mrBIjWXhy65R3/W8ew9bHbQTQA
 UBehbg==
-  "],ExpressionUUID->"27d66299-0a14-41eb-95a5-8d0f01135a5a"],
+  "],
+ CellLabel->"In[16]:=",ExpressionUUID->"27d66299-0a14-41eb-95a5-8d0f01135a5a"],
 
 Cell["\<\
 Evaluate the next cell in case you want to re-use the viewpoint settings. The \
@@ -640,8 +658,8 @@ Cell[BoxData[
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{589.5, 639.},
-WindowMargins->{{712.5, Automatic}, {Automatic, 163.5}},
+WindowSize->{723.75, 639},
+WindowMargins->{{Automatic, 217.5}, {56.25, Automatic}},
 PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
 FrontEndVersion->"13.3 for Linux x86 (64-bit) (June 3, 2023)",
 StyleDefinitions->"Default.nb",
@@ -660,21 +678,21 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 223, 3, 54, "Subsection",ExpressionUUID->"b76058a8-2021-4ad0-8133-a293d442614f"],
-Cell[806, 27, 658, 16, 265, "Text",ExpressionUUID->"c2092725-48ef-4287-963a-67fb01c514e5"],
+Cell[806, 27, 658, 16, 242, "Text",ExpressionUUID->"c2092725-48ef-4287-963a-67fb01c514e5"],
 Cell[CellGroupData[{
 Cell[1489, 47, 269, 6, 45, "Subsubsection",ExpressionUUID->"887e90fc-05f8-4ab0-80f2-4496be7a7a90"],
-Cell[1761, 55, 15514, 347, 2220, "Input",ExpressionUUID->"724f81ef-ce85-4e6f-a7c6-06c24428f6a6",
+Cell[1761, 55, 16578, 363, 1897, "Input",ExpressionUUID->"724f81ef-ce85-4e6f-a7c6-06c24428f6a6",
  InitializationCell->True]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[17312, 407, 200, 3, 37, "Subsubsection",ExpressionUUID->"36456696-7c0f-4d6f-b97d-025213ba313e"],
-Cell[17515, 412, 2249, 42, 419, "Text",ExpressionUUID->"bcf1db58-0c2a-43cd-a28e-7e8276321f48"],
-Cell[19767, 456, 954, 19, 70, "Input",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
-Cell[20724, 477, 466, 9, 81, "Text",ExpressionUUID->"f777762c-fa40-4a94-805b-65d60eaa92db"],
-Cell[21193, 488, 2400, 62, 272, "Input",ExpressionUUID->"27d66299-0a14-41eb-95a5-8d0f01135a5a"],
-Cell[23596, 552, 763, 13, 127, "Text",ExpressionUUID->"c1b76068-cef1-4f95-b6e5-2be7d652dc17"],
-Cell[24362, 567, 1687, 38, 190, "Input",ExpressionUUID->"b2b39270-b79b-4f2a-803c-9a35b06d731e"],
-Cell[26052, 607, 1427, 31, 112, "Input",ExpressionUUID->"a722bb31-346c-403a-a4f4-24561304b156"]
+Cell[18376, 423, 200, 3, 37, "Subsubsection",ExpressionUUID->"36456696-7c0f-4d6f-b97d-025213ba313e"],
+Cell[18579, 428, 2249, 42, 396, "Text",ExpressionUUID->"bcf1db58-0c2a-43cd-a28e-7e8276321f48"],
+Cell[20831, 472, 954, 19, 70, "Input",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
+Cell[21788, 493, 514, 10, 58, "Text",ExpressionUUID->"f777762c-fa40-4a94-805b-65d60eaa92db"],
+Cell[22305, 505, 2424, 63, 228, "Input",ExpressionUUID->"27d66299-0a14-41eb-95a5-8d0f01135a5a"],
+Cell[24732, 570, 763, 13, 104, "Text",ExpressionUUID->"c1b76068-cef1-4f95-b6e5-2be7d652dc17"],
+Cell[25498, 585, 1687, 38, 190, "Input",ExpressionUUID->"b2b39270-b79b-4f2a-803c-9a35b06d731e"],
+Cell[27188, 625, 1427, 31, 112, "Input",ExpressionUUID->"a722bb31-346c-403a-a4f4-24561304b156"]
 }, Open  ]]
 }, Open  ]]
 }
