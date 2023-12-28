@@ -1,0 +1,439 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     18812,        431]
+NotebookOptionsPosition[     17375,        403]
+NotebookOutlinePosition[     17793,        420]
+CellTagsIndexPosition[     17750,        417]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Create a Set of Molecular Orbital Isosurface Plots", "Subsection",
+ CellChangeTimes->{{3.8522022962849483`*^9, 3.8522023112245398`*^9}, 
+   3.8522024913550367`*^9, {3.912765300532077*^9, 
+   3.9127653121726913`*^9}},ExpressionUUID->"7af641f0-ea50-4abd-a70d-\
+07ca46194b07"],
+
+Cell["\<\
+Jochen Autschbach, University at Buffalo, SUNY. 
+(c) 2023 Jochen Autschbach\
+\>", "Text",
+ CellChangeTimes->{{3.852202320988123*^9, 3.8522024817629747`*^9}, {
+   3.85220251189102*^9, 3.852202519134107*^9}, {3.89290458195798*^9, 
+   3.892904589106019*^9}, 3.9127653254533443`*^9, {3.912765365622057*^9, 
+   3.9127653666298637`*^9}, {3.912765510616596*^9, 
+   3.912765511176502*^9}},ExpressionUUID->"42bd9d9e-9322-4605-a79b-\
+320d35a93150"],
+
+Cell["\<\
+This notebook is a companion to \
+\[OpenCurlyDoubleQuote]orbitalplot-interactive.nb\[CloseCurlyDoubleQuote] in \
+which you can find selected literature citations and additional comments.
+
+This notebook generates a set of PNG-format plots from a set of cube files \
+for a molecule collected in the working directory. We do not plot anything \
+interactively here in the notebook. The notebook reads viewpoint data from a \
+file \[OpenCurlyDoubleQuote]viewpoint.dat\[CloseCurlyDoubleQuote], and \
+molecular xyz coordinates from a file \[OpenCurlyDoubleQuote]molecule.xyz\
+\[CloseCurlyDoubleQuote]. The latter is saved automatically in the working \
+directory, based on the molecule specs in the cube files when you run the \
+interactive version of this notebook \
+\[OpenCurlyDoubleQuote]orbitalplot-interactive.nb\[CloseCurlyDoubleQuote] \
+first with one of the cubes. Likewise, you can save a suitable viewpoint from \
+\[OpenCurlyDoubleQuote]orbitalplot-interactive.nb\[CloseCurlyDoubleQuote] for \
+later use in this notebook.
+
+The molecule and grid specs must be consistent among all cubes, of course.
+
+With \[OpenCurlyDoubleQuote]viewpoint.dat\[CloseCurlyDoubleQuote] and  \
+\[OpenCurlyDoubleQuote]molecule.xyz\[CloseCurlyDoubleQuote] present, select \
+Evaluation -> Evaluate Notebook from the menu to generate PNG format graphics \
+for all cubes.  \
+\>", "Text",
+ CellChangeTimes->{{3.8834915505006037`*^9, 3.883491569664538*^9}, {
+   3.883494756654669*^9, 3.883494765207802*^9}, {3.912764037760309*^9, 
+   3.91276406849009*^9}, {3.9127641312949657`*^9, 3.9127642480846252`*^9}, {
+   3.912764311482164*^9, 3.912764398010634*^9}, {3.9127651554137373`*^9, 
+   3.9127652393422728`*^9}, {3.912765345265212*^9, 3.91276550839252*^9}, 
+   3.9127656894449387`*^9},ExpressionUUID->"c53e8bd6-7c2e-41f9-a6f7-\
+344bf4eb0b90"],
+
+Cell[BoxData[
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"NotebookDirectory", "[", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.79378790529633*^9, 3.7937879261375113`*^9}, {
+  3.864746041714587*^9, 3.864746042354261*^9}},
+ CellLabel->"In[53]:=",ExpressionUUID->"724f81ef-ce85-4e6f-a7c6-06c24428f6a6"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"opa", " ", "=", " ", "0.7"}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"default", " ", "opacity"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"spec", " ", "=", " ", "50"}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"default", " ", "specularity"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"pluss", " ", "=", " ", 
+    RowBox[{"ColorData", "[", 
+     RowBox[{"\"\<RedBlueTones\>\"", ",", "0.05"}], "]"}]}], ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"minuss", " ", "=", 
+   RowBox[{"ColorData", "[", 
+    RowBox[{"\"\<RedBlueTones\>\"", ",", "0.75"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"libertyBlue", " ", "=", " ", 
+   RowBox[{"RGBColor", "[", 
+    RowBox[{"0", ",", 
+     RowBox[{"51", "/", "255"}], ",", 
+     RowBox[{"153", "/", "255"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"myOrange", "=", 
+   RowBox[{"RGBColor", "[", 
+    RowBox[{"1.0", ",", "0.588", ",", "0."}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"myGreen", " ", "=", " ", 
+   RowBox[{
+    RowBox[{"ColorData", "[", "\"\<HTML\>\"", "]"}], "[", "\"\<Green\>\"", 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"myYellow", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"ColorData", "[", "\"\<HTML\>\"", "]"}], "[", "\"\<Yellow\>\"", 
+     "]"}]}], ";"}], " ", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"vp", "=", 
+    RowBox[{"ViewPoint", "/.", 
+     RowBox[{"Options", "[", "Graphics3D", "]"}]}]}], ";"}], 
+  " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"vv", "=", 
+   RowBox[{"ViewVertical", "/.", 
+    RowBox[{"Options", "[", "Graphics3D", "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"vp", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{"0.43015293113037784`", ",", "1.995974605572533`", ",", 
+     RowBox[{"-", "2.698342793225042`"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"vv", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "0.19860631586208347`"}], ",", 
+     RowBox[{"-", "0.6642040492578951`"}], ",", 
+     RowBox[{"-", "0.7206861399035684`"}]}], "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.793798633045143*^9, 3.793798633638342*^9}, 
+   3.7937990332118587`*^9, {3.793799423835637*^9, 3.793799424429448*^9}, {
+   3.793812876199871*^9, 3.793812900248032*^9}, {3.793976150994787*^9, 
+   3.793976165907461*^9}, {3.794059191446529*^9, 3.794059194288357*^9}, {
+   3.864745050559181*^9, 3.864745067185685*^9}, {3.864808832517955*^9, 
+   3.864808834174582*^9}, {3.9127651165251007`*^9, 3.9127651185286093`*^9}},
+ CellLabel->"In[54]:=",ExpressionUUID->"bbc363e6-aa4c-4ecc-94c7-18f0dc84cfd9"],
+
+Cell["Make a list of cube files from the current directory. ", "Text",
+ CellChangeTimes->{{3.793799563306443*^9, 3.793799591542831*^9}, {
+  3.793800247320668*^9, 3.793800274450728*^9}, {3.793811232515476*^9, 
+  3.79381124830521*^9}, {3.853931060129483*^9, 3.853931103966256*^9}, {
+  3.853931466272396*^9, 3.8539314721781187`*^9}, {3.883491380725093*^9, 
+  3.883491381558276*^9}},ExpressionUUID->"bcf1db58-0c2a-43cd-a28e-\
+7e8276321f48"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ext", " ", "=", " ", "\"\<cube\>\""}], ";", "  ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"adjust", " ", "extension", " ", 
+    RowBox[{"(", 
+     RowBox[{"e", ".", "g", ".", " ", "\"\<cub\>\""}], ")"}], " ", "if", " ", 
+    "needed"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"flist", " ", "=", " ", 
+   RowBox[{"FileNames", "[", 
+    RowBox[{"\"\<*.\>\"", "<>", "ext"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"flist", " ", "//", " ", "TableForm"}]}], "Input",
+ CellChangeTimes->{{3.7938042412340117`*^9, 3.7938042666952047`*^9}, {
+   3.79380956574901*^9, 3.793809567368286*^9}, {3.7939761838798847`*^9, 
+   3.793976217010746*^9}, {3.864571166434132*^9, 3.864571169008116*^9}, 
+   3.864708210767799*^9, 3.864808779728314*^9, {3.883490556036871*^9, 
+   3.883490564997692*^9}, {3.883491109797724*^9, 3.883491111044712*^9}, {
+   3.8834914921106243`*^9, 3.8834914922222233`*^9}, {3.883491882294573*^9, 
+   3.883491884364246*^9}, {3.883491992922711*^9, 3.8834919950806017`*^9}, {
+   3.883492260977435*^9, 3.883492261555316*^9}, {3.883492353820076*^9, 
+   3.883492354364978*^9}, {3.883492614339219*^9, 3.883492617799881*^9}, {
+   3.883492869135087*^9, 3.883492870726892*^9}, {3.883494688905497*^9, 
+   3.8834946890394573`*^9}, 3.885037472105934*^9, {3.912765040054785*^9, 
+   3.912765057492679*^9}},
+ CellLabel->"In[66]:=",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
+
+Cell["Set the viewpoint from an external file.", "Text",
+ CellChangeTimes->{{3.8834914809479*^9, 
+  3.883491489252509*^9}},ExpressionUUID->"b108ec39-b7c3-4dff-acef-\
+8b1e10bdec8a"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"f", "=", "\"\<viewpoint.dat\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"dat", " ", "=", " ", 
+  RowBox[{"Flatten", "[", 
+   RowBox[{
+    RowBox[{"ReadList", "[", 
+     RowBox[{"f", ",", " ", 
+      RowBox[{"RecordLists", "\[Rule]", "True"}]}], "]"}], ",", "2"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"vp", " ", "=", " ", 
+  RowBox[{"dat", "[", 
+   RowBox[{"[", "1", "]"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"vv", " ", "=", " ", 
+  RowBox[{"dat", "[", 
+   RowBox[{"[", "2", "]"}], "]"}]}]}], "Input",
+ CellChangeTimes->{
+  3.883491371599844*^9, 3.883491700186874*^9, 3.883492866051279*^9, {
+   3.883494694669536*^9, 3.883494694804171*^9}},
+ CellLabel->"In[68]:=",ExpressionUUID->"3ed935fc-9391-43a3-932f-a43081019bcf"],
+
+Cell["\<\
+The next set of commands visualizes the molecule and runs through the list of \
+cube files. Available plot themes are HeavyAtom ,  BallAndStick ,  \
+Spacefilling ,  Tubes  , Wireframe\
+\>", "Text",
+ CellChangeTimes->{{3.853925753812957*^9, 3.8539257585002604`*^9}, {
+  3.85392581395301*^9, 3.853925814665057*^9}, {3.883491514911282*^9, 
+  3.883491532404416*^9}, {3.883494715111816*^9, 3.883494715890646*^9}, {
+  3.912764095160163*^9, 3.9127640952312517`*^9}, {3.912765076057795*^9, 
+  3.912765104352957*^9}, {3.91276590278966*^9, 3.912766024796863*^9}, {
+  3.9127662072041473`*^9, 
+  3.912766228425104*^9}},ExpressionUUID->"f522ef8e-872b-461a-a034-\
+9f41b49a777b"],
+
+Cell[BoxData[{
+ RowBox[{
+  StyleBox[
+   RowBox[{
+    RowBox[{"contours", "=", "0.04"}], ";"}],
+   FontColor->GrayLevel[0]], 
+  StyleBox[" ",
+   FontColor->GrayLevel[0]], 
+  StyleBox[
+   RowBox[{
+    StyleBox[
+     RowBox[{"(", "*"}]], " ", 
+    RowBox[{"default", " ", "isosurface", " ", "value", " ", 
+     RowBox[{"(", 
+      RowBox[{"+", 
+       RowBox[{"/", "-"}]}], ")"}]}], 
+    StyleBox[
+     RowBox[{"*", ")"}]]}],
+   FontColor->GrayLevel[0]]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"plottheme", "=", "\"\<Tubes\>\""}], ";", " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"default", " ", "plot", " ", "theme"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"opa", " ", "=", " ", "0.7"}], ";", " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"default", " ", 
+     RowBox[{"opacity", ".", " ", "Set"}], " ", "to", " ", "1", " ", "for", 
+     " ", "non"}], "-", 
+    RowBox[{"translucent", " ", 
+     RowBox[{"surfaces", "."}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"res", " ", "=", " ", "150"}], ";", " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "default", " ", "resolution", " ", "of", " ", "exported", " ", "image"}], 
+   " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"mol", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<molecule.xyz\>\"", ",", 
+     RowBox[{"\"\<InferBondTypes\>\"", "->", "False"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"molplot", " ", "=", " ", 
+   RowBox[{"MoleculePlot3D", "[", 
+    RowBox[{"mol", ",", 
+     RowBox[{"PlotTheme", "\[Rule]", "plottheme"}]}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.883491542854851*^9, 3.88349154642247*^9}, {
+  3.8834917214496737`*^9, 3.8834917377414494`*^9}, {3.883492873045967*^9, 
+  3.883492875151245*^9}, {3.883494700031314*^9, 3.883494700102952*^9}, {
+  3.885038224103015*^9, 3.885038224177513*^9}, {3.9127658899980288`*^9, 
+  3.9127658910358353`*^9}, {3.912766099462035*^9, 3.912766110016572*^9}, {
+  3.912766156624229*^9, 3.912766203899671*^9}, {3.912766237065983*^9, 
+  3.912766241674315*^9}},
+ CellLabel->"In[72]:=",ExpressionUUID->"e58c6655-7134-4e56-9ac8-2ea8c335616e"],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox["Do",
+   FontColor->GrayLevel[0]], 
+  StyleBox["[",
+   FontColor->GrayLevel[0]], 
+  RowBox[{
+   RowBox[{
+    StyleBox[
+     RowBox[{"samplefile", "=", 
+      RowBox[{"flist", "[", 
+       RowBox[{"[", "i", "]"}], "]"}]}],
+     FontColor->GrayLevel[0]], 
+    StyleBox[";",
+     FontColor->GrayLevel[0]], "\[IndentingNewLine]", 
+    RowBox[{"vol", " ", "=", " ", 
+     RowBox[{"Import", "[", 
+      RowBox[{"samplefile", ",", "\"\<VolumetricData\>\""}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"cgraf", " ", "=", " ", 
+     RowBox[{"ListContourPlot3D", "[", 
+      RowBox[{
+       RowBox[{"vol", "[", 
+        RowBox[{"[", 
+         RowBox[{"\"\<Data\>\"", ",", "1"}], "]"}], "]"}], ",", 
+       RowBox[{"DataRange", "\[Rule]", 
+        RowBox[{"vol", "[", "\"\<DataRange\>\"", "]"}]}], ",", 
+       RowBox[{"BoxRatios", "\[Rule]", "Automatic"}], ",", 
+       RowBox[{"Contours", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "contours"}], ",", "contours"}], "}"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"ContourStyle", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Directive", "[", 
+           RowBox[{"minuss", ",", 
+            RowBox[{"Opacity", "[", "opa", "]"}], "\[IndentingNewLine]", ",", 
+            " ", 
+            RowBox[{"Specularity", "[", 
+             RowBox[{"White", ",", "spec"}], "]"}]}], " ", 
+           "\[IndentingNewLine]", "]"}], ",", 
+          RowBox[{"Directive", "[", 
+           RowBox[{"pluss", ",", 
+            RowBox[{"Opacity", "[", "opa", "]"}], "\[IndentingNewLine]", " ", 
+            ",", " ", 
+            RowBox[{"Specularity", "[", 
+             RowBox[{"White", ",", "spec"}], "]"}]}], " ", "]"}]}], "}"}]}], 
+       ",", " ", "\[IndentingNewLine]", 
+       RowBox[{"Lighting", "\[Rule]", "\"\<Neutral\>\""}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Boxed", "\[Rule]", "False"}], ",", " ", 
+       RowBox[{"BoxStyle", "\[Rule]", 
+        RowBox[{"Directive", "[", 
+         RowBox[{
+          RowBox[{"Thickness", "[", "0.01", "]"}], ",", "Gray"}], "]"}]}], 
+       ",", 
+       RowBox[{"Axes", "\[Rule]", "False"}], ",", 
+       RowBox[{"Mesh", "\[Rule]", "True"}], ",", 
+       RowBox[{"AxesLabel", "\[Rule]", "None"}], ",", 
+       RowBox[{"Ticks", "\[Rule]", "None"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"combined", "=", 
+     RowBox[{"Show", "[", 
+      RowBox[{"cgraf", ",", "molplot", ",", 
+       RowBox[{"PlotRange", "\[Rule]", "All"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"ViewPoint", "\[Rule]", 
+        RowBox[{"Dynamic", "[", "vp", "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"ViewVertical", "\[Rule]", 
+        RowBox[{"Dynamic", "[", "vv", "]"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Export", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"ToString", "[", 
+        RowBox[{"FileBaseName", "[", "samplefile", "]"}], "]"}], "<>", 
+       "\"\<.png\>\""}], ",", "\[IndentingNewLine]", "combined", ",", 
+      RowBox[{"ImageResolution", "->", "res"}]}], "]"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "1", ",", 
+     RowBox[{"Length", "[", "flist", "]"}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.793787936129014*^9, 3.793787955586397*^9}, 
+   3.7937882449437437`*^9, {3.7937882794552727`*^9, 3.7937882813791847`*^9}, {
+   3.793797231399516*^9, 3.793797248189386*^9}, {3.793797359673271*^9, 
+   3.793797372207142*^9}, {3.7937974347534847`*^9, 3.7937974409241123`*^9}, {
+   3.793798894276332*^9, 3.7937990136937447`*^9}, {3.793799210256448*^9, 
+   3.793799232274712*^9}, {3.7938002907958927`*^9, 3.793800294939698*^9}, 
+   3.793809625961751*^9, {3.793811454231839*^9, 3.793811542477461*^9}, {
+   3.793811583516202*^9, 3.793811589204122*^9}, {3.793812480725964*^9, 
+   3.793812482677903*^9}, {3.793822941215563*^9, 3.793822941651073*^9}, {
+   3.8538624112991056`*^9, 3.85386243042754*^9}, {3.853925763218968*^9, 
+   3.853925766173764*^9}, {3.853925810939453*^9, 3.8539258111215878`*^9}, {
+   3.853931504821154*^9, 3.853931504971962*^9}, {3.8647220062718163`*^9, 
+   3.864722007032493*^9}, {3.8648087328805237`*^9, 3.864808761078828*^9}, {
+   3.864808809941865*^9, 3.864808815585608*^9}, {3.864809172740831*^9, 
+   3.864809173118518*^9}, {3.864809410555665*^9, 3.864809411264662*^9}, {
+   3.86480968171535*^9, 3.864809693250341*^9}, {3.86481049641626*^9, 
+   3.864810496450425*^9}, {3.864810583408517*^9, 3.864810583489043*^9}, {
+   3.8648107995038548`*^9, 3.864810799564011*^9}, {3.864811471296981*^9, 
+   3.864811472114854*^9}, {3.8648269644268093`*^9, 3.864826964769217*^9}, {
+   3.8834902405500803`*^9, 3.8834902406115932`*^9}, {3.883490594288309*^9, 
+   3.883490611199808*^9}, {3.883490678242735*^9, 3.883490771202821*^9}, {
+   3.883490875949279*^9, 3.883490921708528*^9}, {3.883490967879507*^9, 
+   3.883491044745615*^9}, 3.8834910834552593`*^9, {3.8834911164231787`*^9, 
+   3.883491119753235*^9}, {3.8834911940977497`*^9, 3.8834912070173807`*^9}, {
+   3.883491258396793*^9, 3.883491282395259*^9}, {3.883491334367187*^9, 
+   3.883491335401298*^9}, {3.883491539453087*^9, 3.883491540227498*^9}, {
+   3.883491895434351*^9, 3.883491899673781*^9}, {3.885037657609353*^9, 
+   3.885037658134828*^9}, {3.88503775688011*^9, 3.8850377707412033`*^9}, {
+   3.912766113063703*^9, 3.912766137436002*^9}},
+ CellLabel->"In[75]:=",ExpressionUUID->"3253bf76-164a-490e-a0d4-bcaab2ab13d2"]
+}, Open  ]]
+},
+WindowSize->{823.5, 759.},
+WindowMargins->{{Automatic, 734.25}, {Automatic, 102}},
+DockedCells->{},
+FrontEndVersion->"13.0 for Linux x86 (64-bit) (February 4, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"13ebcdbb-bc5c-473f-a7dd-b896ea12dff5"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 279, 4, 54, "Subsection",ExpressionUUID->"7af641f0-ea50-4abd-a70d-07ca46194b07"],
+Cell[862, 28, 448, 9, 58, "Text",ExpressionUUID->"42bd9d9e-9322-4605-a79b-320d35a93150"],
+Cell[1313, 39, 1824, 31, 334, "Text",ExpressionUUID->"c53e8bd6-7c2e-41f9-a6f7-344bf4eb0b90"],
+Cell[3140, 72, 299, 5, 29, "Input",ExpressionUUID->"724f81ef-ce85-4e6f-a7c6-06c24428f6a6"],
+Cell[3442, 79, 2807, 75, 278, "Input",ExpressionUUID->"bbc363e6-aa4c-4ecc-94c7-18f0dc84cfd9"],
+Cell[6252, 156, 436, 6, 35, "Text",ExpressionUUID->"bcf1db58-0c2a-43cd-a28e-7e8276321f48"],
+Cell[6691, 164, 1424, 25, 71, "Input",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
+Cell[8118, 191, 180, 3, 35, "Text",ExpressionUUID->"b108ec39-b7c3-4dff-acef-8b1e10bdec8a"],
+Cell[8301, 196, 775, 19, 92, "Input",ExpressionUUID->"3ed935fc-9391-43a3-932f-a43081019bcf"],
+Cell[9079, 217, 674, 12, 58, "Text",ExpressionUUID->"f522ef8e-872b-461a-a034-9f41b49a777b"],
+Cell[9756, 231, 2107, 55, 133, "Input",ExpressionUUID->"e58c6655-7134-4e56-9ac8-2ea8c335616e"],
+Cell[11866, 288, 5493, 112, 381, "Input",ExpressionUUID->"3253bf76-164a-490e-a0d4-bcaab2ab13d2"]
+}, Open  ]]
+}
+]
+*)
+
