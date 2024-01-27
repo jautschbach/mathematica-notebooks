@@ -1,11 +1,10 @@
 # Plotting molecular orbitals from cube file data in 2D slices (cut-planes)
 
-![C-H bond of ethene in 2D slice](contours-c2-h6-plane.png) 
-![C-C pi bond of ethene in 2D slice above molecular plane](contours-cc-pi-above-xy-plane.png)
-![C-C pi bond of ethene in 2D slice perpendicular to molecular plane](contours-cc-pi-perp-plane.png)
+![C-H and C-C pi bonds of ethene in different slices](overview.png) 
 
 File orbitalplot-2D-slices.nb is a Mathematica notebook for plotting contours of
-molecular orbitals in 2D slices (cut-planes). The images above shows contour line plots of one of the C-H bond orbitals and the C-C pi-bond orbital of the ethene molecule, generated with the notebook.
+molecular orbitals in 2D slices (cut-planes). The images above shows contour line plots of one of the C-H bond orbitals and the C-C pi-bond orbital of the ethene molecule, generated with the notebook. Different such plots
+are combined in the graphic above. 
 
 *Notes: Mathematica Versions 12.x, 13.0, 13.3, and 14.0 are confirmed to work. Others likely will.*
 
