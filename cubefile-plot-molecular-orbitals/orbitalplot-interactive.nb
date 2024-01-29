@@ -10,38 +10,80 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     30263,        693]
-NotebookOptionsPosition[     28643,        660]
-NotebookOutlinePosition[     29119,        677]
-CellTagsIndexPosition[     29076,        674]
+NotebookDataLength[     31020,        712]
+NotebookOptionsPosition[     29042,        672]
+NotebookOutlinePosition[     29520,        689]
+CellTagsIndexPosition[     29477,        686]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell["Interactive Molecular Orbital Isosurface Plots", "Subsection",
+Cell["\<\
+Interactive Molecular Orbital Isosurface Plots from CUBE Data\
+\>", "Section",
  CellChangeTimes->{{3.8522022962849483`*^9, 3.8522023112245398`*^9}, 
-   3.8522024913550367`*^9},ExpressionUUID->"b76058a8-2021-4ad0-8133-\
+   3.8522024913550367`*^9, {3.9155331880396843`*^9, 
+   3.9155331928986473`*^9}},ExpressionUUID->"b76058a8-2021-4ad0-8133-\
 a293d442614f"],
 
+Cell[CellGroupData[{
+
+Cell["Copyright, License, relevant Literature", "Subsubsection",
+ CellChangeTimes->{{3.914773101401758*^9, 3.914773112368757*^9}, {
+  3.915536475305972*^9, 
+  3.9155364756179113`*^9}},ExpressionUUID->"97014819-8cc4-4d30-bead-\
+db63183f4a76"],
+
 Cell["\<\
-Jochen Autschbach, University at Buffalo, SUNY. 
-(c) 2020-2023 Jochen Autschbach
+\[Copyright] 2024 Jochen Autschbach
 
-If you use this notebook for research or educational articles, I would \
-appreciate a citation of my textbook, for which I developed this \
-functionality: 
+Literature: 
 
-Quantum Theory for Chemical Applications, by J. Autschbach. Oxford University \
-Press, New York (NY), 2021. 
+[1] Quantum Theory for Chemical Applications, by J. Autschbach. Oxford \
+University Press, New York (NY), 2021. 
 
-A related publication is this: https://doi.org/10.1021/ed200673w\
+A related publication is this: https://doi.org/10.1021/ed200673w
+
+See file LICENSE in https://github.com/jautschbach/mathematica-notebooks for \
+license information and disclaimers.\
 \>", "Text",
- CellChangeTimes->{{3.852202320988123*^9, 3.8522024817629747`*^9}, {
-  3.85220251189102*^9, 3.852202519134107*^9}, {3.89290458195798*^9, 
-  3.892904589106019*^9}},ExpressionUUID->"c2092725-48ef-4287-963a-\
-67fb01c514e5"],
+ CellChangeTimes->{{3.874491401677493*^9, 3.874491484594095*^9}, {
+  3.874491975049707*^9, 3.874491984906625*^9}, {3.914773121878868*^9, 
+  3.914773123538113*^9}, {3.9147731617833443`*^9, 3.91477317812821*^9}, {
+  3.915533092045426*^9, 3.915533112115219*^9}, {3.915536466308586*^9, 
+  3.915536467190443*^9}},ExpressionUUID->"dab35126-1eae-49d2-a3df-\
+de83bb72dad8"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Description", "Subsubsection",
+ CellChangeTimes->{{3.915532068707152*^9, 
+  3.915532070737084*^9}},ExpressionUUID->"f6825b61-b192-4f8a-8289-\
+74428ae6a383"],
+
+Cell["\<\
+Interactive visualization of molecular volume data in CUBE format. An earlier \
+version of this notebook was used to create the orbital visualizations from \
+quantum chemistry calculations shown in my textbook [1]. 
+
+If you use this notebook, or code based on it, for your own research, please \
+cite reference [1] provided in the \[OpenCurlyDoubleQuote]Copyright, License, \
+relevant Literature\[CloseCurlyDoubleQuote] section and provide the URL from \
+where you obtained this notebook.\
+\>", "Text",
+ CellChangeTimes->{{3.840290754199389*^9, 3.840290863751519*^9}, {
+  3.840290915420718*^9, 3.840290943863029*^9}, {3.840291280809177*^9, 
+  3.840291281936075*^9}, {3.840291317304593*^9, 3.840291357072824*^9}, {
+  3.8522055446414757`*^9, 3.852205559593772*^9}, {3.915532085830104*^9, 
+  3.915532132874722*^9}, {3.915532201621814*^9, 3.915532282973084*^9}, {
+  3.915533423885158*^9, 3.915533459046907*^9}, {3.915534037217362*^9, 
+  3.915534152306849*^9}, {3.915534504760601*^9, 
+  3.915534506216805*^9}},ExpressionUUID->"56eceb35-6838-41ef-9ffd-\
+f0efa30d43b0"]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -180,47 +222,42 @@ Cell[BoxData[{
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
-   RowBox[{"customImporter", "[", 
-    RowBox[{"path_", ",", " ", "theme_"}], "]"}], ":=", 
-   RowBox[{"Block", "[", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"mol", ",", "textmol", ",", "goodmol"}], "}"}], ",", 
-     "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"customImporter", "[", "path_", "]"}], ":=", 
+    RowBox[{"Block", "[", 
      RowBox[{
-      RowBox[{"mol", "=", 
-       RowBox[{"Import", "[", 
-        RowBox[{"path", ",", "\"\<Molecule\>\""}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"textmol", "=", 
-       RowBox[{"ToString", "[", 
-        RowBox[{"InputForm", "[", "mol", "]"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"goodmol", "=", 
-       RowBox[{"ToExpression", "@", 
-        RowBox[{"StringReplace", "[", 
-         RowBox[{"textmol", ",", "\[IndentingNewLine]", 
-          RowBox[{"{", 
-           RowBox[{
+      RowBox[{"{", 
+       RowBox[{"textmol", ",", "goodmol"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"mol", "=", 
+        RowBox[{"Import", "[", 
+         RowBox[{"path", ",", "\"\<Molecule\>\""}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"textmol", "=", 
+        RowBox[{"ToString", "[", 
+         RowBox[{"InputForm", "[", "mol", "]"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"goodmol", "=", 
+        RowBox[{"ToExpression", "@", 
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"textmol", ",", "\[IndentingNewLine]", 
+           RowBox[{"{", 
             RowBox[{
-            "\"\<\\\"Double\\\"\>\"", "->", "\"\<\\\"Single\\\"\>\""}], ",", 
-            RowBox[{
-            "\"\<\\\"Triple\\\"\>\"", "->", "\"\<\\\"Single\\\"\>\""}], ",", 
-            RowBox[{
-            "\"\<\\\"Aromatic\\\"\>\"", "->", "\"\<\\\"Single\\\"\>\""}], ",", 
-            RowBox[{
-             RowBox[{"\"\<]\>\"", " ", "~~", " ", "EndOfString"}], " ", "->", 
-             " ", "\"\<, ValenceFilling->None]\>\""}]}], "}"}]}], "]"}]}]}], 
-      ";", "\[IndentingNewLine]", 
-      RowBox[{"<|", 
-       RowBox[{
-        RowBox[{"\"\<Graphics3D\>\"", "->", 
-         RowBox[{"MoleculePlot3D", "[", 
-          RowBox[{"goodmol", ",", 
-           RowBox[{"PlotTheme", "->", "theme"}]}], "]"}]}], ",", 
-        RowBox[{"\"\<Molecule\>\"", "->", "goodmol"}]}], "|>"}]}]}], 
-    "\[IndentingNewLine]", "]"}]}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+             RowBox[{
+             "\"\<\\\"Double\\\"\>\"", "->", "\"\<\\\"Single\\\"\>\""}], ",", 
+             
+             RowBox[{
+             "\"\<\\\"Triple\\\"\>\"", "->", "\"\<\\\"Single\\\"\>\""}], ",", 
+             
+             RowBox[{
+             "\"\<\\\"Aromatic\\\"\>\"", "->", "\"\<\\\"Single\\\"\>\""}], 
+             ",", 
+             RowBox[{
+              RowBox[{"\"\<]\>\"", " ", "~~", " ", "EndOfString"}], " ", "->",
+               " ", "\"\<, ValenceFilling->None]\>\""}]}], "}"}]}], "]"}]}]}],
+        ";", "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", "goodmol", "]"}]}]}], "\[IndentingNewLine]", 
+     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"cubeplot", "[", 
@@ -267,41 +304,14 @@ Cell[BoxData[{
          RowBox[{"Export", "[", 
           RowBox[{"file", ",", "tmp"}], "]"}], ";", "\[IndentingNewLine]", 
          "\[IndentingNewLine]", 
-         RowBox[{"If", "[", 
-          RowBox[{
-           RowBox[{"mmaver", " ", "==", " ", "13.3"}], ",", 
-           "\[IndentingNewLine]", 
-           RowBox[{"(*", " ", 
-            RowBox[{
-             RowBox[{"for", " ", "version", " ", "13.3"}], ",", " ", 
-             RowBox[{
-             "we", " ", "need", " ", "this", " ", "version", " ", "to", " ", 
-              "import", " ", "the", " ", "molecular", " ", "structure", " ", 
-              "as", " ", "an", " ", 
-              RowBox[{"image", ":"}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
-           
-           RowBox[{
-            RowBox[{"molplot", " ", "=", " ", 
-             RowBox[{
-              RowBox[{"customImporter", "[", 
-               RowBox[{"file", ",", "plottheme"}], "]"}], "[", 
-              "\"\<Graphics3D\>\"", "]"}]}], ";"}], " ", 
-           "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
-           RowBox[{"(*", " ", 
-            RowBox[{
-            "original", " ", "code", " ", "displaying", " ", "the", " ", 
-             RowBox[{"molecule", ":"}]}], "*)"}], "\[IndentingNewLine]", 
-           RowBox[{
-            RowBox[{"mol", " ", "=", " ", 
-             RowBox[{"Import", "[", 
-              RowBox[{"file", ",", 
-               RowBox[{"\"\<InferBondTypes\>\"", "\[Rule]", "False"}]}], 
-              "]"}]}], ";", "\[IndentingNewLine]", 
-            RowBox[{"molplot", " ", "=", " ", 
-             RowBox[{"MoleculePlot3D", "[", 
-              RowBox[{"mol", ",", 
-               RowBox[{"PlotTheme", "\[Rule]", "plottheme"}]}], "]"}]}], 
-            ";"}]}], "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"mol", " ", "=", " ", 
+          RowBox[{"customImporter", "[", "file", "]"}]}], ";", " ", 
+         "\[IndentingNewLine]", 
+         RowBox[{"molplot", " ", "=", " ", 
+          RowBox[{"MoleculePlot3D", "[", 
+           RowBox[{"mol", ",", 
+            RowBox[{"PlotTheme", "->", "plottheme"}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
          RowBox[{"(*", " ", 
           RowBox[{
            RowBox[{"DeleteFile", "[", "file", "]"}], ";"}], " ", "*)"}], 
@@ -415,7 +425,9 @@ Cell[BoxData[{
    3.900791338448319*^9}, {3.900791575829671*^9, 3.9007915866305313`*^9}, {
    3.900791638755246*^9, 3.90079166853266*^9}, 3.9007917034280643`*^9, {
    3.9010135617698793`*^9, 3.901013681722309*^9}, {3.901013733994616*^9, 
-   3.901013734902652*^9}},
+   3.901013734902652*^9}, {3.915532785835342*^9, 3.915532863911571*^9}, {
+   3.915532931865775*^9, 3.9155329654469337`*^9}, {3.915532997761745*^9, 
+   3.915533006788826*^9}},
  CellLabel->"In[1]:=",ExpressionUUID->"724f81ef-ce85-4e6f-a7c6-06c24428f6a6"]
 }, Closed]],
 
@@ -658,10 +670,10 @@ Cell[BoxData[
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{723.75, 639},
-WindowMargins->{{Automatic, 217.5}, {56.25, Automatic}},
+WindowSize->{796.5, 639.},
+WindowMargins->{{Automatic, 597}, {Automatic, 81.75}},
 PrivateNotebookOptions->{"VersionedStylesheet"->{"Default.nb"[8.] -> False}},
-FrontEndVersion->"13.3 for Linux x86 (64-bit) (June 3, 2023)",
+FrontEndVersion->"13.0 for Linux x86 (64-bit) (February 4, 2022)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"a2dec52c-66a9-4cfd-b696-94e91a0df321"
 ]
@@ -677,22 +689,29 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 223, 3, 54, "Subsection",ExpressionUUID->"b76058a8-2021-4ad0-8133-a293d442614f"],
-Cell[806, 27, 658, 16, 242, "Text",ExpressionUUID->"c2092725-48ef-4287-963a-67fb01c514e5"],
+Cell[580, 22, 297, 6, 68, "Section",ExpressionUUID->"b76058a8-2021-4ad0-8133-a293d442614f"],
 Cell[CellGroupData[{
-Cell[1489, 47, 269, 6, 45, "Subsubsection",ExpressionUUID->"887e90fc-05f8-4ab0-80f2-4496be7a7a90"],
-Cell[1761, 55, 16578, 363, 1897, "Input",ExpressionUUID->"724f81ef-ce85-4e6f-a7c6-06c24428f6a6",
+Cell[902, 32, 241, 4, 45, "Subsubsection",ExpressionUUID->"97014819-8cc4-4d30-bead-db63183f4a76"],
+Cell[1146, 38, 736, 18, 265, "Text",ExpressionUUID->"dab35126-1eae-49d2-a3df-de83bb72dad8"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[1919, 61, 162, 3, 37, "Subsubsection",ExpressionUUID->"f6825b61-b192-4f8a-8289-74428ae6a383"],
+Cell[2084, 66, 1072, 18, 150, "Text",ExpressionUUID->"56eceb35-6838-41ef-9ffd-f0efa30d43b0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3193, 89, 269, 6, 45, "Subsubsection",ExpressionUUID->"887e90fc-05f8-4ab0-80f2-4496be7a7a90"],
+Cell[3465, 97, 15273, 333, 1737, "Input",ExpressionUUID->"724f81ef-ce85-4e6f-a7c6-06c24428f6a6",
  InitializationCell->True]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[18376, 423, 200, 3, 37, "Subsubsection",ExpressionUUID->"36456696-7c0f-4d6f-b97d-025213ba313e"],
-Cell[18579, 428, 2249, 42, 396, "Text",ExpressionUUID->"bcf1db58-0c2a-43cd-a28e-7e8276321f48"],
-Cell[20831, 472, 954, 19, 70, "Input",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
-Cell[21788, 493, 514, 10, 58, "Text",ExpressionUUID->"f777762c-fa40-4a94-805b-65d60eaa92db"],
-Cell[22305, 505, 2424, 63, 228, "Input",ExpressionUUID->"27d66299-0a14-41eb-95a5-8d0f01135a5a"],
-Cell[24732, 570, 763, 13, 104, "Text",ExpressionUUID->"c1b76068-cef1-4f95-b6e5-2be7d652dc17"],
-Cell[25498, 585, 1687, 38, 190, "Input",ExpressionUUID->"b2b39270-b79b-4f2a-803c-9a35b06d731e"],
-Cell[27188, 625, 1427, 31, 112, "Input",ExpressionUUID->"a722bb31-346c-403a-a4f4-24561304b156"]
+Cell[18775, 435, 200, 3, 37, "Subsubsection",ExpressionUUID->"36456696-7c0f-4d6f-b97d-025213ba313e"],
+Cell[18978, 440, 2249, 42, 345, "Text",ExpressionUUID->"bcf1db58-0c2a-43cd-a28e-7e8276321f48"],
+Cell[21230, 484, 954, 19, 71, "Input",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
+Cell[22187, 505, 514, 10, 58, "Text",ExpressionUUID->"f777762c-fa40-4a94-805b-65d60eaa92db"],
+Cell[22704, 517, 2424, 63, 216, "Input",ExpressionUUID->"27d66299-0a14-41eb-95a5-8d0f01135a5a"],
+Cell[25131, 582, 763, 13, 81, "Text",ExpressionUUID->"c1b76068-cef1-4f95-b6e5-2be7d652dc17"],
+Cell[25897, 597, 1687, 38, 195, "Input",ExpressionUUID->"b2b39270-b79b-4f2a-803c-9a35b06d731e"],
+Cell[27587, 637, 1427, 31, 113, "Input",ExpressionUUID->"a722bb31-346c-403a-a4f4-24561304b156"]
 }, Open  ]]
 }, Open  ]]
 }
