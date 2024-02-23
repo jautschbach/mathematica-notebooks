@@ -10,27 +10,29 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     24620,        567]
-NotebookOptionsPosition[     22523,        525]
-NotebookOutlinePosition[     22938,        542]
-CellTagsIndexPosition[     22895,        539]
+NotebookDataLength[     26139,        607]
+NotebookOptionsPosition[     24044,        565]
+NotebookOutlinePosition[     24456,        582]
+CellTagsIndexPosition[     24413,        579]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell["Create a Set of Molecular Orbital Isosurface Plots", "Section",
+Cell["Helper Notebook for Importing CUBE format Data", "Section",
  CellChangeTimes->{{3.8522022962849483`*^9, 3.8522023112245398`*^9}, 
-   3.8522024913550367`*^9, {3.912765300532077*^9, 
-   3.9127653121726913`*^9}},ExpressionUUID->"7af641f0-ea50-4abd-a70d-\
+   3.8522024913550367`*^9, {3.912765300532077*^9, 3.9127653121726913`*^9}, {
+   3.917627638520596*^9, 
+   3.917627665564452*^9}},ExpressionUUID->"7af641f0-ea50-4abd-a70d-\
 07ca46194b07"],
 
 Cell[CellGroupData[{
 
-Cell["Copyright, License, relevant Literature", "Subsubsection",
- CellChangeTimes->{{3.914773101401758*^9, 
-  3.914773112368757*^9}},ExpressionUUID->"943c6eeb-11d6-4f7c-aa8d-\
+Cell["Copyright, License, Relevant Literature, Notes", "Subsubsection",
+ CellChangeTimes->{{3.914773101401758*^9, 3.914773112368757*^9}, {
+  3.917627620782916*^9, 
+  3.917627625664255*^9}},ExpressionUUID->"943c6eeb-11d6-4f7c-aa8d-\
 d8737f0089db"],
 
 Cell[TextData[{
@@ -49,16 +51,28 @@ and disclaimers."
   3.915536491409815*^9}},ExpressionUUID->"e3957d58-6f06-4ee9-95ac-\
 d4aa965d3270"],
 
-Cell["\<\
-If you use this notebook, or code based on it, for your own research, please \
-cite reference [1]  and provide the URL from where you obtained this notebook.\
-\>", "Text",
+Cell[TextData[{
+ "If you use this notebook, or code based on it, for your own research, \
+please cite reference [1]  and provide the URL from where you obtained this \
+notebook.\n\nNote: The idea for the ",
+ StyleBox["customImporter", "Code"],
+ " function originally came from Oliver Jandette at Wolfram Tech support when \
+I reported in July 2023 (ca.) that the \[OpenCurlyDoubleQuote]InferBondTypes\
+\[CloseCurlyDoubleQuote]-> False import option for XYZ and other molecule \
+formats stopped working in Mathematica 13.3. I added the Triple and Aromatic \
+bond substitutions to his initial version, with string replacements including \
+the quotes to avoid interference with other settings in the molecule object, \
+and I also had to add that hack with the ValenceFilling->None option, \
+otherwise Mathematica adds hydrogens to the molecule to cap dangling \
+valencies, which is something we do not want. "
+}], "Text",
  CellChangeTimes->{{3.852202320988123*^9, 3.8522024817629747`*^9}, {
   3.85220251189102*^9, 3.852202519134107*^9}, {3.89290458195798*^9, 
   3.892904589106019*^9}, {3.915533062047021*^9, 3.915533062711883*^9}, {
   3.91553310716936*^9, 3.915533169074645*^9}, {3.915533483870447*^9, 
-  3.915533506301631*^9}, {3.915533660857279*^9, 
-  3.915533664015356*^9}},ExpressionUUID->"661187b5-a5b1-4296-b2ef-\
+  3.915533506301631*^9}, {3.915533660857279*^9, 3.915533664015356*^9}, {
+  3.9176276762410097`*^9, 
+  3.9176276768165283`*^9}},ExpressionUUID->"661187b5-a5b1-4296-b2ef-\
 8a5dfa4d35a2"]
 }, Open  ]],
 
@@ -76,34 +90,15 @@ Cell["Description", "Subsubsection",
 Cell["\<\
 This notebook is a companion to \
 \[OpenCurlyDoubleQuote]orbitalplot-interactive.nb\[CloseCurlyDoubleQuote] in \
-which you can find selected literature citations and additional comments.
-
-This notebook generates a set of PNG-format plots from a set of cube files \
-for a molecule collected in the working directory. We do not plot anything \
-interactively here in the notebook. The notebook reads viewpoint data from a \
-file \[OpenCurlyDoubleQuote]viewpoint.dat\[CloseCurlyDoubleQuote], and \
-molecular xyz coordinates from a file \[OpenCurlyDoubleQuote]molecule.xyz\
-\[CloseCurlyDoubleQuote]. The latter is saved automatically in the working \
-directory, based on the molecule specs in the cube files when you run the \
-interactive version of this notebook \
-\[OpenCurlyDoubleQuote]orbitalplot-interactive.nb\[CloseCurlyDoubleQuote] \
-first with one of the cubes. Likewise, you can save a suitable viewpoint from \
-\[OpenCurlyDoubleQuote]orbitalplot-interactive.nb\[CloseCurlyDoubleQuote] for \
-later use in this notebook.
-
-The molecule and grid specs must be consistent among all cubes, of course.
-
-With \[OpenCurlyDoubleQuote]viewpoint.dat\[CloseCurlyDoubleQuote] and  \
-\[OpenCurlyDoubleQuote]molecule.xyz\[CloseCurlyDoubleQuote] present, select \
-Evaluation -> Evaluate Notebook from the menu to generate PNG format graphics \
-for all cubes.  \
+which you can find selected literature citations and additional comments.\
 \>", "Text",
  CellChangeTimes->{{3.8834915505006037`*^9, 3.883491569664538*^9}, {
    3.883494756654669*^9, 3.883494765207802*^9}, {3.912764037760309*^9, 
    3.91276406849009*^9}, {3.9127641312949657`*^9, 3.9127642480846252`*^9}, {
    3.912764311482164*^9, 3.912764398010634*^9}, {3.9127651554137373`*^9, 
    3.9127652393422728`*^9}, {3.912765345265212*^9, 3.91276550839252*^9}, 
-   3.9127656894449387`*^9},ExpressionUUID->"c53e8bd6-7c2e-41f9-a6f7-\
+   3.9127656894449387`*^9, {3.917627700425481*^9, 
+   3.917627703405013*^9}},ExpressionUUID->"c53e8bd6-7c2e-41f9-a6f7-\
 344bf4eb0b90"]
 }, Open  ]],
 
@@ -261,19 +256,57 @@ Cell[BoxData[{
      RowBox[{"-", "2.698342793225042`"}]}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"vv", " ", "=", " ", 
-   RowBox[{"{", 
+  RowBox[{
+   RowBox[{"vv", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"-", "0.19860631586208347`"}], ",", 
+      RowBox[{"-", "0.6642040492578951`"}], ",", 
+      RowBox[{"-", "0.7206861399035684`"}]}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"customImporter", "[", "path_", "]"}], ":=", 
+   RowBox[{"Block", "[", 
     RowBox[{
-     RowBox[{"-", "0.19860631586208347`"}], ",", 
-     RowBox[{"-", "0.6642040492578951`"}], ",", 
-     RowBox[{"-", "0.7206861399035684`"}]}], "}"}]}], ";"}]}], "Input",
+     RowBox[{"{", 
+      RowBox[{"textmol", ",", "goodmol"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"mol", "=", 
+       RowBox[{"Import", "[", 
+        RowBox[{"path", ",", "\"\<Molecule\>\""}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"textmol", "=", 
+       RowBox[{"ToString", "[", 
+        RowBox[{"InputForm", "[", "mol", "]"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"goodmol", "=", 
+       RowBox[{"ToExpression", "@", 
+        RowBox[{"StringReplace", "[", 
+         RowBox[{"textmol", ",", "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{
+            "\"\<\\\"Double\\\"\>\"", "->", "\"\<\\\"Single\\\"\>\""}], ",", 
+            RowBox[{
+            "\"\<\\\"Triple\\\"\>\"", "->", "\"\<\\\"Single\\\"\>\""}], ",", 
+            RowBox[{
+            "\"\<\\\"Aromatic\\\"\>\"", "->", "\"\<\\\"Single\\\"\>\""}], ",", 
+            RowBox[{
+             RowBox[{"\"\<]\>\"", " ", "~~", " ", "EndOfString"}], " ", "->", 
+             " ", "\"\<, ValenceFilling->None]\>\""}]}], "}"}]}], "]"}]}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "goodmol", "]"}]}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]}], "Input",
  CellChangeTimes->{{3.793798633045143*^9, 3.793798633638342*^9}, 
    3.7937990332118587`*^9, {3.793799423835637*^9, 3.793799424429448*^9}, {
    3.793812876199871*^9, 3.793812900248032*^9}, {3.793976150994787*^9, 
    3.793976165907461*^9}, {3.794059191446529*^9, 3.794059194288357*^9}, {
    3.864745050559181*^9, 3.864745067185685*^9}, {3.864808832517955*^9, 
-   3.864808834174582*^9}, {3.9127651165251007`*^9, 3.9127651185286093`*^9}},
- CellLabel->"In[54]:=",ExpressionUUID->"bbc363e6-aa4c-4ecc-94c7-18f0dc84cfd9"],
+   3.864808834174582*^9}, {3.9127651165251007`*^9, 3.9127651185286093`*^9}, {
+   3.9176257841549997`*^9, 
+   3.917625784777535*^9}},ExpressionUUID->"bbc363e6-aa4c-4ecc-94c7-\
+18f0dc84cfd9"],
 
 Cell["Make a list of cube files from the current directory. ", "Text",
  CellChangeTimes->{{3.793799563306443*^9, 3.793799591542831*^9}, {
@@ -285,12 +318,14 @@ Cell["Make a list of cube files from the current directory. ", "Text",
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"ext", " ", "=", " ", "\"\<cube\>\""}], ";", "  ", 
+  RowBox[{
+   RowBox[{"ext", " ", "=", " ", "\"\<cube\>\""}], ";"}], "  ", 
   RowBox[{"(*", " ", 
    RowBox[{"adjust", " ", "extension", " ", 
     RowBox[{"(", 
      RowBox[{"e", ".", "g", ".", " ", "\"\<cub\>\""}], ")"}], " ", "if", " ", 
-    "needed"}], " ", "*)"}], "\[IndentingNewLine]", 
+    "needed"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
   RowBox[{"flist", " ", "=", " ", 
    RowBox[{"FileNames", "[", 
     RowBox[{"\"\<*.\>\"", "<>", "ext"}], "]"}]}], 
@@ -351,46 +386,49 @@ Spacefilling ,  Tubes  , Wireframe\
 9f41b49a777b"],
 
 Cell[BoxData[{
- RowBox[{
-  StyleBox[
+ StyleBox[
+  RowBox[{
    RowBox[{
-    RowBox[{"contours", "=", "0.04"}], ";"}],
-   FontColor->GrayLevel[0]], 
-  StyleBox[" ",
-   FontColor->GrayLevel[0]], 
-  StyleBox[
-   RowBox[{
-    StyleBox[
-     RowBox[{"(", "*"}]], " ", 
+    RowBox[{"contours", "=", "0.04"}], ";"}], " ", 
+   RowBox[{"(*", " ", 
     RowBox[{"default", " ", "isosurface", " ", "value", " ", 
      RowBox[{"(", 
       RowBox[{"+", 
-       RowBox[{"/", "-"}]}], ")"}]}], 
-    StyleBox[
-     RowBox[{"*", ")"}]]}],
-   FontColor->GrayLevel[0]]}], "\[IndentingNewLine]", 
+       RowBox[{"/", "-"}]}], ")"}]}], "*)"}]}],
+  FontColor->GrayLevel[0]], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"plottheme", "=", "\"\<Tubes\>\""}], ";", " ", 
+  RowBox[{
+   RowBox[{"plottheme", "=", "\"\<Tubes\>\""}], ";"}], " ", 
   RowBox[{"(*", " ", 
-   RowBox[{"default", " ", "plot", " ", "theme"}], " ", "*)"}], 
-  "\[IndentingNewLine]", 
-  RowBox[{"opa", " ", "=", " ", "0.7"}], ";", " ", 
+   RowBox[{"default", " ", "plot", " ", "theme"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"opa", " ", "=", " ", "0.7"}], ";"}], " ", 
   RowBox[{"(*", " ", 
    RowBox[{
     RowBox[{"default", " ", 
      RowBox[{"opacity", ".", " ", "Set"}], " ", "to", " ", "1", " ", "for", 
      " ", "non"}], "-", 
     RowBox[{"translucent", " ", 
-     RowBox[{"surfaces", "."}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
-  RowBox[{"res", " ", "=", " ", "150"}], ";", " ", 
+     RowBox[{"surfaces", "."}]}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"res", " ", "=", " ", "150"}], ";"}], " ", 
   RowBox[{"(*", " ", 
    RowBox[{
    "default", " ", "resolution", " ", "of", " ", "exported", " ", "image"}], 
-   " ", "*)"}], "\[IndentingNewLine]", 
-  RowBox[{"mol", "=", 
-   RowBox[{"Import", "[", 
-    RowBox[{"\"\<molecule.xyz\>\"", ",", 
-     RowBox[{"\"\<InferBondTypes\>\"", "->", "False"}]}], "]"}]}], 
+   " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"mol", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"\"\<molecule.xyz\>\"", ",", 
+       RowBox[{"\"\<InferBondTypes\>\"", "->", "False"}]}], "]"}]}], ";"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mol", " ", "=", " ", 
+   RowBox[{"customImporter", "[", "\"\<molecule.xyz\>\"", "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"molplot", " ", "=", " ", 
@@ -404,8 +442,10 @@ Cell[BoxData[{
   3.885038224103015*^9, 3.885038224177513*^9}, {3.9127658899980288`*^9, 
   3.9127658910358353`*^9}, {3.912766099462035*^9, 3.912766110016572*^9}, {
   3.912766156624229*^9, 3.912766203899671*^9}, {3.912766237065983*^9, 
-  3.912766241674315*^9}},
- CellLabel->"In[72]:=",ExpressionUUID->"e58c6655-7134-4e56-9ac8-2ea8c335616e"],
+  3.912766241674315*^9}, {3.917625761356242*^9, 3.917625771360229*^9}, {
+  3.917625838703513*^9, 3.9176258499995203`*^9}, {3.917625890560462*^9, 
+  3.917625894942518*^9}},ExpressionUUID->"e58c6655-7134-4e56-9ac8-\
+2ea8c335616e"],
 
 Cell[BoxData[
  RowBox[{
@@ -523,8 +563,8 @@ Cell[BoxData[
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{823.5, 759.},
-WindowMargins->{{559.5, Automatic}, {0, Automatic}},
+WindowSize->{823.5, 756.},
+WindowMargins->{{Automatic, 57}, {0, Automatic}},
 DockedCells->{},
 FrontEndVersion->"13.0 for Linux x86 (64-bit) (February 4, 2022)",
 StyleDefinitions->"Default.nb",
@@ -542,31 +582,31 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 276, 4, 68, "Section",ExpressionUUID->"7af641f0-ea50-4abd-a70d-07ca46194b07"],
+Cell[580, 22, 322, 5, 68, "Section",ExpressionUUID->"7af641f0-ea50-4abd-a70d-07ca46194b07"],
 Cell[CellGroupData[{
-Cell[881, 30, 190, 3, 45, "Subsubsection",ExpressionUUID->"943c6eeb-11d6-4f7c-aa8d-d8737f0089db"],
-Cell[1074, 35, 730, 14, 219, "Text",ExpressionUUID->"e3957d58-6f06-4ee9-95ac-d4aa965d3270"],
-Cell[1807, 51, 594, 10, 58, "Text",ExpressionUUID->"661187b5-a5b1-4296-b2ef-8a5dfa4d35a2"]
+Cell[927, 31, 246, 4, 45, "Subsubsection",ExpressionUUID->"943c6eeb-11d6-4f7c-aa8d-d8737f0089db"],
+Cell[1176, 37, 730, 14, 219, "Text",ExpressionUUID->"e3957d58-6f06-4ee9-95ac-d4aa965d3270"],
+Cell[1909, 53, 1384, 22, 219, "Text",ExpressionUUID->"661187b5-a5b1-4296-b2ef-8a5dfa4d35a2"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2438, 66, 437, 7, 45, "Subsubsection",ExpressionUUID->"42bd9d9e-9322-4605-a79b-320d35a93150"],
-Cell[2878, 75, 1824, 31, 334, "Text",ExpressionUUID->"c53e8bd6-7c2e-41f9-a6f7-344bf4eb0b90"]
+Cell[3330, 80, 437, 7, 45, "Subsubsection",ExpressionUUID->"42bd9d9e-9322-4605-a79b-320d35a93150"],
+Cell[3770, 89, 711, 12, 58, "Text",ExpressionUUID->"c53e8bd6-7c2e-41f9-a6f7-344bf4eb0b90"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4739, 111, 398, 7, 45, "Subsubsection",ExpressionUUID->"d88942c9-3c77-4253-adae-40dc3a50b618"],
-Cell[5140, 120, 3241, 70, 252, "Input",ExpressionUUID->"b9453b43-e789-4e17-8229-3ff2f491ab17",
+Cell[4518, 106, 398, 7, 45, "Subsubsection",ExpressionUUID->"d88942c9-3c77-4253-adae-40dc3a50b618"],
+Cell[4919, 115, 3241, 70, 252, "Input",ExpressionUUID->"b9453b43-e789-4e17-8229-3ff2f491ab17",
  InitializationCell->True]
 }, Closed]],
 Cell[CellGroupData[{
-Cell[8418, 195, 157, 3, 37, "Subsubsection",ExpressionUUID->"76a04531-094c-4bf1-a347-1b9a48c70ad2"],
-Cell[8578, 200, 2807, 75, 278, "Input",ExpressionUUID->"bbc363e6-aa4c-4ecc-94c7-18f0dc84cfd9"],
-Cell[11388, 277, 436, 6, 35, "Text",ExpressionUUID->"bcf1db58-0c2a-43cd-a28e-7e8276321f48"],
-Cell[11827, 285, 1424, 25, 71, "Input",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
-Cell[13254, 312, 180, 3, 35, "Text",ExpressionUUID->"b108ec39-b7c3-4dff-acef-8b1e10bdec8a"],
-Cell[13437, 317, 775, 19, 92, "Input",ExpressionUUID->"3ed935fc-9391-43a3-932f-a43081019bcf"],
-Cell[14215, 338, 674, 12, 58, "Text",ExpressionUUID->"f522ef8e-872b-461a-a034-9f41b49a777b"],
-Cell[14892, 352, 2107, 55, 133, "Input",ExpressionUUID->"e58c6655-7134-4e56-9ac8-2ea8c335616e"],
-Cell[17002, 409, 5493, 112, 381, "Input",ExpressionUUID->"3253bf76-164a-490e-a0d4-bcaab2ab13d2"]
+Cell[8197, 190, 157, 3, 37, "Subsubsection",ExpressionUUID->"76a04531-094c-4bf1-a347-1b9a48c70ad2"],
+Cell[8357, 195, 4265, 113, 463, "Input",ExpressionUUID->"bbc363e6-aa4c-4ecc-94c7-18f0dc84cfd9"],
+Cell[12625, 310, 436, 6, 35, "Text",ExpressionUUID->"bcf1db58-0c2a-43cd-a28e-7e8276321f48"],
+Cell[13064, 318, 1450, 27, 71, "Input",ExpressionUUID->"27727f97-7dd2-4d31-a480-915518d89fa6"],
+Cell[14517, 347, 180, 3, 35, "Text",ExpressionUUID->"b108ec39-b7c3-4dff-acef-8b1e10bdec8a"],
+Cell[14700, 352, 775, 19, 92, "Input",ExpressionUUID->"3ed935fc-9391-43a3-932f-a43081019bcf"],
+Cell[15478, 373, 674, 12, 58, "Text",ExpressionUUID->"f522ef8e-872b-461a-a034-9f41b49a777b"],
+Cell[16155, 387, 2365, 60, 174, "Input",ExpressionUUID->"e58c6655-7134-4e56-9ac8-2ea8c335616e"],
+Cell[18523, 449, 5493, 112, 381, "Input",ExpressionUUID->"3253bf76-164a-490e-a0d4-bcaab2ab13d2"]
 }, Open  ]]
 }, Open  ]]
 }
