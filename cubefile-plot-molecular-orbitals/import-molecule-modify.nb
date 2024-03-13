@@ -1,0 +1,391 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17036,        383]
+NotebookOptionsPosition[     14495,        344]
+NotebookOutlinePosition[     14896,        360]
+CellTagsIndexPosition[     14853,        357]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Helper notebook for orbitalplot-interactive.nb", "Subsubsection",
+ CellChangeTimes->{{3.9193238085429363`*^9, 
+  3.919323823694325*^9}},ExpressionUUID->"d8d5c1f2-bcfb-4ee7-bb98-\
+bc07a4c0b5b2"],
+
+Cell["\<\
+See file orbitalplot-interactive.nbfor copyright and license information. 
+(C) J. Autschbach, 2024\
+\>", "Text",
+ CellChangeTimes->{{3.919323831252602*^9, 
+  3.9193238656359673`*^9}},ExpressionUUID->"5190399b-50ec-49bd-a288-\
+d0258af13057"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.918726297735104*^9, 3.918726307710272*^9}, {
+  3.919323876157565*^9, 3.91932388185001*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"25319e08-5d6e-4b3e-836f-6f8604fe4779"],
+
+Cell["\<\
+The customImporter command replaces all bonds drawn in a molecule with a \
+single bond \[OpenCurlyQuote]stick\[CloseCurlyQuote], which is usually how we \
+want our molecules to look like when plotting orbitals, densities, spin \
+densities, and such, simply to show the connectivity. By default, Mathematica \
+will try to guess double, triple, and aromatic bonds.\
+\>", "Text",
+ CellChangeTimes->{{3.919261586889344*^9, 
+  3.919261710709281*^9}},ExpressionUUID->"e8fa68f1-bf68-47ba-9232-\
+b88ae5ee0362"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"customImporter", "[", "path_", "]"}], ":=", 
+   RowBox[{"Block", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"textmol", ",", "goodmol"}], "}"}], ",", "\[IndentingNewLine]", 
+     
+     RowBox[{
+      RowBox[{"mol", "=", 
+       RowBox[{"Import", "[", 
+        RowBox[{"path", ",", "\"\<Molecule\>\""}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"textmol", "=", 
+       RowBox[{"ToString", "[", 
+        RowBox[{"InputForm", "[", "mol", "]"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"goodmol", "=", 
+       RowBox[{"ToExpression", "@", 
+        RowBox[{"StringReplace", "[", 
+         RowBox[{"textmol", ",", "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{
+            "\"\<\\\"Double\\\"\>\"", "->", "\"\<\\\"Single\\\"\>\""}], ",", 
+            RowBox[{
+            "\"\<\\\"Triple\\\"\>\"", "->", "\"\<\\\"Single\\\"\>\""}], ",", 
+            RowBox[{
+            "\"\<\\\"Aromatic\\\"\>\"", "->", "\"\<\\\"Single\\\"\>\""}], ",", 
+            RowBox[{
+             RowBox[{"\"\<]\>\"", " ", "~~", " ", "EndOfString"}], " ", "->", 
+             " ", "\"\<, ValenceFilling->None]\>\""}]}], "}"}]}], "]"}]}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "goodmol", "]"}]}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]], "Input",
+ CellLabel->"In[2]:=",ExpressionUUID->"14169c66-abbf-4104-a7c8-baacdfc6d4db"],
+
+Cell["\<\
+Here we import molecular xyz data from am XYZ file (CUBE would be an \
+equivalent format as far as molecular coordinates are concerned, but it \
+creates a lot of other data that we don\[CloseCurlyQuote]t need here) and \
+export it in MOL format to preserve the connectivity assigned by \
+customImporter. First, let\[CloseCurlyQuote]s see what \
+\[OpenCurlyDoubleQuote]bonds\[CloseCurlyDoubleQuote] Mathematica comes up \
+with if we don\[CloseCurlyQuote]t use customImporter:\
+\>", "Text",
+ CellChangeTimes->{{3.919261723950845*^9, 3.919261769811886*^9}, {
+  3.91926182583496*^9, 3.919261886415041*^9}, {3.919264072702286*^9, 
+  3.919264094142294*^9}},ExpressionUUID->"32222e3c-87ab-4e7f-acbe-\
+cde181f38e7a"],
+
+Cell[BoxData[
+ RowBox[{"Import", "[", "\"\<molecule-to-be-modified.xyz\>\"", "]"}]], "Input",\
+
+ CellChangeTimes->{{3.9192641082077923`*^9, 3.919264115701888*^9}, {
+  3.919264202816607*^9, 3.919264209378531*^9}, {3.919264247835928*^9, 
+  3.919264251198709*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"8248755d-73ed-4218-97ec-0a586efb34ca"],
+
+Cell[BoxData[
+ RowBox[{"MoleculePlot3D", "[", "%", "]"}]], "Input",
+ CellChangeTimes->{{3.91926413237473*^9, 3.919264136475176*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"a88d6862-6039-4354-837b-bb9237a54108"],
+
+Cell["\<\
+You can see aromatic bonds assigned between some of the carbons. We don\
+\[CloseCurlyQuote]t want that, so the customImporter function is  preferred:\
+\>", "Text",
+ CellChangeTimes->{{3.9192641520829563`*^9, 3.919264183653928*^9}, {
+  3.9193250820562468`*^9, 
+  3.919325082678862*^9}},ExpressionUUID->"fd4f02ed-fd29-455d-bd6d-\
+d0c60d2c3f3a"],
+
+Cell[BoxData[
+ RowBox[{"mol1", " ", "=", " ", 
+  RowBox[{
+  "customImporter", "[", "\"\<molecule-to-be-modified.xyz\>\"", 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.91872633680396*^9, 3.9187263492402153`*^9}, {
+  3.9187263973625383`*^9, 3.918726398615385*^9}, {3.9192614815293217`*^9, 
+  3.919261485448041*^9}, {3.9192642191801453`*^9, 3.9192642240761557`*^9}, {
+  3.919264260122913*^9, 3.919264263088666*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"1c1326b0-7109-4d57-9e38-5d6476e3ec59"],
+
+Cell[BoxData[
+ RowBox[{"MoleculePlot3D", "[", "mol1", "]"}]], "Input",
+ CellChangeTimes->{{3.919264277147683*^9, 3.919264277307288*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"5e799acb-2bc2-4fe9-bd01-f0c846ab2d4a"],
+
+Cell["\<\
+No aromatic bonds. Store in mol file, reimport with vanilla Import and check \
+again. We also use an option to plot the molecule with atomic labels \
+(numbers) so we can more asily assign missing bonds or delete some later\
+\>", "Text",
+ CellChangeTimes->{{3.919264285107443*^9, 3.919264309452668*^9}, {
+  3.9192644066771803`*^9, 3.9192644345912743`*^9}, {3.919324459396042*^9, 
+  3.9193244618034973`*^9}},ExpressionUUID->"67db6699-d524-4cb6-8fb9-\
+585c45cb5439"],
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<molecule.mol\>\"", ",", " ", "mol1"}], "]"}]], "Input",
+ CellChangeTimes->{{3.9187275890642757`*^9, 3.918727601879408*^9}, {
+  3.91926177462761*^9, 3.919261775839252*^9}, {3.919264316397341*^9, 
+  3.919264322394843*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"c73c5458-048e-447b-a66b-6cc87a433e03"],
+
+Cell[BoxData[
+ RowBox[{"mol2", " ", "=", " ", 
+  RowBox[{"Import", "[", "\"\<molecule.mol\>\"", "]"}]}]], "Input",
+ CellChangeTimes->{{3.9187276179488688`*^9, 3.918727630171384*^9}, {
+  3.919261524197637*^9, 3.919261524917163*^9}, {3.919261797755784*^9, 
+  3.919261807328971*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"9788dc6a-a152-478b-a2f9-2944062eaac2"],
+
+Cell[BoxData[
+ RowBox[{"MoleculePlot3D", "[", 
+  RowBox[{"mol2", ",", 
+   RowBox[{"AtomLabels", "->", "\"\<AtomIndex\>\""}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.919261555935485*^9, 3.919261560893461*^9}, {
+  3.9192645018490677`*^9, 3.919264502469284*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"e1c235a9-f2f0-46e1-85de-17ac64b8fad6"],
+
+Cell["\<\
+Looks like the MOL format preserves the bonds that we fixed via using \
+customImporter. Next, let\[CloseCurlyQuote]s add some bonds. THIS WORKS FOR \
+CASES WITH AT LEAST ONE BOND. If your molecule shows no bonds, you\
+\[CloseCurlyQuote]d have to add those manually in the string and convert it \
+back to a Molecule object.
+
+Syntax for bondpairs: { {atom1,atom2},{atom3,atom4}, ...}
+
+To add just one bond, you\[CloseCurlyQuote]ll need {{atom1,atom2}} with \
+double braces
+
+We are not checking for proper syntax, so make sure this works by plotting \
+the resulting molecule and checking that all desired bonds are there\
+\>", "Text",
+ CellChangeTimes->{{3.9192643710034857`*^9, 3.919264398288118*^9}, {
+  3.919264531624302*^9, 3.919264546053773*^9}, {3.9192648969162617`*^9, 
+  3.919264950162324*^9}, {3.9192650069742727`*^9, 3.91926500964388*^9}, {
+  3.919321147018339*^9, 
+  3.919321250003935*^9}},ExpressionUUID->"82dd7895-5d24-4d45-8f1f-\
+99cc402cbb7d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"addBonds", "[", 
+   RowBox[{"mol_", ",", "bondpairs_"}], "]"}], " ", ":=", " ", 
+  RowBox[{"Block", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"textmol", ",", " ", "moltmp", ",", "output", ",", "i"}], "}"}], 
+    ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"output", " ", "=", " ", "mol"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Do", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"textmol", "=", 
+         RowBox[{"ToString", "[", 
+          RowBox[{"InputForm", "[", "output", "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"moltmp", " ", "=", " ", 
+         RowBox[{"StringReplace", "[", 
+          RowBox[{"textmol", ",", " ", 
+           RowBox[{"\"\<{Bond\>\"", " ", "->", " ", "\[IndentingNewLine]", 
+            RowBox[{"\"\<{Bond[\>\"", "<>", 
+             RowBox[{"ToString", "[", 
+              RowBox[{"bondpairs", "[", 
+               RowBox[{"[", "i", "]"}], "]"}], "]"}], "<>", 
+             "\"\<,\\\"Single\\\"], Bond\>\""}]}], ",", "1"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"output", " ", "=", " ", 
+         RowBox[{"ToExpression", "@", 
+          RowBox[{"StringReplace", "[", 
+           RowBox[{"moltmp", ",", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"\"\<]\>\"", " ", "~~", " ", "EndOfString"}], " ", "->", 
+             " ", "\"\<, ValenceFilling->None]\>\""}]}], "]"}]}]}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "1", ",", 
+         RowBox[{"Length", "[", "bondpairs", "]"}]}], "}"}]}], 
+      "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", "output", "]"}]}]}], "\[IndentingNewLine]", 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.919265050092064*^9, 3.919265123734415*^9}, {
+   3.9192651620413523`*^9, 3.919265364197803*^9}, {3.919265413277462*^9, 
+   3.9192654334639874`*^9}, {3.919265478197713*^9, 3.919265510111642*^9}, {
+   3.91926558746362*^9, 3.9192655958100357`*^9}, {3.919265625889309*^9, 
+   3.9192656340347033`*^9}, {3.9192658901065187`*^9, 3.919265932994149*^9}, {
+   3.919320798228465*^9, 3.919320960869072*^9}, 3.919321010266048*^9},
+ CellLabel->"In[10]:=",ExpressionUUID->"03881c6d-0534-42e0-86b7-3c24071e7d48"],
+
+Cell[BoxData[
+ RowBox[{"mol3", "=", 
+  RowBox[{"addBonds", "[", 
+   RowBox[{"mol1", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"1", ",", "4"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "5"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "6"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "11"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "13"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "12"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "14"}], "}"}]}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.919265518258872*^9, 3.919265532699946*^9}, {
+   3.919266507399559*^9, 3.919266507458302*^9}, {3.919320971563759*^9, 
+   3.919321002733902*^9}, 3.919321053152277*^9, {3.919321094985461*^9, 
+   3.919321123260124*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"69b067e8-8830-4d18-885c-72fd0d8e19dd"],
+
+Cell[BoxData[
+ RowBox[{"MoleculePlot3D", "[", 
+  RowBox[{"mol3", ",", 
+   RowBox[{"AtomLabels", "->", "\"\<AtomIndex\>\""}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.919265648583035*^9, 3.919265657279798*^9}, {
+  3.919265695254517*^9, 3.919265709445532*^9}, {3.9192657923703527`*^9, 
+  3.919265793533618*^9}},
+ CellLabel->"In[12]:=",ExpressionUUID->"85327dbc-ca2b-4784-a869-e196b8889355"],
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<molecule.mol\>\"", ",", " ", "mol3"}], "]"}]], "Input",
+ CellChangeTimes->{{3.919266297888888*^9, 3.9192663147955503`*^9}, {
+  3.919266524577757*^9, 3.919266525818268*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"53ee64d8-3de7-44cd-bf67-a11abf73297a"],
+
+Cell[BoxData[
+ RowBox[{"Import", "[", 
+  RowBox[{"\"\<molecule.mol\>\"", ",", "\"\<Graphics3D\>\"", ",", 
+   RowBox[{"AtomLabels", "->", "\"\<AtomIndex\>\""}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.919266537946526*^9, 3.919266576636073*^9}, {
+  3.919266964633363*^9, 3.919266971838472*^9}, {3.9193212964486647`*^9, 
+  3.919321309108824*^9}},
+ CellLabel->"In[14]:=",ExpressionUUID->"57e94e87-a53e-4183-bea5-19fb8d159608"],
+
+Cell[TextData[{
+ "First when I tried adding the bonds in the resulting MOL file, this had \
+unintended consequences in that suddenly some of the C-C bonds disappeared. \
+HOWEVER, the reason for that was the ",
+ StyleBox["second number in line 4 of the MOL file",
+  FontWeight->"Bold"],
+ ", the number of bonds, must be incremented or decreased if bonds are added \
+or removed!\n\nI  created test.mol based on molecule.mol (copy molecule.mol \
+to test.mol or convert the XYZ file to MOL with OpenBabel, then modify \
+test.mol as desired), with all of the Ce-C bonds removed, number of bonds \
+adjusted to 31, no other changes, and this gives the result of having only \
+the bond between Ce and Cl left in the plot."
+}], "Text",
+ CellChangeTimes->{{3.919266654138701*^9, 3.919266671085124*^9}, {
+  3.9193215377638083`*^9, 3.91932156940493*^9}, {3.919321891395702*^9, 
+  3.919321905811702*^9}, {3.9193220042447033`*^9, 3.919322030796146*^9}, {
+  3.919322227040276*^9, 3.919322339267849*^9}, {3.9193226826910954`*^9, 
+  3.9193227140024347`*^9}, {3.919324501366495*^9, 3.919324538259948*^9}, {
+  3.9193251746514606`*^9, 
+  3.919325202532542*^9}},ExpressionUUID->"29cfa03b-e76f-462a-9328-\
+24df747725b2"],
+
+Cell[BoxData[
+ RowBox[{"Import", "[", 
+  RowBox[{"\"\<test.mol\>\"", ",", "\"\<Graphics3D\>\"", ",", 
+   RowBox[{"AtomLabels", "->", "\"\<AtomIndex\>\""}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.919321876617239*^9, 3.919321878704822*^9}},
+ CellLabel->"In[16]:=",ExpressionUUID->"23e5fa7a-4a92-474c-8b97-9dbf4a7a7d0d"],
+
+Cell["\<\
+For MOL specs, see
+
+https://chem.libretexts.org/Courses/University_of_Arkansas_Little_Rock/\
+ChemInformatics_%282017%29%3A_Chem_4399_5399/2.2%3A_Chemical_Representations_\
+on_Computer%3A_Part_II/2.2.2%3A_Anatomy_of_a_MOL_file 
+
+https://en.wikipedia.org/wiki/Chemical_table_file \
+\>", "Text",
+ CellChangeTimes->{{3.919322761019483*^9, 
+  3.9193227774141617`*^9}},ExpressionUUID->"d0f36455-1071-4525-b029-\
+db6cff4c6c5a"]
+}, Open  ]]
+},
+WindowSize->{606., 683.25},
+WindowMargins->{{708, Automatic}, {Automatic, 80.25}},
+FrontEndVersion->"13.0 for Linux x86 (64-bit) (February 4, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"f137159f-63a0-41a1-abaf-8299be46a863"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 199, 3, 45, "Subsubsection",ExpressionUUID->"d8d5c1f2-bcfb-4ee7-bb98-bc07a4c0b5b2"],
+Cell[782, 27, 250, 6, 58, "Text",ExpressionUUID->"5190399b-50ec-49bd-a288-d0258af13057"],
+Cell[1035, 35, 315, 6, 29, "Input",ExpressionUUID->"25319e08-5d6e-4b3e-836f-6f8604fe4779"],
+Cell[1353, 43, 512, 9, 127, "Text",ExpressionUUID->"e8fa68f1-bf68-47ba-9232-b88ae5ee0362"],
+Cell[1868, 54, 1462, 36, 195, "Input",ExpressionUUID->"14169c66-abbf-4104-a7c8-baacdfc6d4db"],
+Cell[3333, 92, 718, 12, 127, "Text",ExpressionUUID->"32222e3c-87ab-4e7f-acbe-cde181f38e7a"],
+Cell[4054, 106, 339, 6, 29, "Input",ExpressionUUID->"8248755d-73ed-4218-97ec-0a586efb34ca"],
+Cell[4396, 114, 210, 3, 29, "Input",ExpressionUUID->"a88d6862-6039-4354-837b-bb9237a54108"],
+Cell[4609, 119, 352, 7, 58, "Text",ExpressionUUID->"fd4f02ed-fd29-455d-bd6d-d0c60d2c3f3a"],
+Cell[4964, 128, 490, 9, 29, "Input",ExpressionUUID->"1c1326b0-7109-4d57-9e38-5d6476e3ec59"],
+Cell[5457, 139, 214, 3, 29, "Input",ExpressionUUID->"5e799acb-2bc2-4fe9-bd01-f0c846ab2d4a"],
+Cell[5674, 144, 473, 8, 81, "Text",ExpressionUUID->"67db6699-d524-4cb6-8fb9-585c45cb5439"],
+Cell[6150, 154, 352, 6, 29, "Input",ExpressionUUID->"c73c5458-048e-447b-a66b-6cc87a433e03"],
+Cell[6505, 162, 358, 6, 29, "Input",ExpressionUUID->"9788dc6a-a152-478b-a2f9-2944062eaac2"],
+Cell[6866, 170, 338, 6, 29, "Input",ExpressionUUID->"e1c235a9-f2f0-46e1-85de-17ac64b8fad6"],
+Cell[7207, 178, 965, 20, 265, "Text",ExpressionUUID->"82dd7895-5d24-4d45-8f1f-99cc402cbb7d"],
+Cell[8175, 200, 2299, 48, 298, "Input",ExpressionUUID->"03881c6d-0534-42e0-86b7-3c24071e7d48"],
+Cell[10477, 250, 921, 24, 51, "Input",ExpressionUUID->"69b067e8-8830-4d18-885c-72fd0d8e19dd"],
+Cell[11401, 276, 388, 7, 29, "Input",ExpressionUUID->"85327dbc-ca2b-4784-a869-e196b8889355"],
+Cell[11792, 285, 305, 5, 29, "Input",ExpressionUUID->"53ee64d8-3de7-44cd-bf67-a11abf73297a"],
+Cell[12100, 292, 423, 7, 29, "Input",ExpressionUUID->"57e94e87-a53e-4183-bea5-19fb8d159608"],
+Cell[12526, 301, 1198, 20, 265, "Text",ExpressionUUID->"29cfa03b-e76f-462a-9328-24df747725b2"],
+Cell[13727, 323, 319, 5, 29, "Input",ExpressionUUID->"23e5fa7a-4a92-474c-8b97-9dbf4a7a7d0d"],
+Cell[14049, 330, 430, 11, 173, "Text",ExpressionUUID->"d0f36455-1071-4525-b029-db6cff4c6c5a"]
+}, Open  ]]
+}
+]
+*)
+
