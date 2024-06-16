@@ -1,17 +1,17 @@
 # Mathematica notebooks
 
 This repository provides a collection of Mathematica notebooks that
-I developed for our research projects. If you use and adapt them for your
+I developed for our research projects or for educational purposes. If you use and adapt them for your
 own research, I would appreciate it if you cite some of the references 
 provided in the README files in the sub-directories or in the Mathematica notebooks themselves. 
 
 The collection of notebooks includes the following (yes, I'm a chemist ... ;-): 
 
 https://github.com/jautschbach/mathematica-notebooks/tree/main/atomic-orbital-plots : This is a visualizer for hydrogen-like atomic orbitals (AOs). The
-AOs are specified by the nuclear charge and the quantum numbers n, l, m. 
+AOs are specified by the nuclear charge and the quantum numbers *n*, *l*, *m*. 
 Visualizations are in form of plots of the radial function, the radial density, and the 3D functions as isosurfaces. Equations for the functions are
 also generated. The AOs are the real 'sine' and 'cosine' linear 
-combinations of exp(+/- i m phi) if m is not equal to zero.
+combinations of exp(+/- i *m* φ) if quantum number *m* is not equal to zero.
 
 https://github.com/jautschbach/mathematica-notebooks/tree/main/crystal-field-hamiltonian : Given the coordinates and charges of the ligands surrounding a metal center in a complex, this notebook will calculate the one-electron crystal-field (CF) Hamiltonian, the spin-orbit (SO) Hamiltonian for a p-, d- or f-shell, and the eigenfunctions and eigenvalues for the combined CF and SO interaction. 
 
