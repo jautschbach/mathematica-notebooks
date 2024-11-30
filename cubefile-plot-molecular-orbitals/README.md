@@ -6,7 +6,10 @@ File orbitalplot-interactive.nb is a Mathematica notebook for plotting +/- isosu
 of a set of molecular orbitals. The image above shows +/-0.04 atomic units isosurfaces of a localized molecular orbital representing one of the C-H bonds in the ethene molecule, generated with the notebook.
 
 Mathematica Versions 12.x, 13.0, 13.3, and 14.0 are confirmed to work. 
-Newer versions likely will work, too.
+Newer versions likely will work, too. Version 12.1, to which I have access,
+gives some warnings and does not display the color buttons in the
+interactive panel correctly. There is a variant (with `mma12` in the file name)
+of the notebook that should work better with older Mathematica versions. 
 
 The notebook was used to generate the molecular orbital visualizations in my textbook *Quantum Theory for Chemical Applications* (https://global.oup.com/academic/product/quantum-theory-for-chemical-applications-9780190920807). The ethene orbital example is one of the isosurface plots shown in Figure 10.12 in the book. See also this article: https://doi.org/10.1021/ed200673w 
 
