@@ -3,7 +3,7 @@
 ![Isosurface of a localized molecular orbital representing one of the
  C-H bonds in the ethene molecule](example.png)
 
-File orbitalplot-interactive.nb is a Mathematica notebook for plotting
+File `orbitalplot-interactive.nb` is a Mathematica notebook for plotting
 +/- isosurfaces of a set of molecular orbitals. The image above shows
 +/-0.04 atomic units isosurfaces of a localized molecular orbital
 representing one of the C-H bonds in the ethene molecule generated
